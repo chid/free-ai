@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free AI Resources</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3250;
+      --accent: #6c63ff;
+      --accent2: #a78bfa;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --green: #34d399;
+      --yellow: #fbbf24;
+      --radius: 10px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    header {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    header p span {
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    .controls {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-wrap {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    input[type="search"] {
+      width: 100%;
+      padding: 0.65rem 0.85rem 0.65rem 2.4rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    input[type="search"]:focus { border-color: var(--accent); }
+    input[type="search"]::placeholder { color: var(--muted); }
+
+    .filter-chips {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .chip:hover { border-color: var(--accent); color: var(--text); }
+    .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    .stats {
+      max-width: 1100px;
+      margin: 0 auto 1.25rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: border-color 0.15s, transform 0.1s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .card-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .badge-free { background: rgba(52,211,153,0.15); color: var(--green); border: 1px solid rgba(52,211,153,0.3); }
+    .badge-partial { background: rgba(251,191,36,0.15); color: var(--yellow); border: 1px solid rgba(251,191,36,0.3); }
+
+    .card-category {
+      font-size: 0.75rem;
+      color: var(--accent2);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.25rem;
+    }
+
+    .card-free-detail {
+      font-size: 0.78rem;
+      color: var(--green);
+    }
+
+    .card-signup {
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: var(--surface2);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.1rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      color: var(--muted);
+      background: var(--surface2);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .update-banner {
+      max-width: 1100px;
+      margin: 2.5rem auto 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .update-banner strong { color: var(--text); }
+    .update-banner code {
+      background: var(--surface2);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--accent2);
+    }
+
+    .error {
+      max-width: 1100px;
+      margin: 3rem auto;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      color: #fca5a5;
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Free AI Resources</h1>
+  <p>Curated tools, APIs, and platforms — <span id="total-count">...</span> resources and growing</p>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="search" id="search" placeholder="Search tools, categories, tags…" />
+  </div>
+  <div class="filter-chips" id="category-filters"></div>
+</div>
+
+<div class="stats" id="stats"></div>
+
+<div class="grid" id="grid"></div>
+<div class="no-results" id="no-results" style="display:none">No resources match your search.</div>
+<div class="error" id="error" style="display:none"></div>
+
+<div class="update-banner">
+  <strong>Adding resources:</strong> Edit <code>resources.csv</code> in this folder — one row per tool.
+  Columns: <code>name, category, url, description, free_tier, requires_signup, tags</code>.
+  Or run <code>python3 update.py</code> for an interactive prompt. Then refresh this page.
+</div>
+
+<script>
+  const CSV_PATH = 'resources.csv';
+
+  function parseCSV(text) {
+    const lines = text.trim().split('\n');
+    const headers = lines[0].split(',').map(h => h.trim());
+    return lines.slice(1).map(line => {
+      const vals = [];
+      let cur = '', inQuote = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') { inQuote = !inQuote; continue; }
+        if (ch === ',' && !inQuote) { vals.push(cur.trim()); cur = ''; continue; }
+        cur += ch;
+      }
+      vals.push(cur.trim());
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = vals[i] ?? '');
+      return obj;
+    });
+  }
+
+  function isFreelyFree(tier) {
+    const t = tier.toLowerCase();
+    return t.includes('completely free') || t.includes('free,') || t === 'free';
+  }
+
+  function renderCard(r) {
+    const tags = r.tags ? r.tags.split(',').map(t => t.trim()).filter(Boolean) : [];
+    const fullyFree = isFreelyFree(r.free_tier);
+    const badge = fullyFree
+      ? '<span class="badge badge-free">Free</span>'
+      : '<span class="badge badge-partial">Free tier</span>';
+    const signup = r.requires_signup === 'Yes'
+      ? '<span class="card-signup">signup required</span>'
+      : '<span class="card-signup">no signup</span>';
+    const tagHtml = tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+    return `
+      <a class="card" href="${r.url}" target="_blank" rel="noopener noreferrer"
+         data-name="${r.name.toLowerCase()}"
+         data-category="${r.category.toLowerCase()}"
+         data-tags="${r.tags.toLowerCase()}"
+         data-desc="${r.description.toLowerCase()}">
+        <div class="card-header">
+          <span class="card-name">${r.name}</span>
+          ${badge}
+        </div>
+        <div class="card-category">${r.category}</div>
+        <div class="card-desc">${r.description}</div>
+        <div class="card-meta">
+          <span class="card-free-detail">${r.free_tier}</span>
+          ${signup}
+        </div>
+        ${tagHtml ? `<div class="tags">${tagHtml}</div>` : ''}
+      </a>`;
+  }
+
+  let allResources = [];
+  let activeCategory = 'All';
+
+  function applyFilters() {
+    const query = document.getElementById('search').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    let visible = 0;
+
+    cards.forEach(card => {
+      const matchCat = activeCategory === 'All' || card.dataset.category === activeCategory.toLowerCase();
+      const matchQuery = !query ||
+        card.dataset.name.includes(query) ||
+        card.dataset.category.includes(query) ||
+        card.dataset.tags.includes(query) ||
+        card.dataset.desc.includes(query);
+      const show = matchCat && matchQuery;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    document.getElementById('stats').textContent =
+      `Showing ${visible} of ${allResources.length} resources`;
+    document.getElementById('no-results').style.display = visible === 0 ? '' : 'none';
+  }
+
+  async function init() {
+    try {
+      const res = await fetch(CSV_PATH);
+      if (!res.ok) throw new Error(`Could not load ${CSV_PATH} (${res.status})`);
+      const text = await res.text();
+      allResources = parseCSV(text);
+
+      document.getElementById('total-count').textContent = allResources.length;
+
+      // Build category list
+      const cats = ['All', ...new Set(allResources.map(r => r.category))].sort((a, b) =>
+        a === 'All' ? -1 : b === 'All' ? 1 : a.localeCompare(b));
+
+      const filterEl = document.getElementById('category-filters');
+      cats.forEach(cat => {
+        const chip = document.createElement('button');
+        chip.className = 'chip' + (cat === 'All' ? ' active' : '');
+        chip.textContent = cat;
+        chip.addEventListener('click', () => {
+          activeCategory = cat;
+          document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          applyFilters();
+        });
+        filterEl.appendChild(chip);
+      });
+
+      // Render cards
+      const grid = document.getElementById('grid');
+      grid.innerHTML = allResources.map(renderCard).join('');
+
+      document.getElementById('search').addEventListener('input', applyFilters);
+      applyFilters();
+    } catch (err) {
+      const el = document.getElementById('error');
+      el.style.display = '';
+      el.textContent = `Error loading resources: ${err.message}. Make sure you're serving this via a local server (e.g. python3 -m http.server 8080).`;
+      document.getElementById('total-count').textContent = '0';
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>
