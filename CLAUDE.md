@@ -52,7 +52,6 @@ Open a Claude Code session in this directory and paste the contents of `refresh_
 ## How to run a refresh
 
 ```bash
-cd /Users/charley/free-ai
 claude  # then paste refresh_prompt.md contents
 ```
 

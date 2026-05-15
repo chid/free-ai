@@ -6,15 +6,15 @@ Use this prompt with Claude Code (or paste into Claude) to research and update t
 
 ## Prompt (copy everything below this line)
 
-You are maintaining a curated list of free AI resources stored in `/Users/charley/free-ai/resources.csv`.
+You are maintaining a curated list of free AI resources. The project root is your current working directory.
 
 **Your task:** Research new free AI tools and services, then add any that are not already in the list.
 
 ### Step 1 — Read current state
 
-Read `/Users/charley/free-ai/resources.csv` to see what's already listed. Note every `name` so you don't add duplicates.
+Read `resources.csv` to see what's already listed. Note every `name` so you don't add duplicates.
 
-Read `/Users/charley/free-ai/history.csv` to see what was recently added or removed.
+Read `history.csv` to see what was recently added or removed.
 
 ### Step 2 — Research new resources
 
@@ -56,9 +56,9 @@ For each resource determine:
 
 ### Step 4 — Write changes
 
-For each new resource to add, append a row to `/Users/charley/free-ai/resources.csv`.
+For each new resource to add, append a row to `resources.csv`.
 
-Also append a row to `/Users/charley/free-ai/history.csv` for each addition:
+Also append a row to `history.csv` for each addition:
 ```
 date,action,name,category,url,notes
 YYYY-MM-DD,add,<name>,<category>,<url>,found via refresh
@@ -66,7 +66,7 @@ YYYY-MM-DD,add,<name>,<category>,<url>,found via refresh
 
 ### Step 5 — Check for stale entries
 
-For each resource currently in resources.csv, consider whether it is likely to still be free and active. If you have strong evidence a tool has removed its free tier or shut down, remove it from resources.csv and log a `remove` entry in history.csv with a note explaining why.
+For each resource currently in `resources.csv`, consider whether it is likely to still be free and active. If you have strong evidence a tool has removed its free tier or shut down, remove it from `resources.csv` and log a `remove` entry in `history.csv` with a note explaining why.
 
 ### Step 6 — Report
 
@@ -81,10 +81,6 @@ Output a summary:
 
 ## Running it
 
-In Claude Code terminal:
-```bash
-cd /Users/charley/free-ai
-# then start a Claude Code session and paste the prompt above
-```
+Open a Claude Code session in this project directory and paste the prompt above.
 
-Or use the scheduled agent (see CLAUDE.md) which runs this automatically.
+Or use the scheduled agent (see `CLAUDE.md`) which runs this automatically.

@@ -1,2 +1,11 @@
 date,action,name,category,url,notes
 2026-05-15,init,—,—,—,Initial 40-resource seed
+2026-05-15,edit,GitHub Copilot,Code Assistant,https://github.com/features/copilot,Updated free_tier: now free for all users (2000 completions + 50 chats/month) not just students
+2026-05-15,edit,Codeium,Code Assistant,https://codeium.com,Rebranded to Windsurf; updated name/url/description/free_tier to reflect new product
+2026-05-15,add,Cerebras,LLM API,https://cloud.cerebras.ai,found via refresh
+2026-05-15,add,Le Chat,LLM Chatbot,https://chat.mistral.ai,found via refresh
+2026-05-15,add,DeepSeek,LLM Chatbot,https://chat.deepseek.com,found via refresh
+2026-05-15,add,Gemini CLI,Code Assistant,https://github.com/google-gemini/gemini-cli,found via refresh
+2026-05-15,add,Amazon Q Developer,Code Assistant,https://aws.amazon.com/q/developer,found via refresh
+2026-05-15,add,Kling AI,Video Generation,https://kling.ai,found via refresh
+2026-05-15,add,Pika,Video Generation,https://pika.art,found via refresh

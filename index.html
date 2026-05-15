@@ -267,7 +267,7 @@
 
 <header>
   <h1>Free AI Resources</h1>
-  <p>Curated tools, APIs, and platforms — <span id="total-count">...</span> resources and growing</p>
+  <p>A snapshot of what was freely available — <span id="total-count">...</span> tools as of <span id="snapshot-date">…</span></p>
 </header>
 
 <div class="controls">
@@ -373,14 +373,26 @@
     document.getElementById('no-results').style.display = visible === 0 ? '' : 'none';
   }
 
+  async function loadSnapshotDate() {
+    try {
+      const res = await fetch('history.csv');
+      if (!res.ok) return null;
+      const lines = (await res.text()).trim().split('\n');
+      const last = lines[lines.length - 1].split(',')[0];
+      if (!last || last === 'date') return null;
+      return new Date(last).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+    } catch { return null; }
+  }
+
   async function init() {
     try {
-      const res = await fetch(CSV_PATH);
+      const [res, snapshotDate] = await Promise.all([fetch(CSV_PATH), loadSnapshotDate()]);
       if (!res.ok) throw new Error(`Could not load ${CSV_PATH} (${res.status})`);
       const text = await res.text();
       allResources = parseCSV(text);
 
       document.getElementById('total-count').textContent = allResources.length;
+      document.getElementById('snapshot-date').textContent = snapshotDate ?? 'last update';
 
       // Build category list
       const cats = ['All', ...new Set(allResources.map(r => r.category))].sort((a, b) =>
