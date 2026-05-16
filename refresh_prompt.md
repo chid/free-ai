@@ -29,6 +29,8 @@ Search the web for recent free AI tools across these categories. Focus on tools 
 - Video generation (free tier)
 - AI productivity tools (free tier)
 - Search and research AI tools
+- LLM routing, proxy, and orchestration tools (open-source or free — tools that expose a unified API across providers, wrap CLI/OAuth sessions, or handle fallback/load-balancing between models)
+- LLM frameworks and agent libraries (open-source — for building pipelines, RAG systems, or optimizing prompts)
 
 Good search queries to use:
 - "free AI tools 2025"
@@ -36,6 +38,8 @@ Good search queries to use:
 - "free AI image generator 2025"
 - "best free AI coding assistant"
 - site:reddit.com "free AI" new tools
+- "free LLM proxy open source" OR "OpenAI compatible API wrapper"
+- "open source LLM framework" OR "open source AI agent framework"
 
 ### Step 3 — Evaluate each candidate
 
@@ -47,7 +51,7 @@ Only add a resource if ALL of these are true:
 
 For each resource determine:
 - `name` — short product name
-- `category` — pick the closest from: LLM Chatbot, LLM API, Image Generation, Code Assistant, Local / Self-hosted, Audio / Voice, Audio / Music, Video Generation, Productivity, Search / Research, Code / UI
+- `category` — pick the closest from: LLM Chatbot, LLM API, Image Generation, Code Assistant, Local / Self-hosted, Audio / Voice, Audio / Music, Video Generation, Productivity, Search / Research, Code / UI, LLM Router, Agent Framework, RAG Framework, Prompt Optimization, LLM Client
 - `url` — canonical homepage or signup URL
 - `description` — one sentence, what it does, no hype
 - `free_tier` — specific details (e.g. "Free tier with 100 requests/day", "Completely free", "$5 credit on signup")

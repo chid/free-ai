@@ -9,3 +9,8 @@ date,action,name,category,url,notes
 2026-05-15,add,Amazon Q Developer,Code Assistant,https://aws.amazon.com/q/developer,found via refresh
 2026-05-15,add,Kling AI,Video Generation,https://kling.ai,found via refresh
 2026-05-15,add,Pika,Video Generation,https://pika.art,found via refresh
+2026-05-16,add,LiteLLM,LLM Router,https://litellm.ai,added manually — LLM routing/fallback framework
+2026-05-16,add,LangChain,Agent Framework,https://python.langchain.com,added manually — LLM chain and agent framework
+2026-05-16,add,LlamaIndex,RAG Framework,https://llamaindex.ai,added manually — RAG and data connection framework
+2026-05-16,add,DSPy,Prompt Optimization,https://dspy.ai,added manually — Stanford prompt optimization framework
+2026-05-16,add,aisuite,LLM Client,https://github.com/andrewyng/aisuite,added manually — lightweight unified LLM client from Andrew Ng
