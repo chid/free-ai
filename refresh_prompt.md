@@ -8,7 +8,15 @@ Use this prompt with Claude Code (or paste into Claude) to research and update t
 
 You are maintaining a curated list of free AI resources. The project root is your current working directory.
 
-**Your task:** Research new free AI tools and services, then add any that are not already in the list.
+**Your task:** Research new free AI tools and services, then add any that are not already in the list, and open a pull request with your changes.
+
+### Step 0 — Create a monthly branch
+
+Before making any changes, create and switch to a branch named `refresh/YYYY-MM` using today's date (e.g. `refresh/2026-05`). If the branch already exists, switch to it.
+
+```bash
+git checkout -b refresh/$(date +%Y-%m) 2>/dev/null || git checkout refresh/$(date +%Y-%m)
+```
 
 ### Step 1 — Read current state
 
@@ -72,9 +80,33 @@ YYYY-MM-DD,add,<name>,<category>,<url>,found via refresh
 
 For each resource currently in `resources.csv`, consider whether it is likely to still be free and active. If you have strong evidence a tool has removed its free tier or shut down, remove it from `resources.csv` and log a `remove` entry in `history.csv` with a note explaining why.
 
-### Step 6 — Report
+### Step 6 — Open a pull request
 
-Output a summary:
+Commit all changes to the `refresh/YYYY-MM` branch and push it, then open a PR against `main`:
+
+```bash
+git add resources.csv history.csv
+git commit -m "refresh(YYYY-MM): add N tools, remove M stale entries"
+git push -u origin refresh/$(date +%Y-%m)
+gh pr create \
+  --title "Monthly refresh: $(date +%B\ %Y)" \
+  --body "$(cat <<'EOF'
+## Changes
+<!-- paste your Step 7 summary here -->
+
+## Checklist
+- [ ] No duplicate names or URLs
+- [ ] All new entries have specific free_tier descriptions
+- [ ] requires_signup is exactly Yes or No
+- [ ] history.csv updated for every add/remove/edit
+- [ ] Stale entries reviewed
+EOF
+)"
+```
+
+### Step 7 — Report
+
+Output a summary (also paste it into the PR body above):
 - How many resources were in the list before
 - How many were added (list them)
 - How many were removed (list them with reason)
