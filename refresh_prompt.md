@@ -76,9 +76,13 @@ date,action,name,category,url,notes
 YYYY-MM-DD,add,<name>,<category>,<url>,found via refresh
 ```
 
-### Step 5 — Check for stale entries
+### Step 5 — Check for stale entries and tier changes
 
-For each resource currently in `resources.csv`, consider whether it is likely to still be free and active. If you have strong evidence a tool has removed its free tier or shut down, remove it from `resources.csv` and log a `remove` entry in `history.csv` with a note explaining why.
+For each resource currently in `resources.csv`:
+
+- **Tier changed** (limits got tighter or more generous): update the `free_tier` field in-place and log an `edit` entry in `history.csv` with a note describing the old and new values. Example note: `free_tier changed from "1000 req/day" to "100 req/day"`.
+- **Free tier removed entirely**: remove the row from `resources.csv` and log a `remove` entry in `history.csv` explaining why. Consider adding it to `paid_resources.csv` if it is still notable.
+- **Tool shut down**: remove the row and log a `remove` entry.
 
 ### Step 6 — Open a pull request
 

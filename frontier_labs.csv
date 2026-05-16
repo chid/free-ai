@@ -1,0 +1,9 @@
+name,url,api_platform_url,free_chatbot_url,hq,notes
+Anthropic,https://anthropic.com,https://console.anthropic.com,https://claude.ai,San Francisco CA,Maker of Claude models
+OpenAI,https://openai.com,https://platform.openai.com,https://chat.openai.com,San Francisco CA,Maker of GPT and o-series models
+Google DeepMind,https://deepmind.google,https://aistudio.google.com,https://gemini.google.com,London UK / Mountain View CA,Maker of Gemini models; Google AI Studio is the free API portal
+xAI,https://x.ai,https://console.x.ai,https://grok.com,San Francisco CA,Elon Musk's lab; maker of Grok models
+Meta AI,https://ai.meta.com,,https://meta.ai,Menlo Park CA,Maker of open-weight Llama models; no direct paid API
+Mistral AI,https://mistral.ai,https://console.mistral.ai,https://chat.mistral.ai,Paris France,Maker of Mistral and Codestral models
+Cohere,https://cohere.com,https://dashboard.cohere.com,,Toronto Canada,NLP-focused; strong on embeddings and RAG
+Amazon,https://aws.amazon.com/bedrock,https://aws.amazon.com/bedrock,,Seattle WA,Bedrock hosts third-party frontier models; maker of Nova and Titan

@@ -75,11 +75,13 @@ date,action,name,category,url,notes
 YYYY-MM-DD,add,<name>,<category>,<url>,found via refresh
 ```
 
-### Step 5 — Check for stale or graduated entries
+### Step 5 — Check for stale entries, pricing changes, and graduations
 
 For each resource currently in `paid_resources.csv`:
-- If it has **gained** a genuine free tier, remove it from `paid_resources.csv`, add it to `resources.csv`, and log both changes in the respective history files.
-- If it has shut down or become irrelevant, remove it and log a `remove` in `paid_history.csv`.
+
+- **Pricing changed**: update the `pricing` field in-place and log an `edit` entry in `paid_history.csv` with a note describing the old and new values. Example note: `pricing changed from "$20/month" to "$25/month"`.
+- **Gained a genuine free tier**: remove it from `paid_resources.csv`, add it to `resources.csv`, and log a `remove` in `paid_history.csv` and an `add` in `history.csv` (cross-reference each other in the notes).
+- **Shut down or become irrelevant**: remove it and log a `remove` in `paid_history.csv`.
 
 ### Step 6 — Open a pull request
 
