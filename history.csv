@@ -21,6 +21,10 @@ date,action,name,category,url,notes
 2026-05-23,add,AutoGen,Agent Framework,https://microsoft.github.io/autogen,Microsoft conversational multi-agent framework
 2026-05-23,add,MetaGPT,Agent Framework,https://github.com/geekan/MetaGPT,Chinese framework; maps software-team SOP roles to LLM agents
 2026-05-23,add,AgentScope,Agent Framework,https://github.com/modelscope/agentscope,Alibaba's production multi-agent framework with visual Studio UI
+2026-05-23,add,Muse Spark,LLM Chatbot,https://meta.ai,Meta Superintelligence Labs first model; natively multimodal; free via meta.ai
+2026-05-23,add,Antigravity,Code Assistant,https://antigravity.google,Google's AI-native IDE; replaces Gemini CLI; free during preview
+2026-05-23,edit,Gemini CLI,Code Assistant,https://github.com/google-gemini/gemini-cli,marked as deprecating June 18 2026 in favour of Antigravity CLI
+2026-05-23,edit,Google AI Studio,LLM API,https://aistudio.google.com,noted Gemini 2.5 Pro/Flash API models deprecate June 17 2026
 2026-05-23,add,Freebuff,Code Assistant,https://freebuff.com,ad-supported free terminal coding agent built on Codebuff
 2026-05-23,add,OpenCode,Code Assistant,https://opencode.ai,open-source terminal coding agent from SST; 75+ LLM providers
 2026-05-23,add,Lovable,Code / UI,https://lovable.dev,AI full-stack app builder; free tier 5 credits/day
