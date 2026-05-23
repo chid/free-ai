@@ -4,7 +4,7 @@
 
 Free tiers change fast — tools get paywalled, rebranded, or shut down. This list captures what was on offer at the time of each update, with changes tracked in [`history.csv`](history.csv). Think of it less as a permanent directory and more as a dated edition: accurate when written, audited on refresh.
 
-**49 resources** across 11 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on.
+**63 resources** across 13 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on.
 
 ---
 
@@ -21,6 +21,7 @@ Free tiers change fast — tools get paywalled, rebranded, or shut down. This li
 - [Local & Self-hosted](#local--self-hosted)
 - [Search & Research](#search--research)
 - [Productivity](#productivity)
+- [Agent Frameworks](#agent-frameworks)
 - [Contributing](#contributing)
 
 ---
@@ -127,6 +128,16 @@ AI tools for writing, notes, diagrams, and presentations.
 - **[Gamma](https://gamma.app)** — Generate presentations and documents from a prompt. *Free tier available.*
 - **[Napkin AI](https://napkin.ai)** — Paste text and get auto-generated visuals and diagrams. *Free tier available.*
 - **[Notion AI](https://notion.so)** — AI writing and summarisation inside Notion. *Free trial; paid Notion plan required after.*
+
+## Agent Frameworks
+
+Open-source libraries for building single and multi-agent LLM systems. All are free to use — costs come only from the models you connect.
+
+- **[LangChain](https://python.langchain.com)** — Provider-agnostic chains and agents; includes LangGraph for stateful, graph-based multi-agent workflows. *Completely free.*
+- **[CrewAI](https://crewai.com)** — Role-based multi-agent framework: define a crew of agents with distinct roles, goals, and backstories. Lowest barrier to entry of any major framework, 5M+ monthly downloads. *Completely free.*
+- **[AutoGen](https://microsoft.github.io/autogen)** — Microsoft's conversational multi-agent framework with the richest set of agent conversation patterns. *Completely free.*
+- **[MetaGPT](https://github.com/geekan/MetaGPT)** 🇨🇳 — Maps a full software-team to LLM agents following structured SOPs: PM, architect, engineer, QA. Produces requirements docs, diagrams, code, and tests. *Completely free.*
+- **[AgentScope](https://github.com/modelscope/agentscope)** 🇨🇳 — Alibaba's production-ready multi-agent framework with a visual Studio UI for debugging and distributed execution support. *Completely free.*
 
 ---
 
