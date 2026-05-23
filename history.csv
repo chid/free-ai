@@ -14,7 +14,9 @@ date,action,name,category,url,notes
 2026-05-16,add,LlamaIndex,RAG Framework,https://llamaindex.ai,added manually — RAG and data connection framework
 2026-05-16,add,DSPy,Prompt Optimization,https://dspy.ai,added manually — Stanford prompt optimization framework
 2026-05-16,add,aisuite,LLM Client,https://github.com/andrewyng/aisuite,added manually — lightweight unified LLM client from Andrew Ng
-2026-05-23,edit,OpenRouter,LLM API,https://openrouter.ai,updated description to call out DeepSeek V4 Flash as a permanently free model
+2026-05-23,edit,OpenRouter,LLM API,https://openrouter.ai,corrected free_tier: :free suffix is rate-limited community tier not permanently free models
+2026-05-23,add,Chutes.ai,LLM API,https://chutes.ai,Bittensor-subsidised inference; frequently offers free DeepSeek endpoints
+2026-05-23,add,Puter.js,LLM API,https://developer.puter.com,free browser-native API for DeepSeek V4 and others; no API key needed
 2026-05-23,add,Freebuff,Code Assistant,https://freebuff.com,ad-supported free terminal coding agent built on Codebuff
 2026-05-23,add,OpenCode,Code Assistant,https://opencode.ai,open-source terminal coding agent from SST; 75+ LLM providers
 2026-05-23,add,Lovable,Code / UI,https://lovable.dev,AI full-stack app builder; free tier 5 credits/day
