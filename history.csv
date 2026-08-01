@@ -54,3 +54,14 @@ date,action,name,category,url,notes
 2026-08-01,add,Goose,Code Assistant,https://block.github.io/goose,Apache-2.0; editor-agnostic autonomous agent
 2026-08-01,add,Leonardo AI,Image Generation,https://leonardo.ai,"150 daily fast tokens, resets every 24h, no rollover"
 2026-08-01,add,Krea,Image Generation,https://krea.ai,100 daily compute units; no credit card required
+2026-08-01,edit,Groq,LLM API,https://console.groq.com,"corrected: RPD is per-model (14.4K on llama-3.1-8b-instant, 1K on llama-3.3-70b-versatile and gpt-oss-120b), not a blanket 1,000/day — verified against console.groq.com/docs/rate-limits"
+2026-08-01,edit,Google AI Studio,LLM API,https://aistudio.google.com,"corrected: Google no longer publishes fixed free-tier RPM/RPD figures; limits are per-model and shown in AI Studio — removed the unverifiable 5–15 RPM / 1,500 RPD numbers"
+2026-08-01,edit,Vercel AI Gateway,LLM Router,https://vercel.com/ai-gateway,"corrected: docs confirm a recurring monthly free credit but not the ""$5"" figure, and note the free tier covers only a subset of models with lower per-model rate limits; buying credits ends the monthly free credit"
+2026-08-01,edit,Z.ai (GLM),LLM API,https://z.ai,"corrected: no documented ""1,000 requests/day on GLM-5.1"" tier — docs.z.ai lists GLM-4.7-Flash, GLM-4.5-Flash and the -V Flash vision models at zero cost instead"
+2026-08-01,edit,ElevenLabs,Audio / Voice,https://elevenlabs.io,"corrected: official pricing states 10k credits/month (~10 minutes of TTS) and no commercial licence below Starter; dropped the unverified ""~20,000 characters"" and attribution claims"
+2026-08-01,edit,SambaNova,LLM API,https://cloud.sambanova.ai,"corrected against official rate-limit docs: free tier applies when no payment method is linked; dropped the unverified ""$5 starter credits"" and ""permanent"" claims"
+2026-08-01,edit,Cohere,LLM API,https://dashboard.cohere.com,"corrected: official docs confirm 1,000 API calls/month and 20 req/min (chat) but state no commercial-use restriction — dropped that unverified clause"
+2026-08-01,edit,Goose,Code Assistant,https://goose-docs.ai,"corrected: docs moved from block.github.io/goose to goose-docs.ai, and governance moved from Block to the Agentic AI Foundation (a Linux Foundation entity)"
+2026-08-01,edit,Leonardo AI,Image Generation,https://leonardo.ai,"corrected image estimate: 150 daily tokens works out to roughly 10–15 images on a first-party model, not 15–30"
+2026-08-01,edit,Manus,Productivity,https://manus.im,"clarified free plan: 300 daily refresh credits are additionally capped at 1,500 credits/month and run Manus 1.6 Lite only"
+2026-08-01,edit,Cursor,Code Assistant,https://cursor.sh,softened: exact free-tier allowances are not published in Cursor's own docs; removed the specific completion/request figures taken from a secondary source

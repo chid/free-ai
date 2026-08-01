@@ -53,14 +53,15 @@ Free tiers tightened noticeably this quarter. Every entry below had its
 
 | Tool | Change |
 |---|---|
-| Groq | Daily cap cut from 14,400 to **1,000 requests/day** (30 RPM) |
-| OpenRouter | **50** `:free` requests/day; the 1,000/day cap now requires a $10 lifetime top-up |
-| Cohere | Restated as ~1,000 API calls/month, 20 RPM, **non-commercial only** |
+| Groq | 30 RPM; daily cap is **per-model** — 14.4K RPD on `llama-3.1-8b-instant`, 1K on `llama-3.3-70b-versatile` |
+| OpenRouter | **50** `:free` requests/day at 20 RPM; the 1,000/day cap now requires a $10 lifetime top-up |
+| Cohere | Restated as **1,000 API calls/month**, 20 req/min for chat |
 | Playground AI | Tightened late July: 10 → **5** images per rolling window, 10 → **2** downloads/day |
 | Suno | Free songs are **no longer downloadable** — stream and share only (Warner settlement) |
 | Udio | **All downloads suspended** platform-wide since 30 Oct 2025, pending the UMG licensed relaunch |
-| ElevenLabs | Restated as 10,000 credits/month (~20,000 characters); no commercial rights on free |
-| Cursor | Restated as ~2,000 tab completions + 50 slow requests/month |
+| ElevenLabs | Restated as 10,000 credits/month (~10 min of TTS); **no commercial licence** below Starter |
+| Cursor | Softened — Cursor no longer publishes exact free-tier allowances |
+| Google AI Studio | Softened — Google no longer publishes fixed free-tier RPM/RPD; limits are shown per account in AI Studio |
 
 Renames and corrections:
 
@@ -83,6 +84,33 @@ Renames and corrections:
   omitting 14 listed tools (Chutes.ai, Puter.js, Freebuff, OpenCode, Lovable, Muse
   Spark, Antigravity, LiteLLM, LlamaIndex, DSPy, aisuite, models.dev, and others) and
   4 whole categories
+
+### Validation
+
+Every entry added or changed in this refresh was re-checked against the vendor's own
+docs or pricing page where reachable. That pass caught eight claims that came from
+secondary sources and did not survive contact with the primary one:
+
+| Entry | Corrected to |
+|---|---|
+| **Groq** | Daily cap is per-model (14.4K RPD on the 8B model), not a blanket 1,000/day |
+| **Z.ai (GLM)** | No documented "1,000 req/day on GLM-5.1" tier — the free offering is the zero-cost **Flash** models |
+| **Vercel AI Gateway** | Docs confirm a recurring monthly credit but not the "$5" figure, and it covers only a **subset of models** at reduced rate limits |
+| **SambaNova** | Free tier applies when no payment method is linked; the "$5 starter credits" and "permanent" claims aren't in the docs |
+| **ElevenLabs** | 10k credits ≈ **10 minutes of TTS**; the "~20,000 characters" and attribution claims weren't supported |
+| **Cohere** | 1,000 calls/month and 20 req/min confirmed; the **non-commercial** restriction is not stated in the docs |
+| **Goose** | Docs moved to `goose-docs.ai`; governance moved from Block to the **Agentic AI Foundation** |
+| **Leonardo AI** | 150 daily tokens is ~10–15 images, not 15–30 |
+
+Confirmed exactly as published: Cloudflare Workers AI (10,000 neurons/day, resets
+00:00 UTC), OpenRouter (20 RPM / 50 RPD / 1,000 after a $10 lifetime top-up),
+SambaNova's 20 RPM / 20 RPD / 200K TPD, Cohere's call cap, Manus (300 daily credits,
+plus a 1,500/month ceiling and Lite-model-only that we now record), Krea (100 compute
+units/day), and NVIDIA NIM (~40 RPM, no card).
+
+Two entries were softened rather than corrected because the vendor no longer publishes
+exact figures at all: **Cursor** and **Google AI Studio**. Better a vaguer true claim
+than a precise false one.
 
 ### Not added
 

@@ -46,11 +46,11 @@ Full-featured AI chat interfaces with free tiers.
 
 Programmatic access to large language models with free quotas.
 
-- **[Google AI Studio](https://aistudio.google.com)** — Gemini API with a generous free quota for prototyping. *Free API key: 5–15 RPM and up to 1,500 requests/day depending on model.*
-- **[Groq](https://console.groq.com)** — Blazing-fast inference for open models (Llama etc.). *Free tier: 30 RPM, 1,000 requests/day, no credit card.*
+- **[Google AI Studio](https://aistudio.google.com)** — Gemini API with a generous free quota for prototyping. *Free API key with per-model rate limits (current limits shown in AI Studio).*
+- **[Groq](https://console.groq.com)** — Blazing-fast inference for open models (Llama etc.). *Free tier: 30 RPM; 1,000–14,400 requests/day depending on model.*
 - **[Together AI](https://api.together.xyz)** — Serverless inference for 100+ open-source models. *$5 free credit on signup.*
 - **[Mistral AI (La Plateforme)](https://console.mistral.ai)** — Access to Mistral models via API. *Free tier available.*
-- **[Cohere](https://dashboard.cohere.com)** — NLP-focused models for generation and embeddings. *Free trial key: ~1,000 API calls/month, 20 RPM, non-commercial use only.*
+- **[Cohere](https://dashboard.cohere.com)** — NLP-focused models for generation and embeddings. *Free trial key: 1,000 API calls/month, 20 req/min (chat).*
 - **[Hugging Face Inference API](https://huggingface.co/inference-api)** — Free serverless inference for thousands of public models. *Free with rate limits.*
 - **[OpenRouter](https://openrouter.ai)** — Unified API routing to many models; the :free tier is a rate-limited community pool. *Free tier: 20 RPM, 50 :free-model requests/day (1,000/day after a $10 lifetime top-up).*
 - **[Cerebras](https://cloud.cerebras.ai)** — Ultra-fast inference API for open models (Llama 4 and Qwen) via custom silicon. *Free tier: 1M tokens/day with no credit card.*
@@ -58,16 +58,16 @@ Programmatic access to large language models with free quotas.
 - **[Puter.js](https://developer.puter.com)** — Browser-native JS library giving free access to DeepSeek V4 Flash/Pro and other models with no API key or server setup. *Completely free for developers; user-pays model covers costs.* *No signup required.*
 - **[Cloudflare Workers AI](https://developers.cloudflare.com/workers-ai)** — Serverless inference for 40+ open models running on Cloudflare's edge network. *Free: 10,000 neurons/day, resets 00:00 UTC, no credit card.*
 - **[NVIDIA NIM](https://build.nvidia.com)** — Hosted endpoints for 100+ open models (Nemotron, Llama, Qwen) through the NVIDIA Developer Program. *Free API key with ~40 RPM and no trial expiry; no credit card.*
-- **[SambaNova](https://cloud.sambanova.ai)** — Fast inference for open models on SambaNova's dataflow hardware. *Permanent free tier: 20 RPM, 20 requests/day, 200K tokens/day per model, plus $5 starter credits.*
+- **[SambaNova](https://cloud.sambanova.ai)** — Fast inference for open models on SambaNova's dataflow hardware. *Free tier (no payment method linked): 20 RPM, 20 requests/day, 200K tokens/day.*
 - **[SiliconFlow](https://siliconflow.cn)** — Chinese inference platform serving Qwen, DeepSeek and other open models via an OpenAI-compatible API. *Some small models (e.g. Qwen2.5-7B) free forever, plus ¥14 signup credits.*
-- **[Z.ai (GLM)](https://z.ai)** — Zhipu AI's OpenAI-compatible API for the GLM model family. *Free tier: 1,000 requests/day on GLM-5.1.*
+- **[Z.ai (GLM)](https://z.ai)** — Zhipu AI's OpenAI-compatible API for the GLM model family, including several free Flash models. *Flash models (GLM-4.7-Flash, GLM-4.5-Flash, GLM-4.5V/4.6V-Flash) priced free.*
 
 ## LLM Routers & Gateways
 
 Route one request across many providers, with fallback and rate-limit handling.
 
 - **[LiteLLM](https://litellm.ai)** — Unified OpenAI-compatible proxy that routes to 100+ LLM providers with automatic retries and rate-limit fallback. *Completely free; open-source.* *No signup required.*
-- **[Vercel AI Gateway](https://vercel.com/ai-gateway)** — Single endpoint that routes to many model providers at list price with no Vercel markup. *$5 of AI credits per team per month, refreshing every 30 days.*
+- **[Vercel AI Gateway](https://vercel.com/ai-gateway)** — Single endpoint that routes to many model providers at list price with no Vercel markup. *Monthly free credit per team, on a subset of models with reduced rate limits.*
 
 ## LLM Clients
 
@@ -81,7 +81,7 @@ AI tools that live in your editor or terminal.
 
 - **[GitHub Copilot](https://github.com/features/copilot)** — AI code completion in your editor. *Free for all users (2000 completions + 50 chats/month).*
 - **[Devin Desktop (formerly Windsurf)](https://devin.ai)** — Cognition's AI-native IDE — the former Windsurf editor, rebuilt around Devin Local agents and an Agent Command Center. *Free tier: unlimited Tab completions and inline edits, limited Devin Local, no cloud agents.*
-- **[Cursor](https://cursor.sh)** — AI-first code editor. *Free tier: ~2,000 tab completions + 50 slow requests/month.*
+- **[Cursor](https://cursor.sh)** — AI-first code editor. *Free tier with limited completions and requests (Cursor does not publish exact figures).*
 - **[Continue](https://continue.dev)** — Open-source AI code assistant for VS Code / JetBrains. *Completely free.* *No signup required.*
 - **[Aider](https://aider.chat)** — AI pair programming in your terminal. *Completely free (bring your own key).* *No signup required.*
 - **[Antigravity](https://antigravity.google)** — Google's AI-native IDE, CLI and SDK that coordinates Manager/Writer/Critic/Tester agents; the supported replacement for Gemini CLI since June 18 2026. *Free plan covers ordinary use (Gemini 3 Pro quota); personal Google account required.*
@@ -90,7 +90,7 @@ AI tools that live in your editor or terminal.
 - **[OpenCode](https://opencode.ai)** — Open-source terminal coding agent from the SST team with a TUI interface and support for 75+ LLMs including local models via Ollama. *Completely free; bring your own key or use free providers.* *No signup required.*
 - **[Cline](https://cline.bot)** — Open-source autonomous coding agent for VS Code that plans, edits files and runs commands. *Completely free; open-source (bring your own key).* *No signup required.*
 - **[Kilo Code](https://kilo.ai)** — Open-source coding agent for VS Code, JetBrains and the terminal with access to 500+ models at provider cost. *Completely free; open-source, no markup on model costs.* *No signup required.*
-- **[Goose](https://block.github.io/goose)** — Editor-agnostic on-machine AI agent from Block, now governed by the Agentic AI Foundation. *Completely free; open-source Apache-2.0 (bring your own key).* *No signup required.*
+- **[Goose](https://goose-docs.ai)** — Open-source general-purpose AI agent that runs on your machine as a desktop app, CLI or API; governed by the Agentic AI Foundation. *Completely free; open-source Apache-2.0 (bring your own key).* *No signup required.*
 
 ## Code & UI Builders
 
@@ -110,7 +110,7 @@ Text-to-image tools that are free or have a meaningful free tier.
 - **[Ideogram](https://ideogram.ai)** — Text-to-image with strong typography. *Free tier available.*
 - **[Playground AI](https://playground.com)** — Image generation and editing. *Free tier: 5 images per rolling window, 2 downloads/day, non-commercial only.*
 - **[Canva AI](https://canva.com)** — AI image generation and design tools. *Free tier with AI features.*
-- **[Leonardo AI](https://leonardo.ai)** — Text-to-image generation with fine-tuned model presets and in-app editing tools. *Free tier: 150 fast tokens/day (~15–30 images), non-commercial only.*
+- **[Leonardo AI](https://leonardo.ai)** — Text-to-image generation with fine-tuned model presets and in-app editing tools. *Free tier: 150 fast tokens/day (~10–15 images), non-commercial only.*
 - **[Krea](https://krea.ai)** — Creative suite spanning 60+ image, video and 3D models with real-time generation and editing. *Free tier: 100 compute units/day, non-commercial only.*
 
 ## Video Generation
@@ -127,7 +127,7 @@ AI tools for generating or editing video.
 
 Text-to-speech, voice cloning, and speech recognition.
 
-- **[ElevenLabs](https://elevenlabs.io)** — High-quality AI text-to-speech and voice cloning. *Free tier: 10,000 credits/month (~20,000 characters), attribution required, no commercial use.*
+- **[ElevenLabs](https://elevenlabs.io)** — High-quality AI text-to-speech and voice cloning. *Free tier: 10,000 credits/month (~10 minutes of TTS), no commercial licence.*
 - **[Whisper (OpenAI)](https://github.com/openai/whisper)** — State-of-the-art open-source speech recognition. *Completely free.* *No signup required.*
 
 ## Music Generation
@@ -162,7 +162,7 @@ AI tools for writing, notes, diagrams, presentations, and task automation.
 - **[Gamma](https://gamma.app)** — AI-powered presentation and document creation. *Free tier available.*
 - **[Notion AI](https://notion.so)** — AI writing and summarization inside Notion. *Free trial; requires Notion plan.*
 - **[Napkin AI](https://napkin.ai)** — Turn text into visuals and diagrams automatically. *Free tier available.*
-- **[Manus](https://manus.im)** — General-purpose autonomous agent that plans and executes multi-step tasks in a cloud sandbox. *Free plan: 300 credits refreshed daily.*
+- **[Manus](https://manus.im)** — General-purpose autonomous agent that plans and executes multi-step tasks in a cloud sandbox. *Free plan: 300 credits refreshed daily, capped at 1,500/month, Manus 1.6 Lite only.*
 
 ## Agent Frameworks
 
