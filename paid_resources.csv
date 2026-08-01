@@ -1,1 +1,4 @@
 name,category,url,description,pricing,tags
+Midjourney,Image Generation,https://midjourney.com,Text-to-image generation known for stylistic consistency; sold as fast GPU time rather than an image quota,"$10/mo Basic, $30 Standard, $60 Pro, $120 Mega (20% off annual)","image,art,design,gpu-hours"
+Superhuman,Productivity,https://superhuman.com,"AI-assisted email client with drafting, summarisation and triage; trial only, no free plan","$30/mo Starter, $40/mo Business ($25/$33 annual)","email,productivity,writing,triage"
+Sora,Video Generation,https://openai.com/sora,OpenAI's video generation model; the consumer app was discontinued and access is now API-only,API: $0.10–$0.50 per second of video (Sora 2 API sunsets September 24 2026),"video,generation,openai,api"

@@ -88,8 +88,17 @@ For each resource currently in `resources.csv`:
 
 Commit all changes to the `refresh/YYYY-MM` branch and push it, then open a PR against `main`:
 
+First regenerate the README and add a changelog entry:
+
 ```bash
-git add resources.csv history.csv
+python3 generate_readme.py
+```
+
+Then add a dated section at the top of `CHANGELOG.md` summarising the refresh
+(added / removed / changed / fixed), and commit:
+
+```bash
+git add resources.csv history.csv README.md CHANGELOG.md
 git commit -m "refresh(YYYY-MM): add N tools, remove M stale entries"
 git push -u origin refresh/$(date +%Y-%m)
 gh pr create \
@@ -104,6 +113,8 @@ gh pr create \
 - [ ] requires_signup is exactly Yes or No
 - [ ] history.csv updated for every add/remove/edit
 - [ ] Stale entries reviewed
+- [ ] README.md regenerated (`python3 generate_readme.py`)
+- [ ] CHANGELOG.md entry added
 EOF
 )"
 ```

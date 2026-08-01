@@ -28,3 +28,29 @@ date,action,name,category,url,notes
 2026-05-23,add,Freebuff,Code Assistant,https://freebuff.com,ad-supported free terminal coding agent built on Codebuff
 2026-05-23,add,OpenCode,Code Assistant,https://opencode.ai,open-source terminal coding agent from SST; 75+ LLM providers
 2026-05-23,add,Lovable,Code / UI,https://lovable.dev,AI full-stack app builder; free tier 5 credits/day
+2026-08-01,remove,Phind,Search / Research,https://www.phind.com,shut down January 16 2026; site returns 404 and signups are closed
+2026-08-01,remove,Gemini CLI,Code Assistant,https://github.com/google-gemini/gemini-cli,"stopped serving free, AI Pro and Ultra personal accounts on June 18 2026; superseded by Antigravity CLI"
+2026-08-01,edit,Groq,LLM API,https://console.groq.com,"free_tier changed from ""Free tier with rate limits"" to ""30 RPM / 1,000 requests per day"" — daily cap cut from 14,400 to 1,000 RPD"
+2026-08-01,edit,OpenRouter,LLM API,https://openrouter.ai,"free_tier changed to ""50 free-model requests/day"" — cap rises to 1,000/day only after a $10 lifetime credit purchase"
+2026-08-01,edit,Cohere,LLM API,https://dashboard.cohere.com,"free_tier changed from ""Trial API key available"" to ""1,000 API calls/month"" — trial key is non-commercial use only"
+2026-08-01,edit,Google AI Studio,LLM API,https://aistudio.google.com,removed stale June 17 2026 deprecation notice (now past); recorded current free quota
+2026-08-01,edit,Devin Desktop (formerly Windsurf),Code Assistant,https://devin.ai,renamed to Devin Desktop on June 2 2026 (Cognition); Cascade replaced by Devin Local; name/url/description/free_tier updated
+2026-08-01,edit,Cursor,Code Assistant,https://cursor.sh,"free_tier changed from ""Free tier available"" to the current metered Hobby limits"
+2026-08-01,edit,Antigravity,Code Assistant,https://antigravity.google,"updated for Antigravity 2.0 (Google I/O 2026): desktop app plus CLI and SDK, now the supported successor to Gemini CLI"
+2026-08-01,edit,Suno,Audio / Music,https://suno.com,"free_tier changed from ""Free tier available"" to streaming-only — free songs are no longer downloadable following the Warner settlement"
+2026-08-01,edit,Udio,Audio / Music,https://udio.com,"free_tier changed from ""Free tier available"" — all downloads suspended platform-wide since October 30 2025 pending the UMG licensed relaunch"
+2026-08-01,edit,Playground AI,Image Generation,https://playground.com,"free_tier tightened in late July 2026: generation cap 10 -> 5 images per rolling window, downloads 10 -> 2 per day"
+2026-08-01,edit,ElevenLabs,Audio / Voice,https://elevenlabs.io,"free_tier restated from ""10k chars/month"" to 10,000 credits/month (~20,000 characters); no commercial rights on free"
+2026-08-01,add,Cloudflare Workers AI,LLM API,https://developers.cloudflare.com/workers-ai,"10,000 neurons/day on both Free and Paid Workers plans"
+2026-08-01,add,NVIDIA NIM,LLM API,https://build.nvidia.com,free developer-program key; no expiry timer
+2026-08-01,add,SambaNova,LLM API,https://cloud.sambanova.ai,permanent free tier plus $5 credits valid 30 days; no credit card
+2026-08-01,add,SiliconFlow,LLM API,https://siliconflow.cn,free-forever small models; signup may require a Chinese phone number
+2026-08-01,add,Z.ai (GLM),LLM API,https://z.ai,"free tier 1,000 req/day; Z.ai has revised these limits twice in 12 months"
+2026-08-01,add,Vercel AI Gateway,LLM Router,https://vercel.com/ai-gateway,recurring $5/month credit on the Hobby plan
+2026-08-01,add,Qwen Chat,LLM Chatbot,https://chat.qwen.ai,free web app; note the separate developer API free tier ended April 15 2026
+2026-08-01,add,Manus,Productivity,https://manus.im,300 daily refresh credits on the free plan
+2026-08-01,add,Cline,Code Assistant,https://cline.bot,extension is free; you pay only your model provider
+2026-08-01,add,Kilo Code,Code Assistant,https://kilo.ai,free open-source agent; optional Kilo Pass subscriptions sit above it
+2026-08-01,add,Goose,Code Assistant,https://block.github.io/goose,Apache-2.0; editor-agnostic autonomous agent
+2026-08-01,add,Leonardo AI,Image Generation,https://leonardo.ai,"150 daily fast tokens, resets every 24h, no rollover"
+2026-08-01,add,Krea,Image Generation,https://krea.ai,100 daily compute units; no credit card required

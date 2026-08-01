@@ -87,8 +87,15 @@ For each resource currently in `paid_resources.csv`:
 
 Commit all changes to the `refresh/YYYY-MM` branch and push, then open (or update) a PR against `main`:
 
+Regenerate the README (its paid-tool count is derived from `paid_resources.csv`)
+and add a `CHANGELOG.md` entry first:
+
 ```bash
-git add paid_resources.csv paid_history.csv resources.csv history.csv
+python3 generate_readme.py
+```
+
+```bash
+git add paid_resources.csv paid_history.csv resources.csv history.csv README.md CHANGELOG.md
 git commit -m "refresh(YYYY-MM): paid tools — add N, remove M"
 git push -u origin refresh/$(date +%Y-%m)
 gh pr create \
@@ -103,6 +110,8 @@ gh pr create \
 - [ ] pricing field is specific (not vague like "various plans")
 - [ ] paid_history.csv updated for every add/remove/edit
 - [ ] Graduated tools moved to resources.csv if they gained a free tier
+- [ ] README.md regenerated (`python3 generate_readme.py`)
+- [ ] CHANGELOG.md entry added
 EOF
 )" 2>/dev/null || echo "PR may already exist for this branch — push only"
 ```

@@ -9,9 +9,12 @@ A self-updating directory of free AI tools, served as a static web page driven b
 | `resources.csv` | Source of truth — free tools, one row per tool |
 | `paid_resources.csv` | Source of truth — paid-only tools (no genuine free tier) |
 | `index.html` | Web page; fetches and renders `resources.csv` at load time |
+| `README.md` | **Generated** from the CSVs — do not hand-edit; run `generate_readme.py` |
+| `CHANGELOG.md` | Human-readable summary of each refresh (the CSV histories are the raw record) |
 | `history.csv` | Append-only log of every add/remove/edit to `resources.csv` |
 | `paid_history.csv` | Append-only log of every add/remove/edit to `paid_resources.csv` |
 | `update.py` | Interactive CLI for manual changes (writes history automatically) |
+| `generate_readme.py` | Regenerates `README.md` from `resources.csv` + `paid_resources.csv` |
 | `refresh_prompt.md` | Claude prompt for researching and adding free tools |
 | `paid_refresh_prompt.md` | Claude prompt for researching and adding paid-only tools |
 
@@ -81,6 +84,12 @@ against `main`. Merge the PR to publish the month's updates.
 ## Maintenance rules
 
 - Never delete rows from any `*history.csv` file — they are append-only
+- After any CSV change, run `python3 generate_readme.py` and commit the regenerated
+  `README.md`; never hand-edit it
+- Summarise each refresh in `CHANGELOG.md` (newest first) — the history CSVs record
+  *what* changed, the changelog records *why* it matters
+- Quote any field containing a comma. `description` and `free_tier` are the usual
+  offenders; an unquoted comma silently shifts every later column
 - Keep `requires_signup` as exactly `Yes` or `No` (free tools only)
 - `tags` are lowercase, comma-separated, no spaces around commas
 - `free_tier` should be specific (e.g. "Free tier with rate limits", "Completely free", "$5 credit on signup") not vague ("Free!")
