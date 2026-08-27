@@ -13,7 +13,7 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
 ## [2026-08] — August 2026 refresh
 
-72 free resources (was 65), 1 paid.
+71 free resources (was 65), 6 paid (was 0).
 
 ### Added
 
@@ -37,11 +37,24 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
 - **Dreamina (Seedance 2.0)** — ByteDance's video model with native audio; daily free credits, up to 1080p, watermark-free.
 
-**Paid list** (first entries — `paid_resources.csv` was empty)
+**Paid list** — `paid_resources.csv` was empty at the start of the month; it now holds 6 entries.
 
 - **Midjourney** — $10/mo Basic through $120/mo Mega. No free tier or trial since March 2023.
 - **OpenCode Go** — $5 first month then $10/mo for 18 hosted open coding models via OpenCode Zen. The
   open-source OpenCode agent itself is unaffected and stays on the free list.
+- **Tabnine** — $39/user/mo Code Assistant, $59/user/mo Agentic Platform, billed annually. The Basic plan was
+  retired in 2025; only a 14-day trial remains. Sells privacy, not price — self-hosted, VPC and air-gapped
+  deployment, no training or retention on your code.
+- **Superhuman** — from $25/user/mo annually ($30 monthly), Business $40. No free tier. Acquired by Grammarly
+  in 2025.
+- **Sudowrite** — $10–$44/mo annually ($19–$59 monthly). One-time ~10,000-credit trial, no ongoing free plan.
+
+### Moved — free list to paid list
+
+- **Notion AI** — the Free plan gets a capped AI *trial*, not the assistant. Real access starts at Notion Plus
+  ($10/user/mo, basic writing) or Business ($20/user/mo, agents). It was carrying a vague
+  `Free trial; requires Notion plan` tier value that the inclusion criteria don't allow, so it moved to
+  `paid_resources.csv` — logged as `remove` in `history.csv` and `add` in `paid_history.csv`.
 
 **Notes**
 

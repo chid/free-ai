@@ -4,7 +4,7 @@
 
 Free tiers change fast — tools get paywalled, rebranded, or shut down. This list captures what was on offer at the time of each update, with every change tracked in [`history.csv`](history.csv) and summarised in [`CHANGELOG.md`](CHANGELOG.md). Think of it less as a permanent directory and more as a dated edition: accurate when written, audited on refresh.
 
-**72 resources** across 16 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on. Tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
+**71 resources** across 16 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on. Tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv) (6 of them), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
 
 ---
 
@@ -149,7 +149,6 @@ AI tools for writing, notes, diagrams, and presentations.
 
 - **[NotebookLM](https://notebooklm.google.com)** — Google's AI research and note-taking tool (upload docs). *Free.*
 - **[Gamma](https://gamma.app)** — AI-powered presentation and document creation. *Free tier available.*
-- **[Notion AI](https://notion.so)** — AI writing and summarization inside Notion. *Free trial; requires Notion plan.*
 - **[Napkin AI](https://napkin.ai)** — Turn text into visuals and diagrams automatically. *Free tier available.*
 
 ## Frameworks
