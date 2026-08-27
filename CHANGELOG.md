@@ -40,6 +40,15 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 **Paid list** (first entries — `paid_resources.csv` was empty)
 
 - **Midjourney** — $10/mo Basic through $120/mo Mega. No free tier or trial since March 2023.
+- **OpenCode Go** — $5 first month then $10/mo for 18 hosted open coding models via OpenCode Zen. The
+  open-source OpenCode agent itself is unaffected and stays on the free list.
+
+**Notes**
+
+- **[`QUOTAS.md`](QUOTAS.md)** — new. Tracks how paid AI plans meter usage rather than what they charge:
+  the 2026 move off flat-rate, a dated timeline of every limit change, and a per-tool table of Claude Code,
+  ChatGPT/Codex, Copilot, Cursor, Windsurf and OpenCode Go. Prices barely moved this year; the unit
+  underneath them changed completely.
 
 ### Removed
 
@@ -62,6 +71,10 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 - **Google AI Studio** — the Gemini 2.5 Pro/Flash endpoint retirement (17 June 2026) has taken effect. Current
   Flash models remain free with no credit card.
 - **Antigravity** — now the official Gemini CLI replacement, shipping both the IDE and the `agy` CLI.
+- **GitHub Copilot** — free tier is unchanged at 2,000 completions + 50 chats/month, but paid plans moved to
+  token-based **AI Credits** on 1 June 2026. Inline completions and next-edit suggestions never draw down the
+  balance; chat, agent mode, code review and the CLI do.
+- **OpenCode** — description now mentions the optional paid Go plan. The agent stays free, open-source and BYOK.
 
 ### Fixed
 

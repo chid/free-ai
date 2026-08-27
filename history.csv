@@ -46,3 +46,5 @@ date,action,name,category,url,notes
 2026-08-28,add,Kilo Code,Code Assistant,https://kilo.ai,found via refresh
 2026-08-28,add,Zed,Code Assistant,https://zed.dev,found via refresh
 2026-08-28,add,Dreamina (Seedance 2.0),Video Generation,https://dreamina.capcut.com,found via refresh
+2026-08-28,edit,OpenCode,Code Assistant,https://opencode.ai,noted the optional paid OpenCode Go plan ($10/mo via Zen) — the agent itself is unchanged and still free
+2026-08-28,edit,GitHub Copilot,Code Assistant,https://github.com/features/copilot,"free tier unchanged, but paid plans moved to token-based AI Credits on June 1 2026; completions never draw down credits — see QUOTAS.md"

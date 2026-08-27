@@ -1,2 +1,3 @@
 name,category,url,description,pricing,tags
 Midjourney,Image Generation,https://midjourney.com,"Subscription-only text-to-image generator known for its stylised, high-aesthetic output","$10/mo Basic, $30 Standard, $60 Pro, $120 Mega (20% off paid annually)","image,art,design,subscription"
+OpenCode Go,Code Assistant,https://opencode.ai/go,Flat subscription from the OpenCode team: one key for 18 hosted open coding models via OpenCode Zen,"$5 first month then $10/month; metered in dollars — $12 per 5 hours, $30/week, $60/month","coding,terminal,agent,open-models,subscription"

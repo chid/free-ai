@@ -12,6 +12,7 @@ A self-updating directory of free AI tools, served as a static web page driven b
 | `history.csv` | Append-only log of every add/remove/edit to `resources.csv` |
 | `paid_history.csv` | Append-only log of every add/remove/edit to `paid_resources.csv` |
 | `CHANGELOG.md` | Human-readable summary of each refresh, newest first |
+| `QUOTAS.md` | Notes on how paid AI plans meter usage — quota models, not prices |
 | `README.md` | Markdown rendering of `resources.csv`, regenerated each refresh |
 | `update.py` | Interactive CLI for manual changes (writes history automatically) |
 | `refresh_prompt.md` | Claude prompt for researching and adding free tools |
@@ -77,14 +78,15 @@ Or trigger the scheduled agent if one is configured (check `claude schedule list
 ## Monthly PR workflow
 
 Each monthly refresh creates a branch `refresh/YYYY-MM`, commits all changes to
-`resources.csv`, `paid_resources.csv`, their history files, `CHANGELOG.md` and
-`README.md`, then opens a PR against `main`. Merge the PR to publish the month's
+`resources.csv`, `paid_resources.csv`, their history files, `CHANGELOG.md`,
+`QUOTAS.md` and `README.md`, then opens a PR against `main`. Merge the PR to publish the month's
 updates.
 
 ## Maintenance rules
 
 - Never delete rows from any `*history.csv` file — they are append-only
 - Every refresh adds a dated section at the top of `CHANGELOG.md` summarising adds, removes, tier changes, and fixes
+- When a vendor changes *how* it meters (credits, rolling windows, shared pools) rather than what it charges, record it in `QUOTAS.md` and date it — temporary boosts must never be written into a `free_tier` or `pricing` value undated
 - `README.md` mirrors `resources.csv` — regenerate its resource sections when rows change, and update the snapshot month and count in the header
 - Keep `requires_signup` as exactly `Yes` or `No` (free tools only)
 - `tags` are lowercase, comma-separated, no spaces around commas

@@ -4,7 +4,7 @@
 
 Free tiers change fast — tools get paywalled, rebranded, or shut down. This list captures what was on offer at the time of each update, with every change tracked in [`history.csv`](history.csv) and summarised in [`CHANGELOG.md`](CHANGELOG.md). Think of it less as a permanent directory and more as a dated edition: accurate when written, audited on refresh.
 
-**72 resources** across 16 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on. Tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv).
+**72 resources** across 16 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on. Tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
 
 ---
 
@@ -68,7 +68,7 @@ Put many providers behind one interface, with fallback and budget control.
 
 AI tools that live in your editor or terminal.
 
-- **[GitHub Copilot](https://github.com/features/copilot)** — AI code completion in your editor. *Free for all users (2000 completions + 50 chats/month).*
+- **[GitHub Copilot](https://github.com/features/copilot)** — AI code completion in your editor; completions stay free and unmetered, while chat, agent mode and CLI draw on AI Credits from June 2026. *Free for all users (2000 completions + 50 chats/month).*
 - **[Windsurf (formerly Codeium)](https://windsurf.com)** — AI-native code editor with the agentic Cascade feature (Codeium rebranded); credit system retired March 2026 in favour of daily/weekly quotas. *Free tier: unlimited Tab autocomplete and inline edits + ~25 Cascade Flow Actions/month.*
 - **[Cursor](https://cursor.sh)** — AI-first code editor built on VS Code; free plan is now branded Hobby. *Free Hobby plan: limited Agent requests and Tab completions, no credit card.*
 - **[Continue](https://continue.dev)** — Open-source AI code assistant for VS Code / JetBrains. *Completely free.*
@@ -76,7 +76,7 @@ AI tools that live in your editor or terminal.
 - **[Antigravity](https://antigravity.google)** — Google's AI-native IDE and `agy` CLI that coordinate Manager/Writer/Critic/Tester agents; the official replacement for Gemini CLI. *Free with a personal Google account (generous Gemini quota).*
 - **[Amazon Q Developer](https://aws.amazon.com/q/developer)** — AWS's AI coding assistant with IDE inline suggestions and agentic coding in VS Code and JetBrains. *Free tier: unlimited completions + 50 agentic tasks/month.*
 - **[Freebuff](https://freebuff.com)** — AI coding agent that runs in your terminal — ad-supported so it costs nothing; built on Codebuff with specialised sub-agents for file picking, code review, and browser use. *Completely free (ad-supported in CLI).*
-- **[OpenCode](https://opencode.ai)** — Open-source terminal coding agent from the SST team with a TUI interface and support for 75+ LLMs including local models via Ollama. *Completely free; bring your own key or use free providers.*
+- **[OpenCode](https://opencode.ai)** — Open-source terminal coding agent from the SST team with a TUI interface and support for 75+ LLMs including local models via Ollama; the optional OpenCode Go plan adds 18 hosted open models for $10/mo. *Completely free; bring your own key or use free providers.*
 - **[Cline](https://cline.bot)** — MIT-licensed autonomous coding agent for VS Code; the project most other VS Code agents were forked from. *Completely free; open-source (bring your own key).*
 - **[Kilo Code](https://kilo.ai)** — Open-source coding agent for VS Code, JetBrains, CLI and Slack with access to 500+ models at zero inference markup. *Completely free; open-source (bring your own key at list price).*
 - **[Zed](https://zed.dev)** — High-performance open-source editor written in Rust with native AI, MCP support and multiplayer editing. *Free Personal plan: 2000 edit predictions/month.*
