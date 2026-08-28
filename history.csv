@@ -28,3 +28,25 @@ date,action,name,category,url,notes
 2026-05-23,add,Freebuff,Code Assistant,https://freebuff.com,ad-supported free terminal coding agent built on Codebuff
 2026-05-23,add,OpenCode,Code Assistant,https://opencode.ai,open-source terminal coding agent from SST; 75+ LLM providers
 2026-05-23,add,Lovable,Code / UI,https://lovable.dev,AI full-stack app builder; free tier 5 credits/day
+2026-08-28,edit,Google AI Studio,LLM API,https://aistudio.google.com,Gemini 2.5 Pro/Flash API deprecation (June 17 2026) has now taken effect; current Flash models remain free
+2026-08-28,edit,Groq,LLM API,https://console.groq.com,free_tier made specific: 30 requests/min on open models
+2026-08-28,edit,OpenRouter,LLM API,https://openrouter.ai,"free_tier changed from ""Some models free via :free tier (rate-limited)"" to ""14 free models, ~50 requests/day"""
+2026-08-28,edit,Cohere,LLM API,https://dashboard.cohere.com,free_tier clarified: 1000 calls/month and non-commercial use only
+2026-08-28,edit,Windsurf (formerly Codeium),Code Assistant,https://windsurf.com,"free_tier changed from ""unlimited autocomplete + 25 prompt credits/month"" to quota model — Windsurf retired credits on March 19 2026"
+2026-08-28,edit,Cursor,Code Assistant,https://cursor.sh,"free_tier changed from ""Free tier available"" to named Hobby plan; the 1-year free student Pro program ended in 2026"
+2026-08-28,edit,Suno,Audio / Music,https://suno.com,"free_tier changed from ""Free tier available"" to ""50 credits/day""; audio downloads removed from the free tier in Jan 2026 after the Warner Music settlement"
+2026-08-28,edit,Udio,Audio / Music,https://udio.com,"free_tier changed from ""Free tier available"" to ""10 songs/month"" following the Universal Music settlement"
+2026-08-28,edit,Antigravity,Code Assistant,https://antigravity.google,now the official replacement for the retired Gemini CLI; ships an IDE and the agy CLI
+2026-08-28,remove,Gemini CLI,Code Assistant,https://github.com/google-gemini/gemini-cli,shut down June 18 2026 for free/personal Google accounts; superseded by Antigravity CLI
+2026-08-28,add,Cloudflare Workers AI,LLM API,https://developers.cloudflare.com/workers-ai,found via refresh
+2026-08-28,add,SambaNova Cloud,LLM API,https://cloud.sambanova.ai,found via refresh
+2026-08-28,add,NVIDIA NIM,LLM API,https://build.nvidia.com,found via refresh
+2026-08-28,add,Vercel AI Gateway,LLM Router,https://vercel.com/docs/ai-gateway,found via refresh
+2026-08-28,add,Cline,Code Assistant,https://cline.bot,found via refresh
+2026-08-28,add,Kilo Code,Code Assistant,https://kilo.ai,found via refresh
+2026-08-28,add,Zed,Code Assistant,https://zed.dev,found via refresh
+2026-08-28,add,Dreamina (Seedance 2.0),Video Generation,https://dreamina.capcut.com,found via refresh
+2026-08-28,edit,OpenCode,Code Assistant,https://opencode.ai,noted the optional paid OpenCode Go plan ($10/mo via Zen) — the agent itself is unchanged and still free
+2026-08-28,edit,GitHub Copilot,Code Assistant,https://github.com/features/copilot,"free tier unchanged, but paid plans moved to token-based AI Credits on June 1 2026; completions never draw down credits — see QUOTAS.md"
+2026-08-28,remove,Notion AI,Productivity,https://notion.so,"no genuine free tier — the Free plan gets a capped AI trial, not the assistant; moved to paid_resources.csv"
+2026-08-28,edit,ChatGPT,LLM Chatbot,https://chat.openai.com,"noted OpenAI policy commitment that ChatGPT core chat functionality remains free forever (with standard rate limits on latest frontier models)"
