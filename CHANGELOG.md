@@ -3,9 +3,9 @@
 Every edition of this list is a dated snapshot. Free tiers move fast, so what
 changed matters as much as what's on the list.
 
-The machine-readable record lives in [`history.csv`](history.csv) and
-[`paid_history.csv`](paid_history.csv) — those files are append-only and are the
-source of truth. This file is the human-readable summary.
+The machine-readable record lives in [`history.csv`](history.csv),
+[`paid_history.csv`](paid_history.csv) and [`local_history.csv`](local_history.csv) — those
+files are append-only and are the source of truth. This file is the human-readable summary.
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
@@ -37,6 +37,8 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
 - **Dreamina (Seedance 2.0)** — ByteDance's video model with native audio; daily free credits, up to 1080p, watermark-free.
 
+**Local LLMs pathway** — created `local_resources.csv` (12 seed tools: Ollama, llama.cpp, LM Studio, Jan, vLLM, SGLang, Open WebUI, Kobold.cpp, ExLlamaV2, Text Generation WebUI, LocalAI, Tabby), tracked via `local_history.csv` and refreshed via `local_refresh_prompt.md`. The web page gained a dedicated "Run It Yourself" section below the main grid, showing each tool's category, hardware requirements, and licence. Local tools are counted separately and stay out of the Free/Paid/All totals so month-on-month counts remain comparable. The refresh scope also covers local embeddings/RAG, image/audio/video runners, and hardware/benchmarking tools.
+
 **Paid list** — `paid_resources.csv` was empty at the start of the month; it now holds 6 entries.
 
 - **Midjourney** — $10/mo Basic through $120/mo Mega. No free tier or trial since March 2023.
@@ -58,10 +60,12 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
 **Notes**
 
+- **ChatGPT policy** — logged OpenAI's commitment that the core ChatGPT chat tier remains permanently free (with rate limits on new frontier models).
 - **[`QUOTAS.md`](QUOTAS.md)** — new. Tracks how paid AI plans meter usage rather than what they charge:
   the 2026 move off flat-rate, a dated timeline of every limit change, and a per-tool table of Claude Code,
   ChatGPT/Codex, Copilot, Cursor, Windsurf and OpenCode Go. Prices barely moved this year; the unit
   underneath them changed completely.
+
 
 ### Removed
 

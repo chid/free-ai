@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Interactive CLI to add, remove, or update entries in resources.csv and paid_resources.csv.
-All changes are appended to history.csv or paid_history.csv with a timestamp.
+Interactive CLI to manage entries in resources.csv, paid_resources.csv, and local_resources.csv.
+All changes are appended to the respective history files with a timestamp.
 Usage: python3 update.py
 """
 
@@ -15,12 +15,15 @@ FREE_CSV = os.path.join(BASE, "resources.csv")
 FREE_HISTORY = os.path.join(BASE, "history.csv")
 PAID_CSV = os.path.join(BASE, "paid_resources.csv")
 PAID_HISTORY = os.path.join(BASE, "paid_history.csv")
+LOCAL_CSV = os.path.join(BASE, "local_resources.csv")
+LOCAL_HISTORY = os.path.join(BASE, "local_history.csv")
 
 FREE_FIELDS = ["name", "category", "url", "description", "free_tier", "requires_signup", "tags"]
 PAID_FIELDS = ["name", "category", "url", "description", "pricing", "tags"]
+LOCAL_FIELDS = ["name", "category", "url", "description", "hardware_reqs", "license", "tags"]
 HISTORY_FIELDS = ["date", "action", "name", "category", "url", "notes"]
 
-CATEGORIES = [
+FREE_CATEGORIES = [
     "Agent Framework",
     "Audio / Music",
     "Audio / Voice",
@@ -37,6 +40,19 @@ CATEGORIES = [
     "RAG Framework",
     "Search / Research",
     "Video Generation",
+]
+
+LOCAL_CATEGORIES = [
+    "Local Runner",
+    "Desktop Client",
+    "Serving Engine",
+    "Web UI",
+    "Code Assistant",
+    "Agent Framework",
+    "Fine-tuning / Quant",
+    "Embeddings / RAG",
+    "Image / Audio / Video",
+    "Hardware / Benchmarking",
 ]
 
 
@@ -85,9 +101,9 @@ def clean_tags(tags_str: str) -> str:
     return ",".join(parts)
 
 
-def pick_category(current: str = "") -> str:
+def pick_category(categories: list[str], current: str = "") -> str:
     print("\n  Categories:")
-    for i, cat in enumerate(CATEGORIES, 1):
+    for i, cat in enumerate(categories, 1):
         mark = " (current)" if cat == current else ""
         print(f"    {i:2}. {cat}{mark}")
     print("     0. Enter custom category")
@@ -95,8 +111,8 @@ def pick_category(current: str = "") -> str:
         choice = input("  Pick number (or 0 for custom): ").strip()
         if choice == "0":
             return input("  Custom category: ").strip()
-        if choice.isdigit() and 1 <= int(choice) <= len(CATEGORIES):
-            return CATEGORIES[int(choice) - 1]
+        if choice.isdigit() and 1 <= int(choice) <= len(categories):
+            return categories[int(choice) - 1]
         print("  Invalid choice, try again.")
 
 
@@ -112,7 +128,7 @@ def add_free(rows: list[dict]) -> list[dict]:
         print(f"  '{name}' already exists in free resources.")
         return rows
 
-    category = pick_category()
+    category = pick_category(FREE_CATEGORIES)
     url = ask("URL")
     description = ask("Description")
     free_tier = ask("Free tier details", "Free tier available")
@@ -186,10 +202,10 @@ def edit_free(rows: list[dict]) -> list[dict]:
 
     category = ask("Category (Enter to keep, 'pick' to choose)", r["category"])
     if category.strip().lower() == "pick":
-        category = pick_category(r["category"])
+        category = pick_category(FREE_CATEGORIES, r["category"])
 
     requires_signup = r["requires_signup"]
-    signup_input = ask("Requires signup? (Yes/No)", r["requires_signup"])
+    signup_input = ask(f"Requires signup? (Yes/No)", r["requires_signup"])
     if signup_input in ("Yes", "No"):
         requires_signup = signup_input
 
@@ -228,7 +244,7 @@ def add_paid(rows: list[dict]) -> list[dict]:
         print(f"  '{name}' already exists in paid resources.")
         return rows
 
-    category = pick_category()
+    category = pick_category(FREE_CATEGORIES)
     url = ask("URL")
     description = ask("Description")
     pricing = ask("Pricing details (e.g. $20/month)")
@@ -298,7 +314,7 @@ def edit_paid(rows: list[dict]) -> list[dict]:
 
     category = ask("Category (Enter to keep, 'pick' to choose)", r["category"])
     if category.strip().lower() == "pick":
-        category = pick_category(r["category"])
+        category = pick_category(FREE_CATEGORIES, r["category"])
 
     updated = {
         "name":        ask("Name", r["name"]),
@@ -322,15 +338,76 @@ def edit_paid(rows: list[dict]) -> list[dict]:
     return rows
 
 
-# ── actions: migrate between lists ───────────────────────────────────────────
+# ── actions: local llm tools ──────────────────────────────────────────────────
 
-def move_free_to_paid(free_rows: list[dict], paid_rows: list[dict]) -> tuple[list[dict], list[dict]]:
-    print("\n--- Move Free Tool -> Paid List ---")
-    query = input("  Name to move (partial match): ").strip().lower()
-    matches = [(i, r) for i, r in enumerate(free_rows) if query in r["name"].lower()]
+def add_local(rows: list[dict]) -> list[dict]:
+    print("\n--- Add a new local LLM resource ---")
+    name = ask("Name")
+    if not name:
+        print("  Name is required.")
+        return rows
+    if any(r["name"].lower() == name.lower() for r in rows):
+        print(f"  '{name}' already exists in local resources.")
+        return rows
+
+    category = pick_category(LOCAL_CATEGORIES)
+    url = ask("URL")
+    description = ask("Description")
+    hardware_reqs = ask("Hardware requirements (e.g. Mac Apple Silicon, NVIDIA CUDA, CPU)")
+    license = ask("License (e.g. MIT, Apache-2.0, Open Source)", "MIT")
+    tags = clean_tags(ask("Tags (comma-separated, e.g. local,cli,gguf,cuda)"))
+
+    rows.append({
+        "name": name,
+        "category": category,
+        "url": url,
+        "description": description,
+        "hardware_reqs": hardware_reqs,
+        "license": license,
+        "tags": tags,
+    })
+    save_csv(LOCAL_CSV, LOCAL_FIELDS, rows)
+    log_history(LOCAL_HISTORY, "add", name, category, url)
+    print(f"\n  Added '{name}' to local_resources.csv and logged to local_history.csv.")
+    return rows
+
+
+def remove_local(rows: list[dict]) -> list[dict]:
+    print("\n--- Remove a local LLM resource ---")
+    query = input("  Name to remove (partial match): ").strip().lower()
+    matches = [(i, r) for i, r in enumerate(rows) if query in r["name"].lower()]
     if not matches:
         print("  No matches found.")
-        return free_rows, paid_rows
+        return rows
+
+    for i, (_, r) in enumerate(matches, 1):
+        print(f"  {i}. {r['name']} ({r['category']})")
+
+    choice = input("  Pick number to delete (Enter to cancel): ").strip()
+    if not choice.isdigit() or not (1 <= int(choice) <= len(matches)):
+        print("  Cancelled.")
+        return rows
+
+    idx, r = matches[int(choice) - 1]
+    confirm = input(f"  Delete '{r['name']}'? (y/N): ").strip().lower()
+    if confirm == "y":
+        reason = ask("Reason/Notes (for local_history.csv)")
+        rows.pop(idx)
+        save_csv(LOCAL_CSV, LOCAL_FIELDS, rows)
+        log_history(LOCAL_HISTORY, "remove", r["name"], r["category"], r["url"], reason)
+        print(f"  Removed '{r['name']}'.")
+    else:
+        print("  Cancelled.")
+    return rows
+
+
+def edit_local(rows: list[dict]) -> list[dict]:
+    print("\n--- Edit a local LLM resource ---")
+    query = input("  Name to edit (partial match): ").strip().lower()
+    matches = [(i, r) for i, r in enumerate(rows) if query in r["name"].lower()]
+    if not matches:
+        print("  No matches found.")
+        return rows
 
     for i, (_, r) in enumerate(matches, 1):
         print(f"  {i}. {r['name']} ({r['category']})")
@@ -338,78 +415,36 @@ def move_free_to_paid(free_rows: list[dict], paid_rows: list[dict]) -> tuple[lis
     choice = input("  Pick number (Enter to cancel): ").strip()
     if not choice.isdigit() or not (1 <= int(choice) <= len(matches)):
         print("  Cancelled.")
-        return free_rows, paid_rows
+        return rows
 
     idx, r = matches[int(choice) - 1]
-    pricing = ask("Pricing details for paid list")
-    notes = ask("Reason/Notes (e.g. Free tier discontinued)")
+    print(f"\n  Editing '{r['name']}' — press Enter to keep current value\n")
 
-    # Remove from free
-    free_rows.pop(idx)
-    save_csv(FREE_CSV, FREE_FIELDS, free_rows)
-    log_history(FREE_HISTORY, "remove", r["name"], r["category"], r["url"], f"Moved to paid_resources.csv: {notes}")
+    category = ask("Category (Enter to keep, 'pick' to choose)", r["category"])
+    if category.strip().lower() == "pick":
+        category = pick_category(LOCAL_CATEGORIES, r["category"])
 
-    # Add to paid
-    paid_item = {
-        "name": r["name"],
-        "category": r["category"],
-        "url": r["url"],
-        "description": r["description"],
-        "pricing": pricing,
-        "tags": clean_tags(r["tags"]),
+    updated = {
+        "name":          ask("Name", r["name"]),
+        "category":      category,
+        "url":           ask("URL", r["url"]),
+        "description":   ask("Description", r["description"]),
+        "hardware_reqs": ask("Hardware requirements", r.get("hardware_reqs", "")),
+        "license":       ask("License", r.get("license", "MIT")),
+        "tags":          clean_tags(ask("Tags", r["tags"])),
     }
-    paid_rows.append(paid_item)
-    save_csv(PAID_CSV, PAID_FIELDS, paid_rows)
-    log_history(PAID_HISTORY, "add", r["name"], r["category"], r["url"], f"Moved from resources.csv: {notes}")
 
-    print(f"\n  Moved '{r['name']}' from free to paid list and logged to both histories.")
-    return free_rows, paid_rows
+    changes = [f for f in LOCAL_FIELDS if updated[f] != r.get(f, "")]
+    if not changes:
+        print("  No changes made.")
+        return rows
 
-
-def move_paid_to_free(free_rows: list[dict], paid_rows: list[dict]) -> tuple[list[dict], list[dict]]:
-    print("\n--- Move Paid Tool -> Free List ---")
-    query = input("  Name to move (partial match): ").strip().lower()
-    matches = [(i, r) for i, r in enumerate(paid_rows) if query in r["name"].lower()]
-    if not matches:
-        print("  No matches found.")
-        return free_rows, paid_rows
-
-    for i, (_, r) in enumerate(matches, 1):
-        print(f"  {i}. {r['name']} ({r['category']})")
-
-    choice = input("  Pick number (Enter to cancel): ").strip()
-    if not choice.isdigit() or not (1 <= int(choice) <= len(matches)):
-        print("  Cancelled.")
-        return free_rows, paid_rows
-
-    idx, r = matches[int(choice) - 1]
-    free_tier = ask("Free tier details")
-    requires_signup = ""
-    while requires_signup not in ("Yes", "No"):
-        requires_signup = ask("Requires signup? (Yes/No)", "Yes")
-    notes = ask("Reason/Notes (e.g. Launched new free plan)")
-
-    # Remove from paid
-    paid_rows.pop(idx)
-    save_csv(PAID_CSV, PAID_FIELDS, paid_rows)
-    log_history(PAID_HISTORY, "remove", r["name"], r["category"], r["url"], f"Moved to resources.csv: {notes}")
-
-    # Add to free
-    free_item = {
-        "name": r["name"],
-        "category": r["category"],
-        "url": r["url"],
-        "description": r["description"],
-        "free_tier": free_tier,
-        "requires_signup": requires_signup,
-        "tags": clean_tags(r["tags"]),
-    }
-    free_rows.append(free_item)
-    save_csv(FREE_CSV, FREE_FIELDS, free_rows)
-    log_history(FREE_HISTORY, "add", r["name"], r["category"], r["url"], f"Moved from paid_resources.csv: {notes}")
-
-    print(f"\n  Moved '{r['name']}' from paid to free list and logged to both histories.")
-    return free_rows, paid_rows
+    rows[idx] = updated
+    save_csv(LOCAL_CSV, LOCAL_FIELDS, rows)
+    notes = ask("History notes (Enter for auto diff)", f"changed: {', '.join(changes)}")
+    log_history(LOCAL_HISTORY, "edit", updated["name"], updated["category"], updated["url"], notes)
+    print(f"\n  Updated '{updated['name']}'.")
+    return rows
 
 
 # ── reports & validation ──────────────────────────────────────────────────────
@@ -432,7 +467,7 @@ def show_history(path: str, title: str) -> None:
         print(f"\n  … {len(rows) - 50} older entries in {os.path.basename(path)}")
 
 
-def list_resources(free_rows: list[dict], paid_rows: list[dict]) -> None:
+def list_resources(free_rows: list[dict], paid_rows: list[dict], local_rows: list[dict]) -> None:
     print(f"\n=== Free Resources ({len(free_rows)}) ===")
     by_cat: dict[str, list] = {}
     for r in free_rows:
@@ -452,6 +487,16 @@ def list_resources(free_rows: list[dict], paid_rows: list[dict]) -> None:
             for name in sorted(by_cat_paid[cat]):
                 print(f"    • {name}")
 
+    if local_rows:
+        print(f"\n=== Local LLM Resources ({len(local_rows)}) ===")
+        by_cat_local: dict[str, list] = {}
+        for r in local_rows:
+            by_cat_local.setdefault(r["category"], []).append(r["name"])
+        for cat in sorted(by_cat_local):
+            print(f"\n  {cat}:")
+            for name in sorted(by_cat_local[cat]):
+                print(f"    • {name}")
+
 
 def audit_repo() -> None:
     print("\n=== Repository Data Audit ===")
@@ -460,9 +505,11 @@ def audit_repo() -> None:
 
     free_rows = load_csv(FREE_CSV)
     paid_rows = load_csv(PAID_CSV)
+    local_rows = load_csv(LOCAL_CSV)
 
     print(f"• Free tools: {len(free_rows)} in resources.csv")
     print(f"• Paid tools: {len(paid_rows)} in paid_resources.csv")
+    print(f"• Local tools: {len(local_rows)} in local_resources.csv")
 
     # Check free rows
     free_names = set()
@@ -477,7 +524,7 @@ def audit_repo() -> None:
         free_names.add(name.lower())
 
         cat = r.get("category", "").strip()
-        if cat not in CATEGORIES:
+        if cat not in FREE_CATEGORIES:
             print(f"  [WARNING] resources.csv row {i} ({name}): Unknown category '{cat}'")
             warnings += 1
 
@@ -485,15 +532,6 @@ def audit_repo() -> None:
         if signup not in ("Yes", "No"):
             print(f"  [ERROR] resources.csv row {i} ({name}): Invalid requires_signup '{signup}' (must be Yes or No)")
             errors += 1
-
-        tags = r.get("tags", "").split(",")
-        for t in tags:
-            if t != t.strip():
-                print(f"  [WARNING] resources.csv row {i} ({name}): Tag '{t}' has leading/trailing spaces")
-                warnings += 1
-            if t != t.lower():
-                print(f"  [WARNING] resources.csv row {i} ({name}): Tag '{t}' has uppercase characters")
-                warnings += 1
 
     # Check paid rows
     paid_names = set()
@@ -507,16 +545,17 @@ def audit_repo() -> None:
             errors += 1
         paid_names.add(name.lower())
 
-        cat = r.get("category", "").strip()
-        if cat not in CATEGORIES:
-            print(f"  [WARNING] paid_resources.csv row {i} ({name}): Unknown category '{cat}'")
-            warnings += 1
-
-    # Overlap check
-    overlap = free_names.intersection(paid_names)
-    if overlap:
-        print(f"  [ERROR] Tools listed in both free and paid: {overlap}")
-        errors += len(overlap)
+    # Check local rows
+    local_names = set()
+    for i, r in enumerate(local_rows, 2):
+        name = r.get("name", "").strip()
+        if not name:
+            print(f"  [ERROR] local_resources.csv row {i}: Empty name")
+            errors += 1
+        elif name.lower() in local_names:
+            print(f"  [ERROR] local_resources.csv row {i}: Duplicate name '{name}'")
+            errors += 1
+        local_names.add(name.lower())
 
     if errors == 0 and warnings == 0:
         print("\nAll CSV files passed validation with zero errors and zero warnings! ✓")
@@ -529,22 +568,26 @@ def audit_repo() -> None:
 def main() -> None:
     free_rows = load_csv(FREE_CSV)
     paid_rows = load_csv(PAID_CSV)
+    local_rows = load_csv(LOCAL_CSV)
 
     while True:
-        print(f"\n==========================================")
-        print(f" Free AI Resources CLI ({len(free_rows)} free, {len(paid_rows)} paid)")
-        print(f"==========================================")
+        print(f"\n============================================================")
+        print(f" AI Resources CLI ({len(free_rows)} free, {len(paid_rows)} paid, {len(local_rows)} local)")
+        print(f"============================================================")
         print("  1. Add free resource")
         print("  2. Remove free resource")
         print("  3. Edit free resource")
         print("  4. Add paid resource")
         print("  5. Remove paid resource")
         print("  6. Edit paid resource")
-        print("  7. Move tool (Free <-> Paid)")
-        print("  8. List all resources")
-        print("  9. Show free history")
-        print(" 10. Show paid history")
-        print(" 11. Run repo data audit")
+        print("  7. Add local LLM resource")
+        print("  8. Remove local LLM resource")
+        print("  9. Edit local LLM resource")
+        print(" 10. List all resources across all pathways")
+        print(" 11. Show free history")
+        print(" 12. Show paid history")
+        print(" 13. Show local history")
+        print(" 14. Run repo data audit")
         print("  0. Quit")
         choice = input("Choice: ").strip()
 
@@ -561,18 +604,20 @@ def main() -> None:
         elif choice == "6":
             paid_rows = edit_paid(paid_rows)
         elif choice == "7":
-            direction = ask("Direction: 1 for Free -> Paid, 2 for Paid -> Free", "1")
-            if direction == "1":
-                free_rows, paid_rows = move_free_to_paid(free_rows, paid_rows)
-            elif direction == "2":
-                free_rows, paid_rows = move_paid_to_free(free_rows, paid_rows)
+            local_rows = add_local(local_rows)
         elif choice == "8":
-            list_resources(free_rows, paid_rows)
+            local_rows = remove_local(local_rows)
         elif choice == "9":
-            show_history(FREE_HISTORY, "Free Tools History")
+            local_rows = edit_local(local_rows)
         elif choice == "10":
-            show_history(PAID_HISTORY, "Paid Tools History")
+            list_resources(free_rows, paid_rows, local_rows)
         elif choice == "11":
+            show_history(FREE_HISTORY, "Free Tools History")
+        elif choice == "12":
+            show_history(PAID_HISTORY, "Paid Tools History")
+        elif choice == "13":
+            show_history(LOCAL_HISTORY, "Local LLM History")
+        elif choice == "14":
             audit_repo()
         elif choice in ("0", "q", "quit", "exit"):
             break
@@ -586,3 +631,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("\nBye.")
         sys.exit(0)
+

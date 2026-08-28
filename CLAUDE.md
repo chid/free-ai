@@ -8,15 +8,18 @@ A self-updating directory of free AI tools, served as a static web page driven b
 |---|---|
 | `resources.csv` | Source of truth — free tools, one row per tool |
 | `paid_resources.csv` | Source of truth — paid-only tools (no genuine free tier) |
-| `index.html` | Web page; fetches and renders `resources.csv` at load time |
+| `local_resources.csv` | Source of truth — local/self-hosted LLM runners, UIs, and engines |
+| `index.html` | Web page; fetches and renders CSV data at load time |
 | `history.csv` | Append-only log of every add/remove/edit to `resources.csv` |
 | `paid_history.csv` | Append-only log of every add/remove/edit to `paid_resources.csv` |
+| `local_history.csv` | Append-only log of every add/remove/edit to `local_resources.csv` |
 | `CHANGELOG.md` | Human-readable summary of each refresh, newest first |
 | `QUOTAS.md` | Notes on how paid AI plans meter usage — quota models, not prices |
 | `README.md` | Markdown rendering of `resources.csv`, regenerated each refresh |
 | `update.py` | Interactive CLI for manual changes (writes history automatically) |
 | `refresh_prompt.md` | Claude prompt for researching and adding free tools |
 | `paid_refresh_prompt.md` | Claude prompt for researching and adding paid-only tools |
+| `local_refresh_prompt.md` | Claude prompt for researching and adding local LLM tools |
 
 > **Frontier model pricing & context windows:** see [models.dev](https://models.dev) — no need to track this ourselves.
 
@@ -33,10 +36,16 @@ name, category, url, description, pricing, tags
 ```
 (`pricing` replaces `free_tier`/`requires_signup` — paid tools are always paid and require accounts.)
 
-`history.csv` / `paid_history.csv` columns:
+`local_resources.csv` columns:
+```
+name, category, url, description, hardware_reqs, license, tags
+```
+
+`history.csv` / `paid_history.csv` / `local_history.csv` columns:
 ```
 date, action, name, category, url, notes
 ```
+
 
 Valid `action` values: `add`, `remove`, `edit`, `init`.
 
@@ -107,3 +116,15 @@ Video Generation
 ## Paid-tool categories (current)
 
 Same set — pick the closest match.
+
+## Local-tool categories (current)
+
+Local Runner, Desktop Client, Serving Engine, Web UI, Code Assistant,
+Agent Framework, Fine-tuning / Quant, Embeddings / RAG,
+Image / Audio / Video, Hardware / Benchmarking
+
+Local tools render in their own "Run It Yourself" section at the bottom of
+`index.html` — they are deliberately excluded from the Free/Paid/All tier counts
+and from the header total, so month-on-month resource counts stay comparable.
+The page search filters both the main grid and the local section; the category
+chips apply to the main grid only.

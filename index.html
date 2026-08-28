@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Free AI Resources</title>
+  <title>AI Resources Directory</title>
   <style>
     :root {
       --bg: #0f1117;
@@ -17,6 +17,7 @@
       --green: #34d399;
       --yellow: #fbbf24;
       --purple: #c084fc;
+      --blue: #38bdf8;
       --radius: 10px;
     }
 
@@ -62,12 +63,14 @@
       justify-content: center;
       gap: 1rem;
       font-size: 0.85rem;
+      flex-wrap: wrap;
     }
 
     .doc-links a {
       color: var(--muted);
       text-decoration: none;
       transition: color 0.15s;
+      cursor: pointer;
     }
 
     .doc-links a:hover {
@@ -81,6 +84,7 @@
       display: flex;
       justify-content: center;
       gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .tier-btn {
@@ -224,6 +228,54 @@
     .badge-free { background: rgba(52,211,153,0.15); color: var(--green); border: 1px solid rgba(52,211,153,0.3); }
     .badge-partial { background: rgba(251,191,36,0.15); color: var(--yellow); border: 1px solid rgba(251,191,36,0.3); }
     .badge-paid { background: rgba(192,132,252,0.15); color: var(--purple); border: 1px solid rgba(192,132,252,0.3); }
+    .badge-local { background: rgba(56,189,248,0.15); color: var(--blue); border: 1px solid rgba(56,189,248,0.3); }
+    .badge-license {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      color: var(--muted);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .local-section {
+      max-width: 1100px;
+      margin: 3.5rem auto 0;
+      padding: 0 1.5rem;
+    }
+
+    .local-section .grid,
+    .local-section .no-results {
+      max-width: none;
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .section-head {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-head h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-head p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
 
     .card-category {
       font-size: 0.75rem;
@@ -255,6 +307,10 @@
 
     .card-tier-detail.paid {
       color: var(--purple);
+    }
+
+    .card-tier-detail.local {
+      color: var(--blue);
     }
 
     .card-signup {
@@ -318,7 +374,8 @@
       border-radius: var(--radius);
       padding: 1rem 1.2rem;
     }
-  </style>
+
+    /* Modal styling */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -468,11 +525,11 @@
 <body>
 
 <header>
-  <h1>Free AI Resources</h1>
-  <p>A directory of AI tools, APIs, and models -- <span id="total-count">...</span> resources tracked</p>
+  <h1>AI Resources Directory</h1>
+  <p>Curated directory of free cloud tools and paid models -- <span id="total-count">...</span> resources tracked, plus local &amp; self-hosted runners <a href="#local-section" class="doc-link">below</a></p>
   <div class="doc-links">
-    <a href="README.md" class="doc-link" data-file="README.md">README</a> -
-    <a href="CHANGELOG.md" class="doc-link" data-file="CHANGELOG.md">CHANGELOG</a> -
+    <a href="README.md" class="doc-link" data-file="README.md">README</a> &bull;
+    <a href="CHANGELOG.md" class="doc-link" data-file="CHANGELOG.md">CHANGELOG</a> &bull;
     <a href="QUOTAS.md" class="doc-link" data-file="QUOTAS.md">QUOTAS (Metering Guide)</a>
   </div>
 </header>
@@ -497,8 +554,17 @@
 <div class="no-results" id="no-results" style="display:none">No resources match your search.</div>
 <div class="error" id="error" style="display:none"></div>
 
+<section class="local-section" id="local-section">
+  <div class="section-head">
+    <h2>Run It Yourself <span class="badge badge-local">Local</span></h2>
+    <p><span id="local-count">...</span> local &amp; self-hosted runners, serving engines, and UIs that run entirely on your own hardware -- no API key, no quota, no data leaving your machine. Tracked separately in <code>local_resources.csv</code>.</p>
+  </div>
+  <div class="grid" id="local-grid"></div>
+  <div class="no-results" id="local-no-results" style="display:none">No local tools match your search.</div>
+</section>
+
 <div class="update-banner">
-  <strong>Updating resources:</strong> Edit <code>resources.csv</code> or <code>paid_resources.csv</code> -- or run <code>python3 update.py</code> for the interactive CLI with automatic history logging and audit validation.
+  <strong>Updating resources:</strong> Edit <code>resources.csv</code>, <code>paid_resources.csv</code>, or <code>local_resources.csv</code> -- or run <code>python3 update.py</code> for the interactive CLI with automatic history logging and audit validation.
 </div>
 
 <!-- Modal for viewing markdown docs -->
@@ -515,7 +581,8 @@
 <script>
   let freeResources = [];
   let paidResources = [];
-  let currentTier = 'free'; // 'free', 'paid', 'all'
+  let localResources = [];
+  let currentTier = 'free'; // 'free', 'paid', 'all' -- local tools live in their own section
   let activeCategory = 'All';
 
   function parseCSV(text) {
@@ -564,15 +631,18 @@
 
   function renderCard(r) {
     const tags = r.tags ? r.tags.split(',').map(t => t.trim()).filter(Boolean) : [];
-    const isPaid = r._isPaid;
+    const type = r._type;
 
     let badge = '';
     let metaDetail = '';
     let signup = '';
 
-    if (isPaid) {
+    if (type === 'paid') {
       badge = '<span class="badge badge-paid">Paid</span>';
       metaDetail = `<span class="card-tier-detail paid">${r.pricing || 'Paid'}</span>`;
+    } else if (type === 'local') {
+      badge = `<span class="badge-license">${r.license || 'Open Source'}</span>`;
+      metaDetail = `<span class="card-tier-detail local">${r.hardware_reqs || 'Runs on local hardware'}</span>`;
     } else {
       const fullyFree = isFreelyFree(r.free_tier);
       badge = fullyFree
@@ -591,7 +661,7 @@
          data-name="${(r.name || '').toLowerCase()}"
          data-category="${(r.category || '').toLowerCase()}"
          data-tags="${(r.tags || '').toLowerCase()}"
-         data-tier="${isPaid ? 'paid' : 'free'}"
+         data-tier="${type}"
          data-desc="${(r.description || '').toLowerCase()}">
         <div class="card-header">
           <span class="card-name">${r.name}</span>
@@ -646,20 +716,46 @@
     applyFilters();
   }
 
+  function renderLocalGrid() {
+    const grid = document.getElementById('local-grid');
+    grid.innerHTML = localResources.map(renderCard).join('');
+  }
+
+  function matchesQuery(card, query) {
+    return !query ||
+      card.dataset.name.includes(query) ||
+      card.dataset.category.includes(query) ||
+      card.dataset.tags.includes(query) ||
+      card.dataset.desc.includes(query);
+  }
+
+  function applyLocalFilters(query) {
+    const section = document.getElementById('local-section');
+    if (!localResources.length) {
+      section.style.display = 'none';
+      return;
+    }
+    section.style.display = '';
+
+    let visible = 0;
+    document.querySelectorAll('#local-grid .card').forEach(card => {
+      const show = matchesQuery(card, query);
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    document.getElementById('local-no-results').style.display = visible === 0 ? '' : 'none';
+  }
+
   function applyFilters() {
     const query = document.getElementById('search').value.toLowerCase();
-    const cards = document.querySelectorAll('.card');
+    const cards = document.querySelectorAll('#grid .card');
     const totalCurrent = getActiveResources().length;
     let visible = 0;
 
     cards.forEach(card => {
       const matchCat = activeCategory === 'All' || card.dataset.category === activeCategory.toLowerCase();
-      const matchQuery = !query ||
-        card.dataset.name.includes(query) ||
-        card.dataset.category.includes(query) ||
-        card.dataset.tags.includes(query) ||
-        card.dataset.desc.includes(query);
-      const show = matchCat && matchQuery;
+      const show = matchCat && matchesQuery(card, query);
       card.style.display = show ? '' : 'none';
       if (show) visible++;
     });
@@ -667,6 +763,8 @@
     document.getElementById('stats').textContent =
       `Showing ${visible} of ${totalCurrent} resources`;
     document.getElementById('no-results').style.display = visible === 0 ? '' : 'none';
+
+    applyLocalFilters(query);
   }
 
   // Lightweight markdown to HTML renderer
@@ -674,7 +772,6 @@
     const lines = md.split('\n');
     let html = '';
     let inTable = false;
-    let tableHeaders = [];
     let inList = false;
 
     function formatInline(str) {
@@ -721,12 +818,10 @@
         if (inList) { html += '</ul>'; inList = false; }
         const cells = line.slice(1, -1).split('|').map(c => c.trim());
         if (cells.every(c => /^[-:]+$/.test(c))) {
-          // Separator row, ignore
           continue;
         }
         if (!inTable) {
           inTable = true;
-          tableHeaders = cells;
           html += '<table><thead><tr>' + cells.map(c => `<th>${formatInline(c)}</th>`).join('') + '</tr></thead><tbody>';
         } else {
           html += '<tr>' + cells.map(c => `<td>${formatInline(c)}</td>`).join('') + '</tr>';
@@ -802,24 +897,33 @@
 
   async function init() {
     try {
-      const [resFree, resPaid] = await Promise.all([
+      const [resFree, resPaid, resLocal] = await Promise.all([
         fetch('resources.csv'),
-        fetch('paid_resources.csv').catch(() => null)
+        fetch('paid_resources.csv').catch(() => null),
+        fetch('local_resources.csv').catch(() => null)
       ]);
 
       if (!resFree.ok) throw new Error(`Could not load resources.csv (${resFree.status})`);
       const freeText = await resFree.text();
-      freeResources = parseCSV(freeText).map(r => ({ ...r, _isPaid: false }));
+      freeResources = parseCSV(freeText).map(r => ({ ...r, _type: 'free' }));
 
       if (resPaid && resPaid.ok) {
         const paidText = await resPaid.text();
-        paidResources = parseCSV(paidText).map(r => ({ ...r, _isPaid: true }));
+        paidResources = parseCSV(paidText).map(r => ({ ...r, _type: 'paid' }));
       }
+
+      if (resLocal && resLocal.ok) {
+        const localText = await resLocal.text();
+        localResources = parseCSV(localText).map(r => ({ ...r, _type: 'local' }));
+      }
+
+      const total = freeResources.length + paidResources.length;
 
       document.getElementById('free-count').textContent = freeResources.length;
       document.getElementById('paid-count').textContent = paidResources.length;
-      document.getElementById('all-count').textContent = freeResources.length + paidResources.length;
-      document.getElementById('total-count').textContent = freeResources.length + paidResources.length;
+      document.getElementById('local-count').textContent = localResources.length;
+      document.getElementById('all-count').textContent = total;
+      document.getElementById('total-count').textContent = total;
 
       // Tier switcher buttons
       document.querySelectorAll('.tier-btn').forEach(btn => {
@@ -834,6 +938,8 @@
 
       renderCategoryChips();
       renderGrid();
+      renderLocalGrid();
+      applyLocalFilters('');
       setupDocModal();
 
       document.getElementById('search').addEventListener('input', applyFilters);
@@ -849,5 +955,6 @@
 </script>
 </body>
 </html>
+
 
 
