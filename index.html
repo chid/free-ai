@@ -319,16 +319,161 @@
       padding: 1rem 1.2rem;
     }
   </style>
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 900px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent2);
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+      background: var(--surface2);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      line-height: 1.6;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .modal-body h1, .modal-body h2, .modal-body h3 {
+      color: var(--text);
+      margin-top: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-body h1 { font-size: 1.6rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+    .modal-body h2 { font-size: 1.3rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+    .modal-body h3 { font-size: 1.1rem; }
+
+    .modal-body p { margin-bottom: 1rem; color: #cbd5e1; }
+    .modal-body hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+    .modal-body ul, .modal-body ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: #cbd5e1;
+    }
+
+    .modal-body li { margin-bottom: 0.3rem; }
+
+    .modal-body a {
+      color: var(--accent2);
+      text-decoration: underline;
+    }
+
+    .modal-body code {
+      background: var(--surface2);
+      color: var(--accent2);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+
+    .modal-body pre {
+      background: var(--surface2);
+      padding: 1rem;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .modal-body pre code {
+      background: transparent;
+      padding: 0;
+      color: var(--text);
+    }
+
+    .modal-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.88rem;
+    }
+
+    .modal-body th, .modal-body td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+    }
+
+    .modal-body th {
+      background: var(--surface2);
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .modal-body tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+  </style>
 </head>
 <body>
 
 <header>
   <h1>Free AI Resources</h1>
-  <p>A directory of AI tools, APIs, and models — <span id="total-count">...</span> resources tracked</p>
+  <p>A directory of AI tools, APIs, and models -- <span id="total-count">...</span> resources tracked</p>
   <div class="doc-links">
-    <a href="README.md" target="_blank">README</a> •
-    <a href="CHANGELOG.md" target="_blank">CHANGELOG</a> •
-    <a href="QUOTAS.md" target="_blank">QUOTAS (Metering Guide)</a>
+    <a href="README.md" class="doc-link" data-file="README.md">README</a> -
+    <a href="CHANGELOG.md" class="doc-link" data-file="CHANGELOG.md">CHANGELOG</a> -
+    <a href="QUOTAS.md" class="doc-link" data-file="QUOTAS.md">QUOTAS (Metering Guide)</a>
   </div>
 </header>
 
@@ -341,7 +486,7 @@
 <div class="controls">
   <div class="search-wrap">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="search" id="search" placeholder="Search tools, categories, tags…" />
+    <input type="search" id="search" placeholder="Search tools, categories, tags..." />
   </div>
   <div class="filter-chips" id="category-filters"></div>
 </div>
@@ -353,7 +498,18 @@
 <div class="error" id="error" style="display:none"></div>
 
 <div class="update-banner">
-  <strong>Updating resources:</strong> Edit <code>resources.csv</code> or <code>paid_resources.csv</code> — or run <code>python3 update.py</code> for the interactive CLI with automatic history logging and audit validation.
+  <strong>Updating resources:</strong> Edit <code>resources.csv</code> or <code>paid_resources.csv</code> -- or run <code>python3 update.py</code> for the interactive CLI with automatic history logging and audit validation.
+</div>
+
+<!-- Modal for viewing markdown docs -->
+<div class="modal-overlay" id="doc-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Documentation</div>
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body" id="modal-body">Loading...</div>
+  </div>
 </div>
 
 <script>
@@ -513,6 +669,137 @@
     document.getElementById('no-results').style.display = visible === 0 ? '' : 'none';
   }
 
+  // Lightweight markdown to HTML renderer
+  function renderMarkdown(md) {
+    const lines = md.split('\n');
+    let html = '';
+    let inTable = false;
+    let tableHeaders = [];
+    let inList = false;
+
+    function formatInline(str) {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    }
+
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i].trim();
+
+      // Horizontal rule
+      if (line === '---' || line === '***') {
+        if (inList) { html += '</ul>'; inList = false; }
+        if (inTable) { html += '</table>'; inTable = false; }
+        html += '<hr />';
+        continue;
+      }
+
+      // Headers
+      if (line.startsWith('# ')) {
+        if (inList) { html += '</ul>'; inList = false; }
+        html += `<h1>${formatInline(line.slice(2))}</h1>`;
+        continue;
+      }
+      if (line.startsWith('## ')) {
+        if (inList) { html += '</ul>'; inList = false; }
+        html += `<h2>${formatInline(line.slice(3))}</h2>`;
+        continue;
+      }
+      if (line.startsWith('### ')) {
+        if (inList) { html += '</ul>'; inList = false; }
+        html += `<h3>${formatInline(line.slice(4))}</h3>`;
+        continue;
+      }
+
+      // Table handling
+      if (line.startsWith('|') && line.endsWith('|')) {
+        if (inList) { html += '</ul>'; inList = false; }
+        const cells = line.slice(1, -1).split('|').map(c => c.trim());
+        if (cells.every(c => /^[-:]+$/.test(c))) {
+          // Separator row, ignore
+          continue;
+        }
+        if (!inTable) {
+          inTable = true;
+          tableHeaders = cells;
+          html += '<table><thead><tr>' + cells.map(c => `<th>${formatInline(c)}</th>`).join('') + '</tr></thead><tbody>';
+        } else {
+          html += '<tr>' + cells.map(c => `<td>${formatInline(c)}</td>`).join('') + '</tr>';
+        }
+        continue;
+      } else if (inTable) {
+        html += '</tbody></table>';
+        inTable = false;
+      }
+
+      // List handling
+      if (line.startsWith('- ') || line.startsWith('* ')) {
+        if (!inList) { html += '<ul>'; inList = true; }
+        html += `<li>${formatInline(line.slice(2))}</li>`;
+        continue;
+      } else if (inList && line === '') {
+        html += '</ul>';
+        inList = false;
+      }
+
+      if (line === '') continue;
+
+      html += `<p>${formatInline(line)}</p>`;
+    }
+
+    if (inTable) html += '</tbody></table>';
+    if (inList) html += '</ul>';
+    return html;
+  }
+
+  async function openDoc(filename) {
+    const modal = document.getElementById('doc-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+
+    modalTitle.textContent = filename;
+    modalBody.innerHTML = '<p>Loading document...</p>';
+    modal.classList.add('active');
+
+    try {
+      const res = await fetch(filename);
+      if (!res.ok) throw new Error(`Could not load ${filename}`);
+      const text = await res.text();
+      modalBody.innerHTML = renderMarkdown(text);
+    } catch (err) {
+      modalBody.innerHTML = `<p style="color:#fca5a5;">Failed to load ${filename}: ${err.message}</p>`;
+    }
+  }
+
+  function setupDocModal() {
+    document.querySelectorAll('.doc-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        openDoc(link.dataset.file);
+      });
+    });
+
+    const modal = document.getElementById('doc-modal');
+    document.getElementById('modal-close').addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+      }
+    });
+  }
+
   async function init() {
     try {
       const [resFree, resPaid] = await Promise.all([
@@ -547,6 +834,7 @@
 
       renderCategoryChips();
       renderGrid();
+      setupDocModal();
 
       document.getElementById('search').addEventListener('input', applyFilters);
     } catch (err) {
@@ -561,4 +849,5 @@
 </script>
 </body>
 </html>
+
 
