@@ -16,6 +16,7 @@
       --muted: #8892a4;
       --green: #34d399;
       --yellow: #fbbf24;
+      --purple: #c084fc;
       --radius: 10px;
     }
 
@@ -31,7 +32,7 @@
 
     header {
       max-width: 1100px;
-      margin: 0 auto 2.5rem;
+      margin: 0 auto 2rem;
       text-align: center;
     }
 
@@ -48,11 +49,61 @@
     header p {
       color: var(--muted);
       font-size: 1rem;
+      margin-bottom: 0.8rem;
     }
 
     header p span {
       color: var(--accent2);
       font-weight: 600;
+    }
+
+    .doc-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .doc-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .doc-links a:hover {
+      color: var(--accent2);
+      text-decoration: underline;
+    }
+
+    .tier-toggle-wrap {
+      max-width: 1100px;
+      margin: 0 auto 1.25rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .tier-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.45rem 1.1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .tier-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .tier-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
     }
 
     .controls {
@@ -66,7 +117,7 @@
 
     .search-wrap {
       flex: 1;
-      min-width: 200px;
+      min-width: 240px;
       position: relative;
     }
 
@@ -113,7 +164,7 @@
     }
 
     .chip:hover { border-color: var(--accent); color: var(--text); }
-    .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .chip.active { background: var(--surface2); border-color: var(--accent2); color: var(--text); font-weight: 600; }
 
     .stats {
       max-width: 1100px;
@@ -126,7 +177,7 @@
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1rem;
     }
 
@@ -167,10 +218,12 @@
       border-radius: 999px;
       white-space: nowrap;
       flex-shrink: 0;
+      font-weight: 600;
     }
 
     .badge-free { background: rgba(52,211,153,0.15); color: var(--green); border: 1px solid rgba(52,211,153,0.3); }
     .badge-partial { background: rgba(251,191,36,0.15); color: var(--yellow); border: 1px solid rgba(251,191,36,0.3); }
+    .badge-paid { background: rgba(192,132,252,0.15); color: var(--purple); border: 1px solid rgba(192,132,252,0.3); }
 
     .card-category {
       font-size: 0.75rem;
@@ -195,9 +248,13 @@
       margin-top: 0.25rem;
     }
 
-    .card-free-detail {
+    .card-tier-detail {
       font-size: 0.78rem;
       color: var(--green);
+    }
+
+    .card-tier-detail.paid {
+      color: var(--purple);
     }
 
     .card-signup {
@@ -267,8 +324,19 @@
 
 <header>
   <h1>Free AI Resources</h1>
-  <p>A snapshot of what was freely available — <span id="total-count">...</span> tools as of <span id="snapshot-date">…</span></p>
+  <p>A directory of AI tools, APIs, and models — <span id="total-count">...</span> resources tracked</p>
+  <div class="doc-links">
+    <a href="README.md" target="_blank">README</a> •
+    <a href="CHANGELOG.md" target="_blank">CHANGELOG</a> •
+    <a href="QUOTAS.md" target="_blank">QUOTAS (Metering Guide)</a>
+  </div>
 </header>
+
+<div class="tier-toggle-wrap">
+  <button class="tier-btn active" id="filter-free" data-tier="free">Free Tools (<span id="free-count">...</span>)</button>
+  <button class="tier-btn" id="filter-paid" data-tier="paid">Paid Tools (<span id="paid-count">...</span>)</button>
+  <button class="tier-btn" id="filter-all" data-tier="all">All (<span id="all-count">...</span>)</button>
+</div>
 
 <div class="controls">
   <div class="search-wrap">
@@ -285,27 +353,47 @@
 <div class="error" id="error" style="display:none"></div>
 
 <div class="update-banner">
-  <strong>Adding resources:</strong> Edit <code>resources.csv</code> in this folder — one row per tool.
-  Columns: <code>name, category, url, description, free_tier, requires_signup, tags</code>.
-  Or run <code>python3 update.py</code> for an interactive prompt. Then refresh this page.
+  <strong>Updating resources:</strong> Edit <code>resources.csv</code> or <code>paid_resources.csv</code> — or run <code>python3 update.py</code> for the interactive CLI with automatic history logging and audit validation.
 </div>
 
 <script>
-  const CSV_PATH = 'resources.csv';
+  let freeResources = [];
+  let paidResources = [];
+  let currentTier = 'free'; // 'free', 'paid', 'all'
+  let activeCategory = 'All';
 
   function parseCSV(text) {
-    const lines = text.trim().split('\n');
-    const headers = lines[0].split(',').map(h => h.trim());
-    return lines.slice(1).map(line => {
+    const lines = text.trim().split('\n').filter(l => l.trim().length > 0);
+    if (lines.length === 0) return [];
+    
+    function parseLine(line) {
       const vals = [];
       let cur = '', inQuote = false;
       for (let i = 0; i < line.length; i++) {
         const ch = line[i];
-        if (ch === '"') { inQuote = !inQuote; continue; }
-        if (ch === ',' && !inQuote) { vals.push(cur.trim()); cur = ''; continue; }
+        if (ch === '"') {
+          if (inQuote && line[i + 1] === '"') {
+            cur += '"';
+            i++;
+          } else {
+            inQuote = !inQuote;
+          }
+          continue;
+        }
+        if (ch === ',' && !inQuote) {
+          vals.push(cur.trim());
+          cur = '';
+          continue;
+        }
         cur += ch;
       }
       vals.push(cur.trim());
+      return vals;
+    }
+
+    const headers = parseLine(lines[0]);
+    return lines.slice(1).map(line => {
+      const vals = parseLine(line);
       const obj = {};
       headers.forEach((h, i) => obj[h] = vals[i] ?? '');
       return obj;
@@ -313,27 +401,42 @@
   }
 
   function isFreelyFree(tier) {
+    if (!tier) return false;
     const t = tier.toLowerCase();
     return t.includes('completely free') || t.includes('free,') || t === 'free';
   }
 
   function renderCard(r) {
     const tags = r.tags ? r.tags.split(',').map(t => t.trim()).filter(Boolean) : [];
-    const fullyFree = isFreelyFree(r.free_tier);
-    const badge = fullyFree
-      ? '<span class="badge badge-free">Free</span>'
-      : '<span class="badge badge-partial">Free tier</span>';
-    const signup = r.requires_signup === 'Yes'
-      ? '<span class="card-signup">signup required</span>'
-      : '<span class="card-signup">no signup</span>';
+    const isPaid = r._isPaid;
+
+    let badge = '';
+    let metaDetail = '';
+    let signup = '';
+
+    if (isPaid) {
+      badge = '<span class="badge badge-paid">Paid</span>';
+      metaDetail = `<span class="card-tier-detail paid">${r.pricing || 'Paid'}</span>`;
+    } else {
+      const fullyFree = isFreelyFree(r.free_tier);
+      badge = fullyFree
+        ? '<span class="badge badge-free">Free</span>'
+        : '<span class="badge badge-partial">Free tier</span>';
+      metaDetail = `<span class="card-tier-detail">${r.free_tier || 'Free'}</span>`;
+      signup = r.requires_signup === 'Yes'
+        ? '<span class="card-signup">signup required</span>'
+        : '<span class="card-signup">no signup</span>';
+    }
+
     const tagHtml = tags.map(t => `<span class="tag">${t}</span>`).join('');
 
     return `
       <a class="card" href="${r.url}" target="_blank" rel="noopener noreferrer"
-         data-name="${r.name.toLowerCase()}"
-         data-category="${r.category.toLowerCase()}"
-         data-tags="${r.tags.toLowerCase()}"
-         data-desc="${r.description.toLowerCase()}">
+         data-name="${(r.name || '').toLowerCase()}"
+         data-category="${(r.category || '').toLowerCase()}"
+         data-tags="${(r.tags || '').toLowerCase()}"
+         data-tier="${isPaid ? 'paid' : 'free'}"
+         data-desc="${(r.description || '').toLowerCase()}">
         <div class="card-header">
           <span class="card-name">${r.name}</span>
           ${badge}
@@ -341,19 +444,56 @@
         <div class="card-category">${r.category}</div>
         <div class="card-desc">${r.description}</div>
         <div class="card-meta">
-          <span class="card-free-detail">${r.free_tier}</span>
+          ${metaDetail}
           ${signup}
         </div>
         ${tagHtml ? `<div class="tags">${tagHtml}</div>` : ''}
       </a>`;
   }
 
-  let allResources = [];
-  let activeCategory = 'All';
+  function getActiveResources() {
+    if (currentTier === 'free') return freeResources;
+    if (currentTier === 'paid') return paidResources;
+    return [...freeResources, ...paidResources];
+  }
+
+  function renderCategoryChips() {
+    const resources = getActiveResources();
+    const cats = ['All', ...new Set(resources.map(r => r.category))].sort((a, b) =>
+      a === 'All' ? -1 : b === 'All' ? 1 : a.localeCompare(b));
+
+    if (!cats.includes(activeCategory)) {
+      activeCategory = 'All';
+    }
+
+    const filterEl = document.getElementById('category-filters');
+    filterEl.innerHTML = '';
+
+    cats.forEach(cat => {
+      const chip = document.createElement('button');
+      chip.className = 'chip' + (cat === activeCategory ? ' active' : '');
+      chip.textContent = cat;
+      chip.addEventListener('click', () => {
+        activeCategory = cat;
+        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        applyFilters();
+      });
+      filterEl.appendChild(chip);
+    });
+  }
+
+  function renderGrid() {
+    const resources = getActiveResources();
+    const grid = document.getElementById('grid');
+    grid.innerHTML = resources.map(renderCard).join('');
+    applyFilters();
+  }
 
   function applyFilters() {
     const query = document.getElementById('search').value.toLowerCase();
     const cards = document.querySelectorAll('.card');
+    const totalCurrent = getActiveResources().length;
     let visible = 0;
 
     cards.forEach(card => {
@@ -369,55 +509,46 @@
     });
 
     document.getElementById('stats').textContent =
-      `Showing ${visible} of ${allResources.length} resources`;
+      `Showing ${visible} of ${totalCurrent} resources`;
     document.getElementById('no-results').style.display = visible === 0 ? '' : 'none';
-  }
-
-  async function loadSnapshotDate() {
-    try {
-      const res = await fetch('history.csv');
-      if (!res.ok) return null;
-      const lines = (await res.text()).trim().split('\n');
-      const last = lines[lines.length - 1].split(',')[0];
-      if (!last || last === 'date') return null;
-      return new Date(last).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
-    } catch { return null; }
   }
 
   async function init() {
     try {
-      const [res, snapshotDate] = await Promise.all([fetch(CSV_PATH), loadSnapshotDate()]);
-      if (!res.ok) throw new Error(`Could not load ${CSV_PATH} (${res.status})`);
-      const text = await res.text();
-      allResources = parseCSV(text);
+      const [resFree, resPaid] = await Promise.all([
+        fetch('resources.csv'),
+        fetch('paid_resources.csv').catch(() => null)
+      ]);
 
-      document.getElementById('total-count').textContent = allResources.length;
-      document.getElementById('snapshot-date').textContent = snapshotDate ?? 'last update';
+      if (!resFree.ok) throw new Error(`Could not load resources.csv (${resFree.status})`);
+      const freeText = await resFree.text();
+      freeResources = parseCSV(freeText).map(r => ({ ...r, _isPaid: false }));
 
-      // Build category list
-      const cats = ['All', ...new Set(allResources.map(r => r.category))].sort((a, b) =>
-        a === 'All' ? -1 : b === 'All' ? 1 : a.localeCompare(b));
+      if (resPaid && resPaid.ok) {
+        const paidText = await resPaid.text();
+        paidResources = parseCSV(paidText).map(r => ({ ...r, _isPaid: true }));
+      }
 
-      const filterEl = document.getElementById('category-filters');
-      cats.forEach(cat => {
-        const chip = document.createElement('button');
-        chip.className = 'chip' + (cat === 'All' ? ' active' : '');
-        chip.textContent = cat;
-        chip.addEventListener('click', () => {
-          activeCategory = cat;
-          document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-          chip.classList.add('active');
-          applyFilters();
+      document.getElementById('free-count').textContent = freeResources.length;
+      document.getElementById('paid-count').textContent = paidResources.length;
+      document.getElementById('all-count').textContent = freeResources.length + paidResources.length;
+      document.getElementById('total-count').textContent = freeResources.length + paidResources.length;
+
+      // Tier switcher buttons
+      document.querySelectorAll('.tier-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tier-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentTier = btn.dataset.tier;
+          renderCategoryChips();
+          renderGrid();
         });
-        filterEl.appendChild(chip);
       });
 
-      // Render cards
-      const grid = document.getElementById('grid');
-      grid.innerHTML = allResources.map(renderCard).join('');
+      renderCategoryChips();
+      renderGrid();
 
       document.getElementById('search').addEventListener('input', applyFilters);
-      applyFilters();
     } catch (err) {
       const el = document.getElementById('error');
       el.style.display = '';
@@ -430,3 +561,4 @@
 </script>
 </body>
 </html>
+
