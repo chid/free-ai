@@ -11,6 +11,26 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
 ---
 
+## [2026-08] — Local LLM tools refresh
+
+18 local/self-hosted tools (was 12).
+
+### Added
+
+Fills four previously-empty local categories:
+
+- **OpenHands** (Code Assistant) — self-hosted autonomous coding agent (formerly OpenDevin), MIT, sandboxed Docker execution via CLI or web GUI.
+- **AnythingLLM** (Web UI) — all-in-one self-hosted RAG + no-code agents + multi-model chat, MIT.
+- **Unsloth** (Fine-tuning / Quant) — fast local LoRA/QLoRA fine-tuning with a no-code Studio UI, Apache-2.0 core.
+- **Text Embeddings Inference** (Embeddings / RAG) — Hugging Face's self-hosted embedding/reranking server, Apache-2.0.
+- **ComfyUI** (Image / Audio / Video) — node-based local diffusion UI for Stable Diffusion/Flux, GPL-3.0.
+- **LocalAGI** (Agent Framework) — self-hostable agent orchestration platform from the LocalAI team, MIT.
+
+### Changed (drift)
+
+- **ExLlamaV2 → ExLlamaV3** — ExLlamaV2 was archived by its maintainer in March 2026; development continues on ExLlamaV3 (new EXL3 quant format, same MIT license).
+- **Text Generation WebUI → TextGen (oobabooga)** — project renamed and repo moved to `oobabooga/textgen` in 2026, now ships a native Electron desktop app and an OpenAI/Anthropic-compatible API; license unchanged (AGPL-3.0).
+
 ## [2026-08] — August 2026 refresh
 
 71 free resources (was 65), 6 paid (was 0).
