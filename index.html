@@ -3,54 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Resources Directory</title>
+  <title>AI Resources Directory — Free, Local &amp; Paid</title>
   <style>
     :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --surface2: #22263a;
-      --border: #2e3250;
-      --accent: #6c63ff;
+      --bg: #0b0d13;
+      --bg-gradient: radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.12) 0%, rgba(15, 17, 23, 0) 75%);
+      --surface: rgba(26, 29, 41, 0.7);
+      --surface-solid: #151824;
+      --surface-hover: rgba(34, 38, 58, 0.85);
+      --surface-active: #252a40;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: #7c3aed;
+      --border-hover: rgba(167, 139, 250, 0.35);
+      --accent: #7c3aed;
+      --accent-glow: rgba(124, 58, 237, 0.35);
       --accent2: #a78bfa;
-      --text: #e2e8f0;
-      --muted: #8892a4;
-      --green: #34d399;
-      --yellow: #fbbf24;
+      --accent-cyan: #38bdf8;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --green: #10b981;
+      --green-glow: rgba(16, 185, 129, 0.2);
+      --yellow: #f59e0b;
       --purple: #c084fc;
-      --blue: #38bdf8;
-      --radius: 10px;
+      --radius-sm: 6px;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+      --shadow-glow: 0 0 30px rgba(124, 58, 237, 0.15);
+      --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', system-ui, sans-serif;
+      background-color: var(--bg);
+      background-image: var(--bg-gradient);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       color: var(--text);
       min-height: 100vh;
-      padding: 2rem 1rem 4rem;
+      padding: 2.5rem 1.25rem 5rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
+    /* Ambient background grid */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
     header {
-      max-width: 1100px;
-      margin: 0 auto 2rem;
       text-align: center;
+      margin-bottom: 2.25rem;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.3rem 0.85rem;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .status-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
     }
 
     header h1 {
-      font-size: 2.4rem;
+      font-size: clamp(2rem, 5vw, 2.8rem);
       font-weight: 800;
-      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent2) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.15;
     }
 
     header p {
-      color: var(--muted);
+      color: var(--text-muted);
       font-size: 1rem;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
     }
 
     header p span {
@@ -61,241 +131,359 @@
     .doc-links {
       display: flex;
       justify-content: center;
-      gap: 1rem;
-      font-size: 0.85rem;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.82rem;
       flex-wrap: wrap;
     }
 
-    .doc-links a {
-      color: var(--muted);
+    .doc-link-btn {
+      color: var(--text-muted);
       text-decoration: none;
-      transition: color 0.15s;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
     }
 
-    .doc-links a:hover {
-      color: var(--accent2);
-      text-decoration: underline;
+    .doc-link-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
     }
 
+    /* Segmented Tier Control */
     .tier-toggle-wrap {
-      max-width: 1100px;
-      margin: 0 auto 1.25rem;
       display: flex;
       justify-content: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+      margin: 0 auto 1.5rem;
+      background: rgba(18, 21, 32, 0.85);
+      backdrop-filter: blur(12px);
+      padding: 0.35rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      max-width: fit-content;
+      gap: 0.3rem;
     }
 
     .tier-btn {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 0.45rem 1.1rem;
-      border-radius: 8px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 0.45rem 1.15rem;
+      border-radius: 9px;
       font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      user-select: none;
+    }
+
+    .tier-btn span.count {
+      font-size: 0.72rem;
+      background: rgba(255, 255, 255, 0.07);
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      color: inherit;
     }
 
     .tier-btn:hover {
-      border-color: var(--accent);
       color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
     }
 
     .tier-btn.active {
       background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
+      color: #ffffff;
+      box-shadow: 0 2px 12px var(--accent-glow);
     }
 
-    .controls {
-      max-width: 1100px;
-      margin: 0 auto 1.5rem;
+    .tier-btn.active span.count {
+      background: rgba(0, 0, 0, 0.25);
+      color: #ffffff;
+    }
+
+    /* Search and Sort Toolbar */
+    .controls-toolbar {
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .search-row {
       display: flex;
       gap: 0.75rem;
       flex-wrap: wrap;
-      align-items: center;
     }
 
     .search-wrap {
       flex: 1;
-      min-width: 220px;
+      min-width: 260px;
       position: relative;
     }
 
-    .search-wrap svg {
+    .search-wrap svg.search-icon {
       position: absolute;
-      left: 0.85rem;
+      left: 0.95rem;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--muted);
+      color: var(--text-subtle);
+      pointer-events: none;
+    }
+
+    .kbd-shortcut {
+      position: absolute;
+      right: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.7rem;
+      font-family: inherit;
+      color: var(--text-subtle);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
       pointer-events: none;
     }
 
     input[type="search"] {
       width: 100%;
-      padding: 0.65rem 0.85rem 0.65rem 2.4rem;
-      background: var(--surface);
+      padding: 0.7rem 2.4rem 0.7rem 2.6rem;
+      background: rgba(15, 17, 23, 0.7);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: 9px;
       color: var(--text);
       font-size: 0.9rem;
       outline: none;
-      transition: border-color 0.15s;
+      transition: var(--transition);
     }
 
-    input[type="search"]:focus { border-color: var(--accent); }
-    input[type="search"]::placeholder { color: var(--muted); }
+    input[type="search"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+      background: rgba(15, 17, 23, 0.95);
+    }
+
+    input[type="search"]::placeholder { color: var(--text-subtle); }
 
     .sort-wrap select {
-      padding: 0.65rem 0.85rem;
-      background: var(--surface);
+      padding: 0.7rem 1.1rem;
+      background: rgba(15, 17, 23, 0.7);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: 9px;
       color: var(--text);
       font-size: 0.85rem;
+      font-weight: 500;
       outline: none;
       cursor: pointer;
-      transition: border-color 0.15s;
+      transition: var(--transition);
     }
 
-    .sort-wrap select:focus { border-color: var(--accent); }
+    .sort-wrap select:focus,
+    .sort-wrap select:hover {
+      border-color: var(--border-hover);
+    }
 
     .filter-chips {
       display: flex;
-      gap: 0.4rem;
+      gap: 0.35rem;
       flex-wrap: wrap;
-      width: 100%;
     }
 
     .chip {
-      padding: 0.45rem 0.9rem;
+      padding: 0.35rem 0.8rem;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--muted);
-      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 500;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: var(--transition);
       white-space: nowrap;
+      user-select: none;
     }
 
-    .chip:hover { border-color: var(--accent); color: var(--text); }
-    .chip.active { background: var(--surface2); border-color: var(--accent2); color: var(--text); font-weight: 600; }
-
-    .stats {
-      max-width: 1100px;
-      margin: 0 auto 1.25rem;
-      color: var(--muted);
-      font-size: 0.85rem;
+    .chip:hover {
+      border-color: var(--accent2);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
     }
 
+    .chip.active {
+      background: rgba(124, 58, 237, 0.2);
+      border-color: var(--accent);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .stats-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Grid & Cards */
     .grid {
-      max-width: 1100px;
-      margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 1.1rem;
     }
 
     .card {
       background: var(--surface);
+      backdrop-filter: blur(12px);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.1rem 1.2rem;
+      padding: 1.2rem;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      transition: border-color 0.15s, transform 0.1s;
+      gap: 0.65rem;
+      transition: var(--transition);
       text-decoration: none;
       color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent2), transparent);
+      opacity: 0;
+      transition: opacity 0.25s ease;
     }
 
     .card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
+      border-color: var(--border-hover);
+      background: var(--surface-hover);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card:hover::before {
+      opacity: 1;
     }
 
     .card-header {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .card-title-wrap {
+      display: flex;
+      align-items: center;
       gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .card-name {
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .card-name svg.external-icon {
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      color: var(--accent2);
+    }
+
+    .card:hover .card-name svg.external-icon {
+      opacity: 1;
     }
 
     .badge {
       font-size: 0.7rem;
-      padding: 0.2rem 0.55rem;
+      padding: 0.18rem 0.55rem;
       border-radius: 999px;
       white-space: nowrap;
       flex-shrink: 0;
       font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
-    .badge-free { background: rgba(52,211,153,0.15); color: var(--green); border: 1px solid rgba(52,211,153,0.3); }
-    .badge-partial { background: rgba(251,191,36,0.15); color: var(--yellow); border: 1px solid rgba(251,191,36,0.3); }
-    .badge-paid { background: rgba(192,132,252,0.15); color: var(--purple); border: 1px solid rgba(192,132,252,0.3); }
-    .badge-local { background: rgba(56,189,248,0.15); color: var(--blue); border: 1px solid rgba(56,189,248,0.3); }
-    .badge-license {
-      font-size: 0.7rem;
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      color: var(--muted);
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      font-weight: 600;
-      white-space: nowrap;
-    }
+    .badge-free { background: rgba(16, 185, 129, 0.12); color: var(--green); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-partial { background: rgba(245, 158, 11, 0.12); color: var(--yellow); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-paid { background: rgba(192, 132, 252, 0.12); color: var(--purple); border: 1px solid rgba(192, 132, 252, 0.3); }
+    .badge-local { background: rgba(56, 189, 248, 0.12); color: var(--accent-cyan); border: 1px solid rgba(56, 189, 248, 0.3); }
 
     .card-category {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--accent2);
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card-category::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
     }
 
     .card-desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
       flex: 1;
     }
 
     .card-meta {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
       flex-wrap: wrap;
-      margin-top: 0.25rem;
+      font-size: 0.78rem;
     }
 
     .card-tier-detail {
-      font-size: 0.78rem;
+      font-weight: 500;
       color: var(--green);
     }
 
-    .card-tier-detail.paid {
-      color: var(--purple);
-    }
+    .card-tier-detail.paid { color: var(--purple); }
+    .card-tier-detail.local { color: var(--accent-cyan); }
 
-    .card-tier-detail.local {
-      color: var(--blue);
-    }
-
-    .card-signup {
-      font-size: 0.75rem;
-      color: var(--muted);
-      background: var(--surface2);
-      padding: 0.15rem 0.5rem;
+    .card-pill {
+      font-size: 0.72rem;
+      color: var(--text-subtle);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 0.12rem 0.45rem;
       border-radius: 4px;
     }
 
@@ -303,16 +491,24 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.3rem;
-      margin-top: 0.1rem;
+      margin-top: 0.15rem;
     }
 
     .tag {
-      font-size: 0.7rem;
-      color: var(--muted);
-      background: var(--surface2);
-      padding: 0.15rem 0.5rem;
+      font-size: 0.68rem;
+      color: var(--text-subtle);
+      background: rgba(255, 255, 255, 0.025);
+      padding: 0.12rem 0.45rem;
       border-radius: 4px;
       border: 1px solid var(--border);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .tag:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--accent2);
     }
 
     .card-footer-meta {
@@ -322,18 +518,18 @@
       gap: 0.5rem;
       flex-wrap: wrap;
       margin-top: auto;
-      padding-top: 0.45rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       font-size: 0.72rem;
-      color: var(--muted);
+      color: var(--text-subtle);
     }
 
     .date-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.25rem;
+      gap: 0.3rem;
       font-size: 0.72rem;
-      color: var(--muted);
+      color: var(--text-muted);
     }
 
     .date-badge.active-repo {
@@ -351,52 +547,52 @@
     }
 
     .no-results {
-      max-width: 1100px;
-      margin: 3rem auto;
+      grid-column: 1 / -1;
       text-align: center;
-      color: var(--muted);
+      padding: 4rem 1rem;
+      color: var(--text-muted);
+    }
+
+    .no-results h3 {
+      color: var(--text);
+      margin-bottom: 0.5rem;
     }
 
     .update-banner {
-      max-width: 1100px;
-      margin: 2.5rem auto 0;
-      background: var(--surface);
+      margin-top: 3rem;
+      background: rgba(18, 21, 32, 0.6);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1rem 1.2rem;
-      font-size: 0.82rem;
-      color: var(--muted);
+      padding: 1.1rem 1.3rem;
+      font-size: 0.84rem;
+      color: var(--text-muted);
       line-height: 1.6;
     }
 
     .update-banner strong { color: var(--text); }
     .update-banner code {
-      background: var(--surface2);
-      padding: 0.1rem 0.4rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.15rem 0.45rem;
       border-radius: 4px;
       font-size: 0.8rem;
       color: var(--accent2);
     }
 
     .error {
-      max-width: 1100px;
-      margin: 3rem auto;
-      background: rgba(239,68,68,0.1);
-      border: 1px solid rgba(239,68,68,0.3);
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
       color: #fca5a5;
       border-radius: var(--radius);
       padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
     }
 
     /* Modal styling */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px);
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
       z-index: 1000;
       display: flex;
       justify-content: center;
@@ -404,7 +600,7 @@
       padding: 1.5rem;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.2s;
+      transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .modal-overlay.active {
@@ -413,22 +609,28 @@
     }
 
     .modal-content {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      background: #141724;
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-lg);
       width: 100%;
       max-width: 900px;
       max-height: 85vh;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      transform: scale(0.96);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
     }
 
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.5rem;
+      padding: 1.1rem 1.5rem;
       border-bottom: 1px solid var(--border);
     }
 
@@ -441,30 +643,31 @@
     .modal-close {
       background: transparent;
       border: none;
-      color: var(--muted);
+      color: var(--text-muted);
       font-size: 1.5rem;
       cursor: pointer;
       line-height: 1;
       padding: 0.2rem 0.5rem;
-      border-radius: 4px;
+      border-radius: 6px;
+      transition: var(--transition);
     }
 
     .modal-close:hover {
       color: var(--text);
-      background: var(--surface2);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .modal-body {
-      padding: 1.5rem;
+      padding: 1.75rem;
       overflow-y: auto;
-      line-height: 1.6;
+      line-height: 1.65;
       color: var(--text);
       font-size: 0.95rem;
     }
 
     .modal-body h1, .modal-body h2, .modal-body h3 {
       color: var(--text);
-      margin-top: 1.25rem;
+      margin-top: 1.4rem;
       margin-bottom: 0.75rem;
     }
 
@@ -481,15 +684,11 @@
       color: #cbd5e1;
     }
 
-    .modal-body li { margin-bottom: 0.3rem; }
-
-    .modal-body a {
-      color: var(--accent2);
-      text-decoration: underline;
-    }
+    .modal-body li { margin-bottom: 0.35rem; }
+    .modal-body a { color: var(--accent2); text-decoration: underline; }
 
     .modal-body code {
-      background: var(--surface2);
+      background: rgba(255, 255, 255, 0.06);
       color: var(--accent2);
       padding: 0.15rem 0.4rem;
       border-radius: 4px;
@@ -497,19 +696,15 @@
     }
 
     .modal-body pre {
-      background: var(--surface2);
+      background: #0f111a;
       padding: 1rem;
       border-radius: var(--radius);
       overflow-x: auto;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       border: 1px solid var(--border);
     }
 
-    .modal-body pre code {
-      background: transparent;
-      padding: 0;
-      color: var(--text);
-    }
+    .modal-body pre code { background: transparent; padding: 0; color: var(--text); }
 
     .modal-body table {
       width: 100%;
@@ -520,65 +715,96 @@
 
     .modal-body th, .modal-body td {
       border: 1px solid var(--border);
-      padding: 0.6rem 0.8rem;
+      padding: 0.65rem 0.85rem;
       text-align: left;
     }
 
     .modal-body th {
-      background: var(--surface2);
+      background: rgba(255, 255, 255, 0.04);
       color: var(--text);
       font-weight: 600;
     }
 
-    .modal-body tr:nth-child(even) {
-      background: rgba(255, 255, 255, 0.02);
-    }
+    .modal-body tr:nth-child(even) { background: rgba(255, 255, 255, 0.015); }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>AI Resources Directory</h1>
-  <p>Curated directory of free cloud tools, paid models, and local AI engines -- <span id="total-count">...</span> resources tracked</p>
-  <div class="doc-links">
-    <a href="README.md" class="doc-link" data-file="README.md">README</a> &bull;
-    <a href="CHANGELOG.md" class="doc-link" data-file="CHANGELOG.md">CHANGELOG</a> &bull;
-    <a href="QUOTAS.md" class="doc-link" data-file="QUOTAS.md">QUOTAS (Metering Guide)</a>
+<div class="container">
+  <header>
+    <div class="status-badge">
+      <span class="status-pulse"></span>
+      <span id="live-status-text">Directory Live &bull; <span id="total-count">...</span> AI Resources Tracked</span>
+    </div>
+    <h1>AI Resources Directory</h1>
+    <p>Curated directory of free cloud tools, local runtimes, and paid frontier models</p>
+    <div class="doc-links">
+      <a href="README.md" class="doc-link-btn doc-link" data-file="README.md">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        README
+      </a>
+      <a href="CHANGELOG.md" class="doc-link-btn doc-link" data-file="CHANGELOG.md">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+        CHANGELOG
+      </a>
+      <a href="QUOTAS.md" class="doc-link-btn doc-link" data-file="QUOTAS.md">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        QUOTAS (Metering Guide)
+      </a>
+    </div>
+  </header>
+
+  <div class="tier-toggle-wrap">
+    <button class="tier-btn active" id="filter-free" data-tier="free">
+      Free Tools <span class="count" id="free-count">...</span>
+    </button>
+    <button class="tier-btn" id="filter-local" data-tier="local">
+      Local AI <span class="count" id="local-count">...</span>
+    </button>
+    <button class="tier-btn" id="filter-paid" data-tier="paid">
+      Paid Tools <span class="count" id="paid-count">...</span>
+    </button>
+    <button class="tier-btn" id="filter-all" data-tier="all">
+      All <span class="count" id="all-count">...</span>
+    </button>
   </div>
-</header>
 
-<div class="tier-toggle-wrap">
-  <button class="tier-btn active" id="filter-free" data-tier="free">Free Tools (<span id="free-count">...</span>)</button>
-  <button class="tier-btn" id="filter-local" data-tier="local">Local AI (<span id="local-count">...</span>)</button>
-  <button class="tier-btn" id="filter-paid" data-tier="paid">Paid Tools (<span id="paid-count">...</span>)</button>
-  <button class="tier-btn" id="filter-all" data-tier="all">All (<span id="all-count">...</span>)</button>
-</div>
-
-<div class="controls">
-  <div class="search-wrap">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="search" id="search" placeholder="Search tools, categories, tags..." />
+  <div class="controls-toolbar">
+    <div class="search-row">
+      <div class="search-wrap">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" id="search" placeholder="Search by name, description, tags, or hardware..." />
+        <kbd class="kbd-shortcut">/</kbd>
+      </div>
+      <div class="sort-wrap">
+        <select id="sort-select" aria-label="Sort resources">
+          <option value="name">Sort: Name (A &rarr; Z)</option>
+          <option value="activity">Sort: Latest Repo / Model Commit</option>
+          <option value="verified">Sort: Directory Verified Date</option>
+          <option value="stars">Sort: GitHub Stars / Popularity</option>
+          <option value="category">Sort: Category</option>
+        </select>
+      </div>
+    </div>
+    <div class="filter-chips" id="category-filters"></div>
   </div>
-  <div class="sort-wrap">
-    <select id="sort-select" aria-label="Sort resources">
-      <option value="name">Sort: Name (A-Z)</option>
-      <option value="activity">Sort: Latest Repo / Model Commit</option>
-      <option value="verified">Sort: Directory Verified Date</option>
-      <option value="stars">Sort: GitHub Stars / Popularity</option>
-      <option value="category">Sort: Category</option>
-    </select>
+
+  <div class="stats-bar">
+    <div id="stats">Loading resources...</div>
   </div>
-  <div class="filter-chips" id="category-filters"></div>
-</div>
 
-<div class="stats" id="stats"></div>
+  <div class="error" id="error" style="display:none"></div>
 
-<div class="grid" id="grid"></div>
-<div class="no-results" id="no-results" style="display:none">No resources match your search.</div>
-<div class="error" id="error" style="display:none"></div>
+  <div class="grid" id="grid"></div>
 
-<div class="update-banner">
-  <strong>Updating resources:</strong> Edit <code>resources.csv</code>, <code>paid_resources.csv</code>, or <code>local_resources.csv</code> -- or run <code>python3 update.py</code> (option 15 to sync live repo/model activity timestamps).
+  <div class="no-results" id="no-results" style="display:none">
+    <h3>No matching resources found</h3>
+    <p>Try adjusting your search query or switching categories.</p>
+  </div>
+
+  <div class="update-banner">
+    <strong>Contributing &amp; Updating:</strong> Edit <code>resources.csv</code>, <code>paid_resources.csv</code>, or <code>local_resources.csv</code> &mdash; or run <code>python3 update.py</code> (option 15 to sync live repo/model activity timestamps).
+  </div>
 </div>
 
 <!-- Modal for viewing markdown docs -->
@@ -653,6 +879,13 @@
     return num.toString();
   }
 
+  function filterByTag(tag) {
+    const searchInput = document.getElementById('search');
+    searchInput.value = tag;
+    applyFilters();
+    searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
   function renderCard(r) {
     const tags = r.tags ? r.tags.split(',').map(t => t.trim()).filter(Boolean) : [];
     const type = r._type;
@@ -677,17 +910,17 @@
         : '<span class="badge badge-partial">Free tier</span>';
       metaDetail = `<span class="card-tier-detail">${r.free_tier || 'Free'}</span>`;
       signup = r.requires_signup === 'Yes'
-        ? '<span class="card-signup">signup required</span>'
-        : '<span class="card-signup">no signup</span>';
+        ? '<span class="card-pill">Signup required</span>'
+        : '<span class="card-pill">No signup</span>';
     }
 
-    const tagHtml = tags.map(t => `<span class="tag">${t}</span>`).join('');
+    const tagHtml = tags.map(t => `<span class="tag" onclick="event.preventDefault(); filterByTag('${t}')">${t}</span>`).join('');
 
     // Activity & date badges
     let activityHtml = '';
     if (act.last_activity) {
       const label = act.type === 'huggingface' ? 'Model updated' : 'Repo commit';
-      activityHtml += `<span class="date-badge active-repo" title="${label}: ${act.last_activity}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg> ${act.last_activity}</span>`;
+      activityHtml += `<span class="date-badge active-repo" title="${label}: ${act.last_activity}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg> ${act.last_activity}</span>`;
     }
 
     let statsHtml = '';
@@ -698,7 +931,7 @@
     }
 
     const verifiedDate = hist.date || '2026-08';
-    const notesTooltip = hist.notes ? `Verified in directory: ${verifiedDate} — ${hist.notes}` : `Verified in directory: ${verifiedDate}`;
+    const notesTooltip = hist.notes ? `Verified: ${verifiedDate} — ${hist.notes}` : `Verified: ${verifiedDate}`;
     const verifiedHtml = `<span class="date-badge" title="${notesTooltip.replace(/"/g, '&quot;')}">📅 ${verifiedDate}</span>`;
 
     return `
@@ -709,7 +942,12 @@
          data-tier="${type}"
          data-desc="${(r.description || '').toLowerCase()}">
         <div class="card-header">
-          <span class="card-name">${r.name}</span>
+          <div class="card-title-wrap">
+            <span class="card-name">
+              ${r.name}
+              <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </span>
+          </div>
           ${badge}
         </div>
         <div class="card-category">${r.category}</div>
@@ -733,7 +971,7 @@
     else if (currentTier === 'local') list = [...localResources];
     else list = [...freeResources, ...localResources, ...paidResources];
 
-    // Sorting
+    // Sorting logic
     return list.sort((a, b) => {
       if (sortBy === 'name') {
         return (a.name || '').localeCompare(b.name || '');
@@ -807,7 +1045,7 @@
   }
 
   function applyFilters() {
-    const query = document.getElementById('search').value.toLowerCase();
+    const query = document.getElementById('search').value.toLowerCase().trim();
     const cards = document.querySelectorAll('#grid .card');
     const totalCurrent = getActiveResources().length;
     let visible = 0;
@@ -952,6 +1190,16 @@
     });
   }
 
+  // Keyboard shortcut: '/' focuses search
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      const search = document.getElementById('search');
+      search.focus();
+      search.select();
+    }
+  });
+
   async function init() {
     try {
       const [resFree, resPaid, resLocal, resAct, resHist, resPaidHist, resLocalHist] = await Promise.all([
@@ -1046,6 +1294,7 @@
 </script>
 </body>
 </html>
+
 
 
 
