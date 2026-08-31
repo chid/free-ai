@@ -17,9 +17,12 @@ A self-updating directory of free AI tools, served as a static web page driven b
 | `QUOTAS.md` | Notes on how paid AI plans meter usage — quota models, not prices |
 | `README.md` | Markdown rendering of `resources.csv`, regenerated each refresh |
 | `update.py` | Interactive CLI for manual changes (writes history automatically) |
+| `sync_activity.py` | Syncs latest commit dates, stars, and model updates from GitHub/HuggingFace |
+| `activity.json` | Cached metadata and live activity timestamps for GitHub/HuggingFace resources |
 | `refresh_prompt.md` | Claude prompt for researching and adding free tools |
 | `paid_refresh_prompt.md` | Claude prompt for researching and adding paid-only tools |
 | `local_refresh_prompt.md` | Claude prompt for researching and adding local LLM tools |
+
 
 > **Frontier model pricing & context windows:** see [models.dev](https://models.dev) — no need to track this ourselves.
 

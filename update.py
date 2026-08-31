@@ -591,6 +591,7 @@ def main() -> None:
         print(" 12. Show paid history")
         print(" 13. Show local history")
         print(" 14. Run repo data audit")
+        print(" 15. Sync GitHub/HuggingFace repo & model activity")
         print("  0. Quit")
         choice = input("Choice: ").strip()
 
@@ -622,8 +623,15 @@ def main() -> None:
             show_history(LOCAL_HISTORY, "Local LLM History")
         elif choice == "14":
             audit_repo()
+        elif choice == "15":
+            try:
+                import sync_activity
+                sync_activity.sync_activity()
+            except ImportError:
+                print("  sync_activity.py not found.")
         elif choice in ("0", "q", "quit", "exit"):
             break
+
         else:
             print("  Invalid choice.")
 

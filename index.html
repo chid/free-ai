@@ -121,7 +121,7 @@
 
     .search-wrap {
       flex: 1;
-      min-width: 240px;
+      min-width: 220px;
       position: relative;
     }
 
@@ -149,10 +149,25 @@
     input[type="search"]:focus { border-color: var(--accent); }
     input[type="search"]::placeholder { color: var(--muted); }
 
+    .sort-wrap select {
+      padding: 0.65rem 0.85rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-size: 0.85rem;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+
+    .sort-wrap select:focus { border-color: var(--accent); }
+
     .filter-chips {
       display: flex;
       gap: 0.4rem;
       flex-wrap: wrap;
+      width: 100%;
     }
 
     .chip {
@@ -240,43 +255,6 @@
       white-space: nowrap;
     }
 
-    .local-section {
-      max-width: 1100px;
-      margin: 3.5rem auto 0;
-      padding: 0 1.5rem;
-    }
-
-    .local-section .grid,
-    .local-section .no-results {
-      max-width: none;
-      margin-left: 0;
-      margin-right: 0;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .section-head {
-      border-top: 1px solid var(--border);
-      padding-top: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .section-head h2 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.35rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .section-head p {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
     .card-category {
       font-size: 0.75rem;
       color: var(--accent2);
@@ -335,6 +313,41 @@
       padding: 0.15rem 0.5rem;
       border-radius: 4px;
       border: 1px solid var(--border);
+    }
+
+    .card-footer-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 0.45rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .date-badge.active-repo {
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .star-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      color: var(--yellow);
+      font-weight: 600;
+      font-size: 0.75rem;
     }
 
     .no-results {
@@ -541,11 +554,19 @@
   <button class="tier-btn" id="filter-all" data-tier="all">All (<span id="all-count">...</span>)</button>
 </div>
 
-
 <div class="controls">
   <div class="search-wrap">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     <input type="search" id="search" placeholder="Search tools, categories, tags..." />
+  </div>
+  <div class="sort-wrap">
+    <select id="sort-select" aria-label="Sort resources">
+      <option value="name">Sort: Name (A-Z)</option>
+      <option value="activity">Sort: Latest Repo / Model Commit</option>
+      <option value="verified">Sort: Directory Verified Date</option>
+      <option value="stars">Sort: GitHub Stars / Popularity</option>
+      <option value="category">Sort: Category</option>
+    </select>
   </div>
   <div class="filter-chips" id="category-filters"></div>
 </div>
@@ -556,17 +577,8 @@
 <div class="no-results" id="no-results" style="display:none">No resources match your search.</div>
 <div class="error" id="error" style="display:none"></div>
 
-<section class="local-section" id="local-section">
-  <div class="section-head">
-    <h2>Run It Yourself <span class="badge badge-local">Local</span></h2>
-    <p><span id="local-count">...</span> local &amp; self-hosted runners, serving engines, and UIs that run entirely on your own hardware -- no API key, no quota, no data leaving your machine. Tracked separately in <code>local_resources.csv</code>.</p>
-  </div>
-  <div class="grid" id="local-grid"></div>
-  <div class="no-results" id="local-no-results" style="display:none">No local tools match your search.</div>
-</section>
-
 <div class="update-banner">
-  <strong>Updating resources:</strong> Edit <code>resources.csv</code>, <code>paid_resources.csv</code>, or <code>local_resources.csv</code> -- or run <code>python3 update.py</code> for the interactive CLI with automatic history logging and audit validation.
+  <strong>Updating resources:</strong> Edit <code>resources.csv</code>, <code>paid_resources.csv</code>, or <code>local_resources.csv</code> -- or run <code>python3 update.py</code> (option 15 to sync live repo/model activity timestamps).
 </div>
 
 <!-- Modal for viewing markdown docs -->
@@ -584,8 +596,11 @@
   let freeResources = [];
   let paidResources = [];
   let localResources = [];
-  let currentTier = 'free'; // 'free', 'paid', 'all' -- local tools live in their own section
+  let activityMap = {};
+  let historyMap = {};
+  let currentTier = 'free'; // 'free', 'local', 'paid', 'all'
   let activeCategory = 'All';
+  let sortBy = 'name';
 
   function parseCSV(text) {
     const lines = text.trim().split('\n').filter(l => l.trim().length > 0);
@@ -631,9 +646,19 @@
     return t.includes('completely free') || t.includes('free,') || t === 'free';
   }
 
+  function formatNumber(num) {
+    if (!num) return '0';
+    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+    if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
+    return num.toString();
+  }
+
   function renderCard(r) {
     const tags = r.tags ? r.tags.split(',').map(t => t.trim()).filter(Boolean) : [];
     const type = r._type;
+    const name = r.name || '';
+    const act = activityMap[name] || {};
+    const hist = historyMap[name.toLowerCase()] || {};
 
     let badge = '';
     let metaDetail = '';
@@ -643,7 +668,7 @@
       badge = '<span class="badge badge-paid">Paid</span>';
       metaDetail = `<span class="card-tier-detail paid">${r.pricing || 'Paid'}</span>`;
     } else if (type === 'local') {
-      badge = `<span class="badge-license">${r.license || 'Open Source'}</span>`;
+      badge = `<span class="badge badge-local">${r.license || 'Open Source'}</span>`;
       metaDetail = `<span class="card-tier-detail local">${r.hardware_reqs || 'Runs on local hardware'}</span>`;
     } else {
       const fullyFree = isFreelyFree(r.free_tier);
@@ -657,6 +682,24 @@
     }
 
     const tagHtml = tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+    // Activity & date badges
+    let activityHtml = '';
+    if (act.last_activity) {
+      const label = act.type === 'huggingface' ? 'Model updated' : 'Repo commit';
+      activityHtml += `<span class="date-badge active-repo" title="${label}: ${act.last_activity}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg> ${act.last_activity}</span>`;
+    }
+
+    let statsHtml = '';
+    if (act.stars) {
+      statsHtml = `<span class="star-badge" title="${act.stars.toLocaleString()} GitHub stars"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> ${formatNumber(act.stars)}</span>`;
+    } else if (act.downloads) {
+      statsHtml = `<span class="star-badge" style="color:var(--accent2);" title="${act.downloads.toLocaleString()} Hugging Face downloads">🤗 ${formatNumber(act.downloads)}</span>`;
+    }
+
+    const verifiedDate = hist.date || '2026-08';
+    const notesTooltip = hist.notes ? `Verified in directory: ${verifiedDate} — ${hist.notes}` : `Verified in directory: ${verifiedDate}`;
+    const verifiedHtml = `<span class="date-badge" title="${notesTooltip.replace(/"/g, '&quot;')}">📅 ${verifiedDate}</span>`;
 
     return `
       <a class="card" href="${r.url}" target="_blank" rel="noopener noreferrer"
@@ -676,16 +719,51 @@
           ${signup}
         </div>
         ${tagHtml ? `<div class="tags">${tagHtml}</div>` : ''}
+        <div class="card-footer-meta">
+          <div>${activityHtml || verifiedHtml}</div>
+          <div>${statsHtml || (!activityHtml ? '' : verifiedHtml)}</div>
+        </div>
       </a>`;
   }
 
   function getActiveResources() {
-    if (currentTier === 'free') return freeResources;
-    if (currentTier === 'paid') return paidResources;
-    if (currentTier === 'local') return localResources;
-    return [...freeResources, ...localResources, ...paidResources];
-  }
+    let list = [];
+    if (currentTier === 'free') list = [...freeResources];
+    else if (currentTier === 'paid') list = [...paidResources];
+    else if (currentTier === 'local') list = [...localResources];
+    else list = [...freeResources, ...localResources, ...paidResources];
 
+    // Sorting
+    return list.sort((a, b) => {
+      if (sortBy === 'name') {
+        return (a.name || '').localeCompare(b.name || '');
+      }
+      if (sortBy === 'category') {
+        return (a.category || '').localeCompare(b.category || '') || (a.name || '').localeCompare(b.name || '');
+      }
+      if (sortBy === 'activity') {
+        const actA = (activityMap[a.name] || {}).last_activity || '';
+        const actB = (activityMap[b.name] || {}).last_activity || '';
+        if (actA && !actB) return -1;
+        if (!actA && actB) return 1;
+        if (actA !== actB) return actB.localeCompare(actA);
+        return (a.name || '').localeCompare(b.name || '');
+      }
+      if (sortBy === 'verified') {
+        const vA = (historyMap[(a.name || '').toLowerCase()] || {}).date || '2026-05-15';
+        const vB = (historyMap[(b.name || '').toLowerCase()] || {}).date || '2026-05-15';
+        if (vA !== vB) return vB.localeCompare(vA);
+        return (a.name || '').localeCompare(b.name || '');
+      }
+      if (sortBy === 'stars') {
+        const sA = (activityMap[a.name] || {}).stars || (activityMap[a.name] || {}).downloads || 0;
+        const sB = (activityMap[b.name] || {}).stars || (activityMap[b.name] || {}).downloads || 0;
+        if (sA !== sB) return sB - sA;
+        return (a.name || '').localeCompare(b.name || '');
+      }
+      return 0;
+    });
+  }
 
   function renderCategoryChips() {
     const resources = getActiveResources();
@@ -720,35 +798,12 @@
     applyFilters();
   }
 
-  function renderLocalGrid() {
-    const grid = document.getElementById('local-grid');
-    grid.innerHTML = localResources.map(renderCard).join('');
-  }
-
   function matchesQuery(card, query) {
     return !query ||
       card.dataset.name.includes(query) ||
       card.dataset.category.includes(query) ||
       card.dataset.tags.includes(query) ||
       card.dataset.desc.includes(query);
-  }
-
-  function applyLocalFilters(query) {
-    const section = document.getElementById('local-section');
-    if (!localResources.length) {
-      section.style.display = 'none';
-      return;
-    }
-    section.style.display = '';
-
-    let visible = 0;
-    document.querySelectorAll('#local-grid .card').forEach(card => {
-      const show = matchesQuery(card, query);
-      card.style.display = show ? '' : 'none';
-      if (show) visible++;
-    });
-
-    document.getElementById('local-no-results').style.display = visible === 0 ? '' : 'none';
   }
 
   function applyFilters() {
@@ -767,8 +822,6 @@
     document.getElementById('stats').textContent =
       `Showing ${visible} of ${totalCurrent} resources`;
     document.getElementById('no-results').style.display = visible === 0 ? '' : 'none';
-
-    applyLocalFilters(query);
   }
 
   // Lightweight markdown to HTML renderer
@@ -901,10 +954,14 @@
 
   async function init() {
     try {
-      const [resFree, resPaid, resLocal] = await Promise.all([
+      const [resFree, resPaid, resLocal, resAct, resHist, resPaidHist, resLocalHist] = await Promise.all([
         fetch('resources.csv'),
         fetch('paid_resources.csv').catch(() => null),
-        fetch('local_resources.csv').catch(() => null)
+        fetch('local_resources.csv').catch(() => null),
+        fetch('activity.json').catch(() => null),
+        fetch('history.csv').catch(() => null),
+        fetch('paid_history.csv').catch(() => null),
+        fetch('local_history.csv').catch(() => null)
       ]);
 
       if (!resFree.ok) throw new Error(`Could not load resources.csv (${resFree.status})`);
@@ -920,6 +977,32 @@
         const localText = await resLocal.text();
         localResources = parseCSV(localText).map(r => ({ ...r, _type: 'local' }));
       }
+
+      if (resAct && resAct.ok) {
+        try { activityMap = await resAct.json(); } catch(e) {}
+      }
+
+      // Build history lookup
+      const parseHistory = async (res) => {
+        if (!res || !res.ok) return;
+        const text = await res.text();
+        parseCSV(text).forEach(row => {
+          const nameKey = (row.name || '').toLowerCase().trim();
+          if (nameKey && nameKey !== '—') {
+            historyMap[nameKey] = {
+              date: row.date,
+              action: row.action,
+              notes: row.notes || ''
+            };
+          }
+        });
+      };
+
+      await Promise.all([
+        parseHistory(resHist),
+        parseHistory(resPaidHist),
+        parseHistory(resLocalHist)
+      ]);
 
       const total = freeResources.length + paidResources.length + localResources.length;
 
@@ -940,10 +1023,14 @@
         });
       });
 
+      // Sort selector
+      document.getElementById('sort-select').addEventListener('change', (e) => {
+        sortBy = e.target.value;
+        renderGrid();
+      });
+
       renderCategoryChips();
       renderGrid();
-      renderLocalGrid();
-      applyLocalFilters('');
       setupDocModal();
 
       document.getElementById('search').addEventListener('input', applyFilters);
@@ -959,6 +1046,7 @@
 </script>
 </body>
 </html>
+
 
 
 
