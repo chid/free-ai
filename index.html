@@ -526,7 +526,7 @@
 
 <header>
   <h1>AI Resources Directory</h1>
-  <p>Curated directory of free cloud tools and paid models -- <span id="total-count">...</span> resources tracked, plus local &amp; self-hosted runners <a href="#local-section" class="doc-link">below</a></p>
+  <p>Curated directory of free cloud tools, paid models, and local AI engines -- <span id="total-count">...</span> resources tracked</p>
   <div class="doc-links">
     <a href="README.md" class="doc-link" data-file="README.md">README</a> &bull;
     <a href="CHANGELOG.md" class="doc-link" data-file="CHANGELOG.md">CHANGELOG</a> &bull;
@@ -536,9 +536,11 @@
 
 <div class="tier-toggle-wrap">
   <button class="tier-btn active" id="filter-free" data-tier="free">Free Tools (<span id="free-count">...</span>)</button>
+  <button class="tier-btn" id="filter-local" data-tier="local">Local AI (<span id="local-count">...</span>)</button>
   <button class="tier-btn" id="filter-paid" data-tier="paid">Paid Tools (<span id="paid-count">...</span>)</button>
   <button class="tier-btn" id="filter-all" data-tier="all">All (<span id="all-count">...</span>)</button>
 </div>
+
 
 <div class="controls">
   <div class="search-wrap">
@@ -680,8 +682,10 @@
   function getActiveResources() {
     if (currentTier === 'free') return freeResources;
     if (currentTier === 'paid') return paidResources;
-    return [...freeResources, ...paidResources];
+    if (currentTier === 'local') return localResources;
+    return [...freeResources, ...localResources, ...paidResources];
   }
+
 
   function renderCategoryChips() {
     const resources = getActiveResources();
@@ -917,7 +921,7 @@
         localResources = parseCSV(localText).map(r => ({ ...r, _type: 'local' }));
       }
 
-      const total = freeResources.length + paidResources.length;
+      const total = freeResources.length + paidResources.length + localResources.length;
 
       document.getElementById('free-count').textContent = freeResources.length;
       document.getElementById('paid-count').textContent = paidResources.length;

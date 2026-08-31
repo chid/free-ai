@@ -43,17 +43,20 @@ FREE_CATEGORIES = [
 ]
 
 LOCAL_CATEGORIES = [
-    "Local Runner",
-    "Desktop Client",
-    "Serving Engine",
-    "Web UI",
-    "Code Assistant",
     "Agent Framework",
-    "Fine-tuning / Quant",
+    "Audio & Speech",
+    "Code Assistant",
+    "Desktop Client",
     "Embeddings / RAG",
-    "Image / Audio / Video",
-    "Hardware / Benchmarking",
+    "Fine-tuning / Quant",
+    "Image & Video Gen",
+    "Local Runner",
+    "Open Weights (LLM)",
+    "Serving Engine",
+    "Vision & Multimodal",
+    "Web UI",
 ]
+
 
 
 # ── persistence ──────────────────────────────────────────────────────────────

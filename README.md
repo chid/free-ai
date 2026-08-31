@@ -4,7 +4,8 @@
 
 Free tiers change fast — tools get paywalled, rebranded, or shut down. This list captures what was on offer at the time of each update, with every change tracked in [`history.csv`](history.csv) and summarised in [`CHANGELOG.md`](CHANGELOG.md). Think of it less as a permanent directory and more as a dated edition: accurate when written, audited on refresh.
 
-**71 resources** across 16 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on. Dedicated local & self-hosted runners live in [`local_resources.csv`](local_resources.csv) (18 tools), tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv) (6 of them), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
+**71 resources** across 16 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on. Dedicated local & self-hosted runners and models live in [`local_resources.csv`](local_resources.csv) (37 tools), tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv) (6 of them), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
+
 
 ---
 

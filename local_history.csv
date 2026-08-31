@@ -8,3 +8,22 @@ date,action,name,category,url,notes
 2026-08-29,add,Text Embeddings Inference,Embeddings / RAG,https://github.com/huggingface/text-embeddings-inference,Hugging Face's self-hosted embedding/reranking server; Apache-2.0, active development with a v1.10.0 milestone as of Jul 2026. Fills the previously-empty Embeddings / RAG category.
 2026-08-29,add,ComfyUI,Image / Audio / Video,https://github.com/comfy-org/ComfyUI,Node-based local diffusion UI for Stable Diffusion/Flux; GPL-3.0, ~123k stars, weekly release cadence. Fills the previously-empty Image / Audio / Video category.
 2026-08-29,add,LocalAGI,Agent Framework,https://github.com/mudler/LocalAGI,Self-hostable agent orchestration platform from the LocalAI team; MIT-licensed, active alongside LocalAI 4.0 (Mar 2026). Fills the previously-empty Agent Framework category.
+2026-08-31,add,GPT4All,Desktop Client,https://gpt4all.io,Nomic AI desktop app for running open LLMs privately on everyday hardware with LocalDocs
+2026-08-31,add,Qwen 2.5 / 3.8,Open Weights (LLM),https://github.com/QwenLM/Qwen2.5,Alibaba flagship open-weight LLMs (0.5B to 72B) with 128k context and Apache 2.0 license
+2026-08-31,add,Qwen2.5-Coder,Open Weights (LLM),https://github.com/QwenLM/Qwen2.5-Coder,Alibaba specialized open coding models trained on 5.5T code tokens
+2026-08-31,add,GLM-4 / GLM-Edge,Open Weights (LLM),https://github.com/THUDM/GLM-4,Zhipu AI and Tsinghua open foundation and on-device edge models
+2026-08-31,add,DeepSeek-R1 / V3,Open Weights (LLM),https://github.com/deepseek-ai/DeepSeek-R1,DeepSeek open-weight reasoning and MoE models with open distilled weights
+2026-08-31,add,Microsoft Phi-4 / Phi-3.5,Open Weights (LLM),https://github.com/microsoft/Phi-3CookBook,Microsoft high-efficiency small language models with frontier reasoning
+2026-08-31,add,Qwen2-VL,Vision & Multimodal,https://github.com/QwenLM/Qwen2-VL,Alibaba vision-language model understanding resolution-free images and long videos
+2026-08-31,add,Florence-2,Vision & Multimodal,https://huggingface.co/microsoft/Florence-2-large,"Microsoft compact vision foundation model for captioning, OCR, and detection"
+2026-08-31,add,InternVL 2.5,Vision & Multimodal,https://github.com/OpenGVLab/InternVL,OpenGVLab multimodal model family matching frontier vision benchmarks
+2026-08-31,add,MiniCPM-V,Vision & Multimodal,https://github.com/OpenBMB/MiniCPM-V,OpenBMB edge multimodal model with high-density OCR and high-res vision
+2026-08-31,add,SD WebUI (AUTOMATIC1111),Image & Video Gen,https://github.com/AUTOMATIC1111/stable-diffusion-webui,Definitive browser interface for Stable Diffusion and SDXL
+2026-08-31,add,Fooocus,Image & Video Gen,https://github.com/lllyasviel/Fooocus,Image generator combining SDXL/Flux quality with Midjourney prompt simplicity
+2026-08-31,add,InvokeAI,Image & Video Gen,https://invoke-ai.github.io/InvokeAI,Professional creative engine and infinite canvas for local image synthesis
+2026-08-31,add,DiffusionBee,Image & Video Gen,https://diffusionbee.com,One-click native macOS application for running Stable Diffusion locally
+2026-08-31,add,CogVideoX,Image & Video Gen,https://github.com/THUDM/CogVideo,THUDM / Zhipu AI open-source text-to-video diffusion transformer model
+2026-08-31,add,Whisper.cpp,Audio & Speech,https://github.com/ggerganov/whisper.cpp,High-performance C/C++ port of OpenAI Whisper with zero dependencies
+2026-08-31,add,SenseVoice / FunASR,Audio & Speech,https://github.com/FunAudioLLM/SenseVoice,Alibaba open speech model with fast transcription and audio event detection
+2026-08-31,add,Kokoro TTS,Audio & Speech,https://huggingface.co/hexgrad/Kokoro-82M,Ultra-compact 82M text-to-speech model generating natural human voice
+2026-08-31,add,Piper,Audio & Speech,https://github.com/rhasspy/piper,"Fast, local neural text-to-speech system optimized for offline devices"
