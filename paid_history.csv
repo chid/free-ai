@@ -6,3 +6,25 @@ date,action,name,category,url,notes
 2026-08-28,add,Tabnine,Code Assistant,https://tabnine.com,found via paid refresh
 2026-08-28,add,Superhuman,Productivity,https://superhuman.com,found via paid refresh
 2026-08-28,add,Sudowrite,Productivity,https://sudowrite.com,found via paid refresh
+2026-09-02,add,ChatGPT Plus / Pro,LLM Chatbot,https://chatgpt.com,"flagship OpenAI subscription ($20 Plus, $200 Pro) with GPT-4o, o1, o3-mini and deep research"
+2026-09-02,add,Claude Pro / Team,LLM Chatbot,https://claude.ai,"flagship Anthropic subscription ($20 Pro, $25-30 Team) with Claude 3.7 Sonnet extended thinking and Projects"
+2026-09-02,add,Gemini Advanced,LLM Chatbot,https://gemini.google.com/advanced,"Google One AI Premium plan ($19.99/mo) with Gemini 2.0/1.5 Pro 2M context and Workspace integration"
+2026-09-02,add,Microsoft Copilot Pro,Productivity,https://copilot.microsoft.com,"personal AI subscription ($20/mo) integrating GPT-4o into Microsoft 365 Word, Excel, PowerPoint"
+2026-09-02,add,Perplexity Pro,Search / Research,https://perplexity.ai,"AI search subscription ($20/mo) with multi-model switching (Claude 3.7, GPT-4o, Sonar, DeepSeek R1)"
+2026-09-02,add,Grok / X Premium+,LLM Chatbot,https://x.ai,"xAI subscription ($16-$22/mo) with real-time X search, Grok 3 reasoning, and FLUX image generation"
+2026-09-02,add,Cursor Pro,Code Assistant,https://cursor.com,"AI-first code editor subscription ($20/mo) with 500 fast requests/mo, Agent Composer and Cursor Tab"
+2026-09-02,add,Windsurf Pro,Code Assistant,https://codeium.com/windsurf,"agentic AI IDE subscription ($15-20/mo) with unlimited Cascade Flow actions and Claude 3.7 integration"
+2026-09-02,add,GitHub Copilot Pro,Code Assistant,https://github.com/features/copilot,"AI pair programmer subscription ($10/mo) with multi-model switching (Claude 3.7, GPT-4o, Gemini 2.0 Flash)"
+2026-09-02,add,Augment Code,Code Assistant,https://augmentcode.com,"enterprise-grade AI coding assistant ($20/user/mo) for large codebase instant context understanding"
+2026-09-02,add,Magnific AI,Image Generation,https://magnific.ai,"AI image upscaler and hallucination enhancer ($39-$299/mo) for photorealistic details"
+2026-09-02,add,Runway,Video Generation,https://runwayml.com,"industry-standard AI video generation ($12-$76/mo) with Gen-3 Alpha, Act-One motion, and camera control"
+2026-09-02,add,Luma Dream Machine,Video Generation,https://lumalabs.ai/dream-machine,"high-fidelity text/image-to-video generator ($29.99-$99.99/mo) with camera control and keyframe interpolation"
+2026-09-02,add,Pika Pro,Video Generation,https://pika.art,"creative video generation subscription ($10-$60/mo) with Pikaffects, lip sync, and sound effects"
+2026-09-02,add,ElevenLabs,Audio / Voice,https://elevenlabs.io,"hyper-realistic voice generation and cloning subscription ($5-$99/mo) with multilingual dubbing"
+2026-09-02,add,Suno,Audio / Music,https://suno.com,"AI song and vocal music generator subscription ($10-$30/mo) with commercial terms"
+2026-09-02,add,Udio,Audio / Music,https://udio.com,"high-fidelity AI music generation subscription ($10-$30/mo) with stem separation and audio inpainting"
+2026-09-02,add,Descript,Productivity,https://descript.com,"AI video and podcast editing subscription ($12-$24/user/mo) with transcript-based editing and Studio Sound"
+2026-09-02,add,Granola,Productivity,https://granola.so,"AI notepad subscription ($10/user/mo) for meetings with transcription and custom templates"
+2026-09-02,add,Glean,Search / Research,https://glean.com,"enterprise AI work search subscription (~$30-$50/user/mo) across company SaaS apps"
+2026-09-02,add,Gamma,Productivity,https://gamma.app,"generative AI presentation and slide canvas subscription ($10-$20/user/mo)"
+

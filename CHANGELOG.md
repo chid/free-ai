@@ -11,7 +11,41 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
 ---
 
+## [2026-09] — Paid subscriptions expansion
+
+27 paid resources (was 6). Broadened paid tools tracking across frontier chatbots, AI coding IDEs, generative video, music/voice synthesizers, and enterprise productivity subscriptions.
+
+### Added
+- **Frontier LLM Subscriptions**:
+  - **ChatGPT Plus / Pro** ($20 / $200/mo) — GPT-4o, o1, o3-mini reasoning, Deep Research, and Advanced Voice.
+  - **Claude Pro / Team** ($20 / $25-30/mo) — Claude 3.7 Sonnet hybrid extended thinking, Artifacts, and Projects.
+  - **Gemini Advanced** ($19.99/mo) — Google One AI Premium with Gemini 2.0/1.5 Pro (2M context) and Workspace apps.
+  - **Grok / X Premium+** ($16-$22/mo) — Real-time X grounding, Grok 3 reasoning, Aurora thinking mode, FLUX image gen.
+  - **Perplexity Pro** ($20/mo) — Unlimited Pro Search with multi-model switching (Claude 3.7, GPT-4o, DeepSeek R1).
+- **Code Assistants & IDEs**:
+  - **Cursor Pro** ($20/mo) — 500 fast requests/mo, Agent Composer, and predictive Cursor Tab.
+  - **Windsurf Pro** ($15-$20/mo) — Unlimited Cascade Flow actions with daily/weekly quotas and Claude 3.7.
+  - **GitHub Copilot Pro** ($10/mo) — Multi-model switching across Claude 3.7 Sonnet, GPT-4o, and Gemini 2.0 Flash.
+  - **Augment Code** ($20/user/mo) — Enterprise codebase instant context understanding and pair programming.
+- **Media Generation (Video, Music, Voice, Image)**:
+  - **Runway** ($12-$76/mo) — Gen-3 Alpha, Act-One motion capture, and camera control.
+  - **Luma Dream Machine** ($29.99-$99.99/mo) — High-fidelity text/image-to-video with camera keyframes.
+  - **Pika Pro** ($10-$60/mo) — Pikaffects (melt, inflate, crush), lip sync, and sound effects.
+  - **ElevenLabs** ($5-$99/mo) — Ultra-realistic voice cloning, multilingual dubbing, and speech-to-speech.
+  - **Suno** ($10-$30/mo) — Radio-ready vocal song generation with full commercial terms.
+  - **Udio** ($10-$30/mo) — High-fidelity music generation with stem separation and audio inpainting.
+  - **Magnific AI** ($39-$299/mo) — AI image upscaler and hallucination enhancer for photorealistic detail.
+- **Enterprise & Productivity**:
+  - **Microsoft Copilot Pro** ($20/mo) — GPT-4o integration inside Word, Excel, PowerPoint, and Outlook.
+  - **Descript** ($12-$24/user/mo) — Text-based audio and video editing with Studio Sound.
+  - **Granola** ($10/user/mo) — AI notepad for meetings with automated transcription and template summaries.
+  - **Glean** (~$30-$50/user/mo) — Enterprise work search across Google Workspace, Slack, Jira, and GitHub.
+  - **Gamma** ($10-$20/user/mo) — Generative AI canvas for presentations, documents, and webpages.
+
+---
+
 ## [2026-08] — Local LLM tools refresh
+
 
 18 local/self-hosted tools (was 12).
 
