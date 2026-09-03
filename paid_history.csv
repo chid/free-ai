@@ -29,3 +29,5 @@ date,action,name,category,url,notes
 2026-09-02,add,Gamma,Productivity,https://gamma.app,"generative AI presentation and slide canvas subscription ($10-$20/user/mo)"
 2026-09-03,edit,ChatGPT Plus / Pro,LLM Chatbot,https://chatgpt.com,"updated description and pricing to explicitly document Codex quota model and 5-hour rolling limits; see QUOTAS.md"
 2026-09-03,edit,Claude Pro / Team / Max,LLM Chatbot,https://claude.ai,"updated name and pricing to document Max tiers, shared 5-hour rolling pool, and programmatic credits; see QUOTAS.md"
+2026-09-03,add,Higgsfield AI,Video Generation,https://higgsfield.ai,"AI video platform and mobile studio with 70+ cinematic camera movements and character animation"
+
