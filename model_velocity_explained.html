@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mechanics of Rapid Model Velocity</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --border: #30363d;
+            --accent-blue: #38bdf8;
+            --accent-green: #34d399;
+            --accent-purple: #c084fc;
+            --accent-amber: #fbbf24;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* Core Takeaway Card */
+        .highlight-card {
+            background: linear-gradient(145deg, rgba(56, 189, 248, 0.07), rgba(192, 132, 252, 0.05));
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .highlight-card h3 {
+            color: var(--accent-blue);
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Split Timeline Diagram */
+        .timeline-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .timeline-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .timeline-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .timeline-box.pre {
+            border-top: 4px solid var(--accent-amber);
+        }
+
+        .timeline-box.post {
+            border-top: 4px solid var(--accent-green);
+        }
+
+        .box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .box-header h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .duration-tag {
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-box ul {
+            list-style: none;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-box li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .timeline-box li::before {
+            content: "•";
+            color: var(--text-main);
+        }
+
+        /* The 5 Pillars */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .pillar-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+
+        .pillar-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .pillar-num {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .pillar-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .pillar-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Interactive Simulator */
+        .sim-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .sim-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .sim-header h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .sim-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            background: var(--bg-tertiary);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .slider-label span {
+            color: var(--accent-green);
+            font-family: var(--font-mono);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: #30363d;
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
+
+        .sim-output {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .sim-output {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .output-box {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+
+        .output-box h5 {
+            font-family: var(--font-sans);
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .trace-content {
+            color: var(--text-muted);
+            white-space: pre-wrap;
+            min-height: 90px;
+        }
+
+        /* Conclusion */
+        .summary-box {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .summary-box strong {
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="badge">Technical Explainer</div>
+            <h1>How Does Google Release Models So Quickly?</h1>
+            <p class="lead">Why the jump from Gemini 3.6 to 3.7 to 3.8 happens in weeks rather than years — and what actually changes under the hood.</p>
+        </header>
+
+        <div class="highlight-card">
+            <h3>⚡ The Short Answer</h3>
+            <p><strong>Yes, it is overwhelmingly post-training, reinforcement learning, distillation, and test-time compute.</strong> No AI lab retrains multi-billion-dollar base models from scratch every month. Instead, foundation models serve as a reusable "encyclopedic brain," while rapid iterative releases tune how the model plans, reasons, and self-checks.</p>
+        </div>
+
+        <section class="timeline-section">
+            <div class="timeline-title">Pre-Training vs. Post-Training: The Paradigm Shift</div>
+            <div class="timeline-grid">
+                <div class="timeline-box pre">
+                    <div class="box-header">
+                        <h4>Pre-Training (The Foundation)</h4>
+                        <span class="duration-tag">3–6+ Months</span>
+                    </div>
+                    <ul>
+                        <li>Trained on trillions of tokens across the open web, books, and code.</li>
+                        <li>Massive TPU clusters running for months from random weight initialization.</li>
+                        <li>Builds the raw knowledge base and linguistic grammar.</li>
+                        <li><strong>Extremely expensive ($50M–$200M+)</strong>; done infrequently.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-box post">
+                    <div class="box-header">
+                        <h4>Post-Training & RL (The Modern Frontier)</h4>
+                        <span class="duration-tag">1–3 Weeks</span>
+                    </div>
+                    <ul>
+                        <li>Warm-started from an existing stable checkpoint.</li>
+                        <li>Reinforcement Learning with Verifiable Rewards (RLVR) in code sandboxes.</li>
+                        <li>Distillation of complex thinking trajectories from larger Pro models into Flash.</li>
+                        <li>Inference-time search algorithms and customizable "thinking budgets."</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-title">The 5 Engines Behind Rapid Cadence</h2>
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <div>
+                    <div class="pillar-num">01 / RLVR</div>
+                    <h3>Reinforcement Learning with Verifiable Rewards</h3>
+                    <p>Instead of manually scoring text, Google runs models in simulated sandboxes with bash shells, unit tests, and compilers. When code passes tests or solves a bug, the model receives positive mathematical reinforcement. These RL loops take days, not months.</p>
+                </div>
+            </div>
+
+            <div class="pillar-card">
+                <div>
+                    <div class="pillar-num">02 / DISTILLATION</div>
+                    <h3>Frontier-to-Flash Distillation</h3>
+                    <p>Google uses frontier research models running massive multi-path search to generate millions of optimal reasoning traces. Flash models are trained directly on those successful trajectories, inheriting breakthroughs in weeks.</p>
+                </div>
+            </div>
+
+            <div class="pillar-card">
+                <div>
+                    <div class="pillar-num">03 / TEST-TIME COMPUTE</div>
+                    <h3>Inference-Time Scaling</h3>
+                    <p>Much of the jump between models like 3.7 and 3.8 isn't weight scale—it's giving the model time to "think" before emitting output. Reasoning tokens allow the model to backtrack and critique itself before making a tool call.</p>
+                </div>
+            </div>
+
+            <div class="pillar-card">
+                <div>
+                    <div class="pillar-num">04 / WARM STARTS</div>
+                    <h3>Continual Domain Pre-Training</h3>
+                    <p>Rather than starting with random noise, engineers take the latest checkpoint and expose it to dense domain tokens (e.g. security CVEs for <em>Flash Cyber</em>, or new programming language documentation).</p>
+                </div>
+            </div>
+
+            <div class="pillar-card">
+                <div>
+                    <div class="pillar-num">05 / INFRASTRUCTURE</div>
+                    <h3>TPU Fleets & Automated Sandboxes</h3>
+                    <p>Google owns its custom hardware stack (TPU v5p, Trillium TPU v6e). Without GPU cloud queue bottlenecks, they can train dozens of alignment and RL runs concurrently and benchmark them within hours.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Simulator -->
+        <section class="sim-card">
+            <div class="sim-header">
+                <h3>Interactive Concept: Test-Time Compute (Thinking Levels)</h3>
+                <p class="lead" style="font-size: 0.95rem;">See why a model can perform dramatically better on complex code refactors without changing its base parameters:</p>
+            </div>
+
+            <div class="sim-controls">
+                <div class="slider-label">
+                    <span>Reasoning Budget (Thinking Tokens):</span>
+                    <span id="budget-label">High Thinking (Gemini 3.8 Flash)</span>
+                </div>
+                <input type="range" id="budget-slider" min="0" max="2" value="2" step="1">
+            </div>
+
+            <div class="sim-output">
+                <div class="output-box">
+                    <h5>Internal Reasoning Trace (Hidden CoT)</h5>
+                    <div class="trace-content" id="trace-display"></div>
+                </div>
+                <div class="output-box">
+                    <h5>Execution Characteristics</h5>
+                    <div class="trace-content" id="stats-display"></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="summary-box">
+            <p><strong>The Takeaway:</strong> Pre-training gives an AI model its <em>encyclopedic memory</em> (grammar, vocabulary, facts). Post-training teaches it <em>how to behave as an autonomous software engineer</em> (planning, self-testing, error recovery). Rapid iteration between minor versions is Google optimizing that second layer.</p>
+        </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('budget-slider');
+        const budgetLabel = document.getElementById('budget-label');
+        const traceDisplay = document.getElementById('trace-display');
+        const statsDisplay = document.getElementById('stats-display');
+
+        const states = [
+            {
+                name: "Off / Zero Thinking (Pure Next-Token)",
+                trace: "[No internal deliberation]\nEmits response immediately without validating edge cases or compiler constraints.",
+                stats: "Latency: ~120 ms\nThinking Tokens: 0\nFailure Risk on Deep Diffs: High (prone to hallucinated imports or missed side effects)"
+            },
+            {
+                name: "Low Thinking (Quick Verification)",
+                trace: "Thought:\n- Inspecting function signature\n- Checking type consistency\n- Generating fix directly",
+                stats: "Latency: ~550 ms\nThinking Tokens: 256\nBest For: Single-line fixes, simple script writing, quick completions"
+            },
+            {
+                name: "High Thinking (Gemini 3.8 Flash Mode)",
+                trace: "Thought:\n- Identifying potential concurrency race condition\n- Simulating 3 possible execution paths\n- Discarding naive approach due to deadlocks\n- Verifying backward compatibility with caller\n- Formulating targeted, atomic replacement block",
+                stats: "Latency: ~1,800 ms\nThinking Tokens: 1,024+\nBest For: Multi-file agent refactors, compiler error recovery, complex SWE tasks"
+            }
+        ];
+
+        function updateState(idx) {
+            const state = states[idx];
+            budgetLabel.textContent = state.name;
+            traceDisplay.textContent = state.trace;
+            statsDisplay.textContent = state.stats;
+        }
+
+        slider.addEventListener('input', (e) => {
+            updateState(parseInt(e.target.value));
+        });
+
+        // Initialize
+        updateState(2);
+    </script>
+</body>
+</html>
