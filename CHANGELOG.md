@@ -9,9 +9,23 @@ files are append-only and are the source of truth. This file is the human-readab
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
+## [2026-09] — Evaluation & Benchmark Harnesses addition
+
+44 local tools (was 37). Added dedicated **Evaluation & Harnesses** category tracking standard LLM benchmark frameworks, agent sandboxes, and production unit test harnesses.
+
+### Added
+- **lm-evaluation-harness** (EleutherAI) — Standard framework for few-shot evaluation across 60+ benchmarks (MMLU, GSM8K, ARC, HumanEval) powering the Open LLM Leaderboard.
+- **SWE-bench** (Princeton) — Industry benchmark and evaluation harness for autonomous coding agents against real GitHub issues in Docker sandboxes.
+- **Inspect AI** (UK AI Safety Institute) — Open-source evaluation harness for LLM capabilities, agent tool-use protocols, and sandboxed safety evaluations.
+- **Promptfoo** — CLI and CI/CD test harness for testing LLM outputs, prompt assertions, red-teaming, and regression suites.
+- **DeepEval** (Confident AI) — Production unit testing framework for LLMs (Pytest for AI) covering hallucination, answer relevancy, and G-Eval.
+- **Ragas** — Evaluation harness tailored for Retrieval-Augmented Generation (RAG) pipelines (faithfulness, context recall and precision).
+- **Lighteval** (Hugging Face) — Lightweight evaluation toolkit for assessing LLMs across multi-turn chat, math, and custom evaluation suites.
+
 ---
 
 ## [2026-09] — Paid subscriptions expansion
+
 
 27 paid resources (was 6). Broadened paid tools tracking across frontier chatbots, AI coding IDEs, generative video, music/voice synthesizers, and enterprise productivity subscriptions.
 
