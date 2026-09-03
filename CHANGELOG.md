@@ -9,18 +9,27 @@ files are append-only and are the source of truth. This file is the human-readab
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
-## [2026-09] — Evaluation & Benchmark Harnesses addition
+## [2026-09] — AI Agent & Coding Harnesses addition
 
-44 local tools (was 37). Added dedicated **Evaluation & Harnesses** category tracking standard LLM benchmark frameworks, agent sandboxes, and production unit test harnesses.
+50 local tools (was 37). Added dedicated tracking for both **Autonomous Coding Agent Harnesses** (modular terminal runtimes turning LLMs into software engineers) and **Evaluation & Benchmark Harnesses**.
 
-### Added
+### Added (Coding & Agent Execution Harnesses)
+- **Pi** (earendil-works) — Minimalist, modular terminal-first AI coding agent harness with read/write/edit/bash primitives and TypeScript extension ecosystem.
+- **Codebuff** — Open-source terminal-first AI coding agent harness coordinating a team of specialized sub-agents (explorer, planner, editor, reviewer).
+- **Goose** (Block / Linux Foundation AAIF) — Extensible open-source autonomous developer agent harness with tool orchestration and Model Context Protocol (MCP).
+- **Plandex** — Terminal AI agent harness for complex multi-file development with 2M+ token context indexing and branch-based plan sandboxes.
+- **SWE-agent** (Princeton) — Open-source agent harness turning LLMs into autonomous software engineers to solve real GitHub issues via Agent-Computer Interfaces (ACI).
+- **Roo Code** — Open-source autonomous coding agent harness for VS Code with custom role modes (Architect, Code, Ask, Debug) and MCP servers.
+
+### Added (Evaluation & Benchmark Harnesses)
 - **lm-evaluation-harness** (EleutherAI) — Standard framework for few-shot evaluation across 60+ benchmarks (MMLU, GSM8K, ARC, HumanEval) powering the Open LLM Leaderboard.
 - **SWE-bench** (Princeton) — Industry benchmark and evaluation harness for autonomous coding agents against real GitHub issues in Docker sandboxes.
-- **Inspect AI** (UK AI Safety Institute) — Open-source evaluation harness for LLM capabilities, agent tool-use protocols, and sandboxed safety evaluations.
+- **Inspect AI** (UK AI Safety Institute) — Open-source evaluation framework for LLM capabilities, agent tool-use protocols, and sandboxed safety evaluations.
 - **Promptfoo** — CLI and CI/CD test harness for testing LLM outputs, prompt assertions, red-teaming, and regression suites.
 - **DeepEval** (Confident AI) — Production unit testing framework for LLMs (Pytest for AI) covering hallucination, answer relevancy, and G-Eval.
 - **Ragas** — Evaluation harness tailored for Retrieval-Augmented Generation (RAG) pipelines (faithfulness, context recall and precision).
 - **Lighteval** (Hugging Face) — Lightweight evaluation toolkit for assessing LLMs across multi-turn chat, math, and custom evaluation suites.
+
 
 ---
 
