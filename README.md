@@ -32,8 +32,8 @@ Free tiers change fast — tools get paywalled, rebranded, or shut down. This li
 
 Full-featured AI chat interfaces with free tiers.
 
-- **[Claude (Anthropic)](https://claude.ai)** — Anthropic's AI assistant — strong reasoning and long context. *Free tier with usage limits.*
-- **[ChatGPT](https://chat.openai.com)** — OpenAI's flagship assistant. *Free tier (GPT-4o limited).*
+- **[Claude (Anthropic)](https://claude.ai)** — Anthropic's AI assistant — strong reasoning and long context. *Free tier with dynamic 5-hour rolling limits (~10-30 msgs/5h).*
+- **[ChatGPT](https://chat.openai.com)** — OpenAI's flagship assistant. *Free tier with capped frontier model access (~10-16 msgs/3h, fallback to mini models).*
 - **[Gemini](https://gemini.google.com)** — Google's multimodal AI assistant. *Free tier available.*
 - **[Muse Spark](https://meta.ai)** — Meta's first model from Meta Superintelligence Labs — natively multimodal (text/image/audio) with tool use and visual chain-of-thought; available via meta.ai. *Free; requires Meta account (Facebook or Instagram login).*
 - **[Le Chat](https://chat.mistral.ai)** — Mistral's AI assistant with web search and image generation built in. *Free tier with daily limits; no credit card required.*

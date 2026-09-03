@@ -1,6 +1,6 @@
 name,category,url,description,free_tier,requires_signup,tags
-Claude (Anthropic),LLM Chatbot,https://claude.ai,Anthropic's AI assistant — strong reasoning and long context,Free tier with usage limits,Yes,"chat,reasoning,coding,writing"
-ChatGPT,LLM Chatbot,https://chat.openai.com,OpenAI's flagship assistant,Free tier (GPT-4o limited),Yes,"chat,coding,writing,image"
+Claude (Anthropic),LLM Chatbot,https://claude.ai,Anthropic's AI assistant — strong reasoning and long context,"Free tier with dynamic 5-hour rolling limits (~10-30 msgs/5h)",Yes,"chat,reasoning,coding,writing"
+ChatGPT,LLM Chatbot,https://chat.openai.com,OpenAI's flagship assistant,"Free tier with capped frontier model access (~10-16 msgs/3h, fallback to mini models)",Yes,"chat,coding,writing,image"
 Gemini,LLM Chatbot,https://gemini.google.com,Google's multimodal AI assistant,Free tier available,Yes,"chat,multimodal,coding,search"
 Google AI Studio,LLM API,https://aistudio.google.com,"Gemini API with a generous free quota (15 RPM, 1,500 RPD) — current Flash models (3.6 Flash, 2.5 Flash-Lite) are free; the Gemini 2.5 Pro/Flash endpoints retired June 17 2026","Free API key: 15 RPM, 1,500 RPD, 1M TPM, 1M+ context; no credit card",Yes,"api,gemini,prototyping"
 Groq,LLM API,https://console.groq.com,Blazing-fast inference for open models (Llama etc.),Free tier: ~30 requests/min on open models,Yes,"api,fast,llama,mistral"

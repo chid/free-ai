@@ -1,4 +1,8 @@
 date,vendor,product,tier,feature_or_model,metric,limit_value,unit,window,change_type,notes
+2024-03-04,Anthropic,Claude,Free,Claude 3 Sonnet / Haiku,messages,30,per_5h,5h,init,Initial claude.ai free tier rolling window (~10-30 msgs/5h based on demand)
+2024-03-04,Anthropic,Claude,Pro ($20),Claude 3 Opus / Sonnet,messages,100,per_5h,5h,init,Pro 5x quota multiplier over free tier (~100 msgs/5h for short conversations)
+2024-05-13,OpenAI,ChatGPT,Free,GPT-4o,messages,16,per_3h,3h,init,ChatGPT Free tier granted capped access to GPT-4o with mini fallback
+2024-05-13,OpenAI,ChatGPT,Plus ($20),GPT-4o,messages,80,per_3h,3h,init,Standard GPT-4o message limit on Plus (80 messages every 3 hours)
 2024-05-14,Google,Google AI Studio,Free,Gemini 1.5 Flash,requests,15,RPM,1m,init,Initial Gemini 1.5 Flash free tier rate limit
 2024-05-14,Google,Google AI Studio,Free,Gemini 1.5 Flash,tokens,1000000,TPM,1m,init,Initial Gemini 1.5 Flash free tier token throughput
 2024-05-14,Google,Google AI Studio,Free,Gemini 1.5 Flash,requests,1500,RPD,1d,init,Initial Gemini 1.5 Flash free tier daily quota
@@ -6,11 +10,14 @@ date,vendor,product,tier,feature_or_model,metric,limit_value,unit,window,change_
 2024-05-14,Google,Google AI Studio,Free,Gemini 1.5 Pro,requests,2,RPM,1m,init,Initial Gemini 1.5 Pro free tier rate limit
 2024-05-14,Google,Google AI Studio,Free,Gemini 1.5 Pro,tokens,32000,TPM,1m,init,Initial Gemini 1.5 Pro free tier token throughput
 2024-05-14,Google,Google AI Studio,Free,Gemini 1.5 Pro,requests,50,RPD,1d,init,Initial Gemini 1.5 Pro free tier daily quota
+2024-06-20,Anthropic,Claude,Pro ($20),Claude 3.5 Sonnet,messages,45,per_5h,5h,init,Baseline 3.5 Sonnet allowance (~45 prompts/5h before context expansion)
+2024-12-05,OpenAI,ChatGPT / Codex,Pro ($200),All Frontier Models,messages,unlimited,per_month,30d,init,Pro tier ($200/mo) launched with unlimited access to frontier models and Codex
 2024-12-11,Google,Google AI Studio,Free,Gemini 2.0 Flash Exp,requests,10,RPM,1m,init,Gemini 2.0 Flash experimental free tier
 2024-12-11,Google,Google AI Studio,Free,Gemini 2.0 Flash Exp,tokens,4000000,TPM,1m,init,Gemini 2.0 Flash experimental token throughput (4M TPM)
 2024-12-11,Google,Google AI Studio,Free,Gemini 2.0 Flash Exp,requests,1500,RPD,1d,init,Gemini 2.0 Flash experimental daily cap
-2026-01-15,Cursor,Cursor,Pro ($20),All Models,credits_usd,20,dollars_credit,30d,restructure,Replaced fast requests with monthly dollar credit pool; Max Mode multipliers apply
+2025-02-24,Anthropic,Claude,Pro ($20),Claude 3.7 Sonnet,messages,variable,per_5h,5h,restructure,Hybrid reasoning mode introduced; extended thinking tokens accelerate 5h window burn
 2026-01-15,Cursor,Cursor,Free (Hobby),Tab Autocomplete,requests,unlimited,completions,30d,init,Hobby keeps unlimited inline tab autocomplete; agent requests dynamically metered
+2026-01-15,Cursor,Cursor,Pro ($20),All Models,credits_usd,20,dollars_credit,30d,restructure,Replaced fast requests with monthly dollar credit pool; Max Mode multipliers apply
 2026-03-01,Anthropic,Claude Code,Pro ($20),All Models,compute_hours,variable,prompts_per_5h,5h,decrease,Peak hours throttle (5-11 AM PT) tightened allowance per 5h window
 2026-03-19,Windsurf,Windsurf,Free,Autocomplete,requests,unlimited,completions,30d,restructure,Credits retired; autocomplete kept free and unlimited
 2026-03-19,Windsurf,Windsurf,Free,Cascade Agent,actions,25,flow_actions,30d,restructure,Free tier capped at ~25 Cascade Flow Actions per month
@@ -19,13 +26,17 @@ date,vendor,product,tier,feature_or_model,metric,limit_value,unit,window,change_
 2026-05-13,Anthropic,Claude Code,Pro ($20),All Models,compute_hours,1.5,weekly_multiplier,7d,increase,Claude Code weekly limit boosted +50% above baseline; extended through Aug 31
 2026-05-15,GitHub,GitHub Copilot,Free,Completions,requests,2000,completions,30d,increase,Expanded free tier to all users: 2000 code completions per month
 2026-05-15,GitHub,GitHub Copilot,Free,Chat,requests,50,chats,30d,increase,Expanded free tier to all users: 50 chats per month
+2026-05-23,OpenCode,OpenCode,Free,75+ Providers (BYOK),requests,unlimited,requests,30d,init,"OpenCode terminal TUI agent is free, open-source, and unmetered with BYOK"
+2026-05-23,OpenCode,OpenCode,Free,Local Ollama,requests,unlimited,requests,30d,init,Unmetered local model execution via Ollama inside OpenCode
 2026-05-23,OpenCode,OpenCode Go,Go ($10),18 Open Models,credits_usd,12,usd_spend,5h,init,Dollar-denominated inference: $12 cap per 5 hours
 2026-05-23,OpenCode,OpenCode Go,Go ($10),18 Open Models,credits_usd,30,usd_spend,7d,init,Dollar-denominated inference: $30 cap per week
-2026-05-23,OpenCode,OpenCode Go,Go ($10),18 Open Models,credits_usd,60,usd_spend,30d,init,"Dollar-denominated inference: $60 cap per month with prepaid Zen overflow"
-2026-06-01,GitHub,GitHub Copilot,Pro ($10),Agent & Chat,credits_usd,10,ai_credits,30d,restructure,"Switched from request quotas to token-based AI Credits ($10/mo); completions unmetered"
+2026-05-23,OpenCode,OpenCode Go,Go ($10),18 Open Models,credits_usd,60,usd_spend,30d,init,Dollar-denominated inference: $60 cap per month with prepaid Zen overflow
+2026-06-01,GitHub,GitHub Copilot,Pro ($10),Agent & Chat,credits_usd,10,ai_credits,30d,restructure,Switched from request quotas to token-based AI Credits ($10/mo); completions unmetered
 2026-06-01,GitHub,GitHub Copilot,Pro+ ($39),Agent & Chat,credits_usd,70,ai_credits,30d,restructure,Pro+ includes $70/mo in AI Credits for agent/chat
-2026-06-15,Anthropic,Claude Code,Pro ($20),Programmatic / Headless,credits_usd,20,monthly_credits,30d,restructure,"Programmatic use (claude -p / Agent SDK) split from subscription into separate credit pool"
+2026-06-15,Anthropic,Claude Code,Max 20x ($200),All Models,requests,900,prompts_per_5h,5h,init,Max 20x tier introduced with ~900 prompts per 5-hour rolling window
+2026-06-15,Anthropic,Claude Code,Max 20x ($200),Programmatic / Headless,credits_usd,200,monthly_credits,30d,init,Max 20x tier gets $200/mo dedicated programmatic credit pool
 2026-06-15,Anthropic,Claude Code,Max 5x ($100),Programmatic / Headless,credits_usd,100,monthly_credits,30d,restructure,Max 5x gets $100/mo dedicated programmatic credit pool
+2026-06-15,Anthropic,Claude Code,Pro ($20),Programmatic / Headless,credits_usd,20,monthly_credits,30d,restructure,Programmatic use (claude -p / Agent SDK) split from subscription into separate credit pool
 2026-06-17,Google,Google AI Studio,Free,Gemini 2.5 Pro / Flash,requests,0,RPD,1d,deprecation,Retired legacy Gemini 2.5 Pro and Flash API endpoints
 2026-06-17,Google,Google AI Studio,Free,Current Flash (3.6 / 2.5-Lite),requests,15,RPM,1m,init,Active free tier standard: 15 RPM for current Flash models
 2026-06-17,Google,Google AI Studio,Free,Current Flash (3.6 / 2.5-Lite),tokens,1000000,TPM,1m,init,"Active free tier standard: 1,000,000 TPM"
@@ -33,4 +44,6 @@ date,vendor,product,tier,feature_or_model,metric,limit_value,unit,window,change_
 2026-06-17,Google,Google AI Studio,Free,Current Flash (3.6 / 2.5-Lite),context_window,2000000,tokens,per_request,increase,Context window expanded up to 2M tokens on latest Flash
 2026-07-15,OpenAI,ChatGPT / Codex,Plus ($20),Codex / Sol,messages,unlimited,per_5h,5h,increase,Dropped 5-hour Codex window cap for GPT-5.6 Sol launch; weekly cap retained
 2026-07-15,OpenAI,ChatGPT / Codex,Plus ($20),GPT-5.5 Thinking,messages,3000,per_week,7d,init,Standard weekly cap for GPT-5.5 Thinking on Plus
-2026-08-25,OpenAI,ChatGPT / Codex,Plus ($20),Codex / Work,messages,160,per_3h,3h,decrease,"Restored rolling window cap (~160 messages per 3h) on Plus; Pro ($100/$200) remains exempt"
+2026-08-25,OpenAI,ChatGPT / Codex,Plus ($20),Codex / Work,messages,160,per_3h,3h,decrease,Restored rolling window cap (~160 messages per 3h) on Plus; Pro ($100/$200) remains exempt
+2026-08-25,OpenAI,ChatGPT / Codex,Pro ($200),Codex / Work,messages,unlimited,per_5h,5h,init,Pro tier explicitly exempt from restored 5-hour Codex limits
+2026-08-28,OpenCode,OpenCode Go,Go ($10),18 Open Models,models,18,hosted_models,30d,init,"Hosted models include DeepSeek V4 Pro, Qwen3.8 Max, Grok 4.5, GLM-5.2, Kimi K3, GPT 5.6 Luna"

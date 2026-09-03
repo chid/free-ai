@@ -59,21 +59,38 @@ compute did you consume".
 
 ---
 
-## OpenCode Go -- why it's worth a note
+## Claude & Claude Code -- why it's worth a note
 
-OpenCode is on the free list and stays there: the agent is open source, BYOK, and
-costs nothing to run. **OpenCode Go** is a separate, optional paid plan from the
-same team -- $10/month for one key covering 18 open coding models (GPT 5.6 Luna,
-Kimi K3, DeepSeek V4 Pro, Grok 4.5, GLM-5.2, Qwen3.8 Max and others) through
-OpenCode Zen.
+Claude’s quota system is the most sophisticated — and frequently misunderstood — dual-metered system in production:
 
-It's listed in [`paid_resources.csv`](paid_resources.csv) because it's a genuine
-paid subscription, and it's the cleanest illustration of where metering has
-landed: no request counts, no credits with an invented exchange rate -- just
-$12 per 5 hours, $30 per week, $60 per month of actual inference spend, with the
-option to spill over onto a prepaid balance instead of hard-stopping. A user can
-read that limit and know exactly what they're getting, which is more than can be
-said for most credit systems.
+1. **The Shared Pool Trap:** A single usage bucket is shared across **claude.ai web chat**, **Claude Code** terminal CLI, and **Cowork**. Intensive agentic refactors or test-fix loops in Claude Code will deplete your 5-hour interactive allowance on the web interface.
+2. **Compute-Weighted Consumption:** The 5-hour rolling window is **not a message counter**. It meters active compute tokens. A prompt with a 150k-token repository context or extended thinking burns through the window dramatically faster (often 10–15 prompts) than lightweight text requests (up to 45 prompts).
+3. **The 5-Hour + Weekly Ceiling:** Pro ($20) enforces both a 5-hour rolling prompt window and a weekly active compute hour cap. Max plans (Max 5x at $100/mo and Max 20x at $200/mo) scale the rolling window up to ~900 prompts per window and scale the weekly ceiling accordingly.
+4. **Programmatic / Headless Split (15 Jun 2026):** To prevent automated CI/CD loops from paralyzing interactive subscriptions, Anthropic split programmatic use (`claude -p`, Agent SDK) into dedicated monthly dollar pools ($20 on Pro, $100 on Max 5x, $200 on Max 20x).
+5. **Free Tier:** Claude's free tier on claude.ai enforces dynamic 5-hour rolling limits (~10–30 messages per 5h) that throttle down during US weekday peak hours, falling back to smaller models when capacity is constrained.
+
+---
+
+## ChatGPT & Codex -- why it's worth a note
+
+OpenAI meters ChatGPT and its Codex coding agent through a combination of rolling windows and weekly model-specific quotas:
+
+1. **The 5-Hour Cap Fluctuation on Plus ($20):**
+   - **Mid-Jul 2026:** OpenAI removed the 5-hour rolling Codex cap during the GPT-5.6 Sol launch, consolidating usage into a single weekly quota.
+   - **25 Aug 2026:** OpenAI **restored the rolling window cap on Plus only** (~160 messages every 3 hours) after automated agent usage surged.
+   - **Pro Exemption:** Pro users ($100 / $200/mo) remain completely exempt from rolling 3h/5h caps, running unthrottled compute against monthly fair-use boundaries.
+2. **Weekly Reasoning Quotas:** Standard messaging is separated from deep reasoning models (e.g. GPT-5.5 Thinking), which carry strict weekly caps on Plus (~3,000 thinking messages/week).
+3. **Free Tier:** The free tier on chatgpt.com provides dynamic access to frontier models (falling back to mini models after ~10–16 messages per 3 hours during peak times).
+
+---
+
+## OpenCode & OpenCode Go -- why it's worth a note
+
+OpenCode demonstrates how to cleanly separate open-source tooling from inference subscriptions:
+
+1. **Free Open-Source Agent:** The OpenCode CLI/TUI is open source, completely free, and unmetered. It supports 75+ LLM providers via Bring-Your-Own-Key (BYOK), including zero-cost local inference through **Ollama**.
+2. **OpenCode Go ($10/mo):** An optional flat-rate subscription providing access to 18 hosted frontier open coding models (DeepSeek V4 Pro, Qwen3.8 Max, Grok 4.5, GLM-5.2, Kimi K3, GPT 5.6 Luna) through OpenCode Zen.
+3. **Dollar-Denominated Metering:** Unlike artificial "credits," OpenCode Go is metered directly in dollars of compute: **$12 per 5 hours**, **$30 per week**, and **$60 per month**. When enabled, overflow draws smoothly against a prepaid OpenCode Zen balance instead of hard-stopping midway through a code refactor.
 
 ---
 
