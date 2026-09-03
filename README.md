@@ -43,7 +43,7 @@ Full-featured AI chat interfaces with free tiers.
 
 Programmatic access to large language models with free quotas.
 
-- **[Google AI Studio](https://aistudio.google.com)** — Gemini API with a generous free quota — current Flash models (3.6 Flash, 2.5 Flash-Lite) are free; the Gemini 2.5 Pro/Flash endpoints retired June 17 2026. *Free API key with rate limits; no credit card.*
+- **[Google AI Studio](https://aistudio.google.com)** — Gemini API with a generous free quota (15 RPM, 1,500 RPD) — current Flash models (3.6 Flash, 2.5 Flash-Lite) are free; the Gemini 2.5 Pro/Flash endpoints retired June 17 2026. *Free API key: 15 RPM, 1,500 RPD, 1M TPM, 1M+ context; no credit card.*
 - **[Groq](https://console.groq.com)** — Blazing-fast inference for open models (Llama etc.). *Free tier: ~30 requests/min on open models.*
 - **[Together AI](https://api.together.xyz)** — Serverless inference for 100+ open-source models. *$5 free credit on signup.*
 - **[Mistral AI (La Plateforme)](https://console.mistral.ai)** — Access to Mistral models via API. *Free tier available.*

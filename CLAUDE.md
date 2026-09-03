@@ -15,6 +15,8 @@ A self-updating directory of free AI tools, served as a static web page driven b
 | `local_history.csv` | Append-only log of every add/remove/edit to `local_resources.csv` |
 | `CHANGELOG.md` | Human-readable summary of each refresh, newest first |
 | `QUOTAS.md` | Notes on how paid AI plans meter usage — quota models, not prices |
+| `quota_history.csv` | Append-only log of quantitative rate limits, credit pools, and quota transitions over time |
+| `quotas.py` | CLI/library to query, filter, and compare quantitative quota histories |
 | `README.md` | Markdown rendering of `resources.csv`, regenerated each refresh |
 | `update.py` | Interactive CLI for manual changes (writes history automatically) |
 | `sync_activity.py` | Syncs latest commit dates, stars, and model updates from GitHub/HuggingFace |
@@ -47,6 +49,11 @@ name, category, url, description, hardware_reqs, license, tags
 `history.csv` / `paid_history.csv` / `local_history.csv` columns:
 ```
 date, action, name, category, url, notes
+```
+
+`quota_history.csv` columns:
+```
+date, vendor, product, tier, feature_or_model, metric, limit_value, unit, window, change_type, notes
 ```
 
 

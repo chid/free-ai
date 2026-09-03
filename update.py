@@ -592,6 +592,7 @@ def main() -> None:
         print(" 13. Show local history")
         print(" 14. Run repo data audit")
         print(" 15. Sync GitHub/HuggingFace repo & model activity")
+        print(" 16. Explore quota history (quotas.py)")
         print("  0. Quit")
         choice = input("Choice: ").strip()
 
@@ -629,6 +630,12 @@ def main() -> None:
                 sync_activity.sync_activity()
             except ImportError:
                 print("  sync_activity.py not found.")
+        elif choice == "16":
+            try:
+                import quotas
+                quotas.cmd_summary(None, quotas.load_quota_history())
+            except Exception as e:
+                print(f"  Error running quotas: {e}")
         elif choice in ("0", "q", "quit", "exit"):
             break
 

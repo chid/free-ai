@@ -50,3 +50,4 @@ date,action,name,category,url,notes
 2026-08-28,edit,GitHub Copilot,Code Assistant,https://github.com/features/copilot,"free tier unchanged, but paid plans moved to token-based AI Credits on June 1 2026; completions never draw down credits — see QUOTAS.md"
 2026-08-28,remove,Notion AI,Productivity,https://notion.so,"no genuine free tier — the Free plan gets a capped AI trial, not the assistant; moved to paid_resources.csv"
 2026-08-28,edit,ChatGPT,LLM Chatbot,https://chat.openai.com,"noted OpenAI policy commitment that ChatGPT core chat functionality remains free forever (with standard rate limits on latest frontier models)"
+2026-09-03,edit,Google AI Studio,LLM API,https://aistudio.google.com,"free_tier clarified with exact quantitative rate limits: 15 RPM, 1,500 RPD, 1M TPM, 1M+ context; tracking in quota_history.csv"

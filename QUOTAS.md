@@ -31,6 +31,7 @@ compute did you consume".
 
 | Date | Change |
 |---|---|
+| **14 May 2024** | Google AI Studio introduces Gemini 1.5 Flash free tier: 15 RPM, 1M TPM, 1,500 RPD, and 1M context. |
 | **Mar 2026** | Anthropic reduces Claude Code 5-hour limits during weekday peak hours (5-11 AM PT). |
 | **19 Mar 2026** | Windsurf retires credits entirely, moving to daily + weekly quotas. Pro goes $15 -> $20. |
 | **Apr 2026** | GitHub pauses new individual Copilot signups; reopens gradually from 17 June. |
@@ -38,6 +39,7 @@ compute did you consume".
 | **13 May 2026** | Claude Code weekly limits run 50% above published standard -- extended three times, most recently on 19 Aug through 31 Aug 2026, with Anthropic saying it hopes to make it permanent. |
 | **1 Jun 2026** | GitHub Copilot replaces premium-request quotas with token-based **AI Credits** on all plans. Inline completions and next-edit suggestions stay free and never touch the balance. |
 | **15 Jun 2026** | Anthropic splits programmatic use off the subscription: Agent SDK calls, `claude -p` headless mode and third-party Agent-SDK tools draw from a **separate monthly credit pool** ($20 Pro / $100 Max 5x / $200 Max 20x). |
+| **17 Jun 2026** | Google AI Studio deprecates legacy Gemini 2.5 Pro and Flash endpoints; active Flash models (3.6 Flash, 2.5 Flash-Lite) standardize at 15 RPM, 1M TPM, 1,500 RPD with up to 2M context. |
 | **Mid-Jul 2026** | OpenAI drops the 5-hour Codex cap alongside GPT-5.6 Sol, leaving a single weekly quota. |
 | **25 Aug 2026** | OpenAI restores the 5-hour cap for Codex and ChatGPT Work on **Plus only**; Pro ($100/$200) keeps it disabled. |
 
@@ -47,6 +49,7 @@ compute did you consume".
 
 | Tool | Plans | Metered by | Notes |
 |---|---|---|---|
+| **Google AI Studio (Gemini)** | Free API key (per-project) / Pay-as-you-go | **Tri-metered**: RPM (15), TPM (1M), RPD (1,500) | Limits apply at the **Google Cloud project level** across all keys. Flash models get 1,500 requests/day, up to 2M tokens context, and free 2GB temporary file uploads. Pro models are tightly throttled (2 RPM, 50 RPD). **Privacy tradeoff**: on the free tier, prompts and responses may be human-reviewed and used to train Google products; attaching billing removes training use but converts calls to pay-as-you-go. |
 | **Claude Code** | Pro $20 / Max 5x $100 / Max 20x $200 | 5-hour rolling window **and** a weekly cap on active compute hours | Window starts on your first prompt, not a fixed clock. The bucket is **shared** across Claude Code, claude.ai and Cowork. Roughly 10-45 prompts per window on Pro, up to ~900 on Max 20x. Programmatic use is a separate pool (see 15 Jun). |
 | **ChatGPT / Codex** | Plus $20 / Pro $100 / $200 | Rolling window + weekly quota, per surface | Plus: ~160 GPT-5.5 messages/3h, ~3,000 GPT-5.5 Thinking/week. Codex 5-hour cap is back on Plus as of 25 Aug; Pro is exempt. Overflow is buyable as credits. |
 | **GitHub Copilot** | Free / Pro $10 / Pro+ $39 / Max $100 | Token-based **AI Credits** | Pro includes $10/mo of credits, Pro+ $70. Chat, agent mode, code review and Copilot CLI draw down; **completions do not**. Free plan still 2,000 completions + 50 chats/month. |
@@ -71,6 +74,57 @@ $12 per 5 hours, $30 per week, $60 per month of actual inference spend, with the
 option to spill over onto a prepaid balance instead of hard-stopping. A user can
 read that limit and know exactly what they're getting, which is more than can be
 said for most credit systems.
+
+---
+
+## Google AI Studio -- why it's worth a note
+
+Google AI Studio represents the opposite extreme of the subscription clampdown:
+while developer coding subscriptions moved to restrictive 5-hour rolling windows
+or token credit burn-downs, Google continues to offer one of the most generous
+free developer tiers in the industry.
+
+Current Flash models (such as 3.6 Flash and 2.5 Flash-Lite) provide **15 RPM**,
+**1,000,000 TPM**, and **1,500 requests per day** with up to a **2M token context window**,
+free multimodal ingestion (audio and up to 1h video), structured JSON output,
+function calling, and a free 2GB temporary **Files API** (48h retention).
+
+However, two architectural nuances are essential to understand:
+1. **Limits are per Google Cloud Project, not per key.** Creating 5 API keys
+   in the same project still draws from the single shared 1,500 RPD bucket.
+2. **The Data Privacy Trade-off.** On the Free tier, prompts and responses
+   **may be reviewed by human reviewers and used by Google to train and improve models**.
+   Attaching billing removes the training clause, but immediately removes the free tier
+   allowance, switching all calls to pay-as-you-go. For clean separation, keep separate
+   free prototyping projects and paid production projects.
+
+---
+
+## Quantitative Quota Tracking (`quota_history.csv`)
+
+To quantitatively explore how quotas, rate limits, credit pools, and token buckets have shifted across vendors over time, this repository maintains an append-only time-series dataset in [`quota_history.csv`](quota_history.csv).
+
+### Using the CLI (`quotas.py`)
+
+You can inspect, query, and compare historical and active quotas using `quotas.py`:
+
+```bash
+# 1. View current active quotas across all providers and tiers:
+python3 quotas.py summary
+
+# 2. View full timeline of changes for a specific vendor or tool:
+python3 quotas.py history --product "Google"
+python3 quotas.py history --product "Claude"
+
+# 3. Filter by metric type (requests, tokens, credits_usd, compute_hours):
+python3 quotas.py history --metric requests
+
+# 4. Compare free-tier vs paid-tier rate limits side-by-side:
+python3 quotas.py compare
+
+# 5. Output structured JSON for graphing or analysis:
+python3 quotas.py history --product "Google" --json
+```
 
 ---
 
