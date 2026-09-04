@@ -4,7 +4,7 @@
 
 Free tiers change fast — tools get paywalled, rebranded, or shut down. This list captures what was on offer at the time of each update, with every change tracked in [`history.csv`](history.csv) and summarised in [`CHANGELOG.md`](CHANGELOG.md). Think of it less as a permanent directory and more as a dated edition: accurate when written, audited on refresh.
 
-**71 resources** across 16 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on. Dedicated local & self-hosted runners and models live in [`local_resources.csv`](local_resources.csv) (37 tools), tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv) (6 of them), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
+**66 resources** across 15 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on. Dedicated local & self-hosted runners and models live in [`local_resources.csv`](local_resources.csv) (50 tools), tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv) (28 of them), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
 
 
 ---
@@ -20,7 +20,6 @@ Free tiers change fast — tools get paywalled, rebranded, or shut down. This li
 - [Video Generation](#video-generation)
 - [Audio & Voice](#audio--voice)
 - [Music Generation](#music-generation)
-- [Local & Self-hosted](#local--self-hosted)
 - [Search & Research](#search--research)
 - [Productivity](#productivity)
 - [Frameworks](#frameworks)
@@ -94,7 +93,6 @@ Generate full UIs and apps from a prompt in the browser.
 
 Text-to-image tools that are free or have a meaningful free tier.
 
-- **[Stable Diffusion (via DiffusionBee)](https://diffusionbee.com)** — Run Stable Diffusion locally on Mac. *Completely free.*
 - **[Adobe Firefly](https://firefly.adobe.com)** — Adobe's generative image tools. *Free credits monthly.*
 - **[Microsoft Designer](https://designer.microsoft.com)** — AI image generation via DALL-E. *Free tier available.*
 - **[Ideogram](https://ideogram.ai)** — Text-to-image with strong typography. *Free tier available.*
@@ -126,14 +124,6 @@ Generate original music from text prompts.
 - **[Suno](https://suno.com)** — AI music generation from text prompts; free-tier tracks stream and share on Suno but can no longer be downloaded. *Free: 50 credits/day (~10 songs); no downloads, no commercial use.*
 - **[Udio](https://udio.com)** — AI music generation and remixing. *Free: 10 songs/month.*
 
-## Local & Self-hosted
-
-Run models on your own hardware — no API keys, no data leaving your machine.
-
-- **[Ollama](https://ollama.com)** — Run LLMs locally with a simple CLI. *Completely free.*
-- **[LM Studio](https://lmstudio.ai)** — Desktop app to download and run local models. *Completely free.*
-- **[Jan](https://jan.ai)** — Offline-first AI assistant with local model support. *Completely free.*
-- **[GPT4All](https://gpt4all.io)** — Run LLMs locally on CPU/GPU. *Completely free.*
 
 ## Search & Research
 

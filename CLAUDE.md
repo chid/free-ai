@@ -120,8 +120,20 @@ updates.
 
 Audio / Music, Audio / Voice, Code / UI, Code Assistant, Image Generation,
 LLM API, LLM Chatbot, LLM Router, LLM Client, Agent Framework, RAG Framework,
-Prompt Optimization, Local / Self-hosted, Productivity, Search / Research,
+Prompt Optimization, Productivity, Search / Research,
 Video Generation
+
+### One tool, one pathway
+
+`Local / Self-hosted` was retired from `resources.csv` on 2026-09-05. Anything that
+runs on the reader's own hardware belongs in `local_resources.csv` — it has the
+`hardware_reqs` and `license` columns that make a local tool useful, which the free
+schema does not. Before adding a row to any pathway, check the other two for the same
+name or URL.
+
+Freemium tools are the deliberate exception: a genuinely free tier in `resources.csv`
+alongside a separately-named paid plan in `paid_resources.csv` (e.g. `Claude (Anthropic)`
+and `Claude Pro / Team / Max`) is correct and intended.
 
 ## Paid-tool categories (current)
 

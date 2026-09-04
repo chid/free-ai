@@ -1,5 +1,5 @@
 name,category,url,description,free_tier,requires_signup,tags
-Claude (Anthropic),LLM Chatbot,https://claude.ai,Anthropic's AI assistant — strong reasoning and long context,"Free tier with dynamic 5-hour rolling limits (~10-30 msgs/5h)",Yes,"chat,reasoning,coding,writing"
+Claude (Anthropic),LLM Chatbot,https://claude.ai,Anthropic's AI assistant — strong reasoning and long context,Free tier with dynamic 5-hour rolling limits (~10-30 msgs/5h),Yes,"chat,reasoning,coding,writing"
 ChatGPT,LLM Chatbot,https://chat.openai.com,OpenAI's flagship assistant,"Free tier with capped frontier model access (~10-16 msgs/3h, fallback to mini models)",Yes,"chat,coding,writing,image"
 Gemini,LLM Chatbot,https://gemini.google.com,Google's multimodal AI assistant,Free tier available,Yes,"chat,multimodal,coding,search"
 Google AI Studio,LLM API,https://aistudio.google.com,"Gemini API with a generous free quota (15 RPM, 1,500 RPD) — current Flash models (3.6 Flash, 2.5 Flash-Lite) are free; the Gemini 2.5 Pro/Flash endpoints retired June 17 2026","Free API key: 15 RPM, 1,500 RPD, 1M TPM, 1M+ context; no credit card",Yes,"api,gemini,prototyping"
@@ -12,11 +12,6 @@ OpenRouter,LLM API,https://openrouter.ai,Unified API routing to many models; com
 Perplexity AI,Search / Research,https://www.perplexity.ai,AI-powered search with cited answers,Free tier available,No,"search,research,citations"
 You.com,Search / Research,https://you.com,AI search engine with conversational interface,Free,No,"search,research,chat"
 Phind,Search / Research,https://www.phind.com,Developer-focused AI search and coding assistant,Free,No,"search,coding,developer"
-Ollama,Local / Self-hosted,https://ollama.com,Run LLMs locally with a simple CLI,Completely free,No,"local,open-source,llama,mistral,privacy"
-LM Studio,Local / Self-hosted,https://lmstudio.ai,Desktop app to download and run local models,Completely free,No,"local,desktop,open-source,privacy"
-Jan,Local / Self-hosted,https://jan.ai,Offline-first AI assistant with local model support,Completely free,No,"local,desktop,open-source,privacy"
-GPT4All,Local / Self-hosted,https://gpt4all.io,Run LLMs locally on CPU/GPU,Completely free,No,"local,desktop,cpu,privacy"
-Stable Diffusion (via DiffusionBee),Image Generation,https://diffusionbee.com,Run Stable Diffusion locally on Mac,Completely free,No,"image,local,mac,art"
 Adobe Firefly,Image Generation,https://firefly.adobe.com,Adobe's generative image tools,Free credits monthly,Yes,"image,art,design"
 Microsoft Designer,Image Generation,https://designer.microsoft.com,AI image generation via DALL-E,Free tier available,Yes,"image,art,design"
 Ideogram,Image Generation,https://ideogram.ai,Text-to-image with strong typography,Free tier available,Yes,"image,art,text,typography"

@@ -88,6 +88,25 @@ Fills four previously-empty local categories:
 - **ExLlamaV2 → ExLlamaV3** — ExLlamaV2 was archived by its maintainer in March 2026; development continues on ExLlamaV3 (new EXL3 quant format, same MIT license).
 - **Text Generation WebUI → TextGen (oobabooga)** — project renamed and repo moved to `oobabooga/textgen` in 2026, now ships a native Electron desktop app and an OpenAI/Anthropic-compatible API; license unchanged (AGPL-3.0).
 
+## [2026-09-05] — Pathway cleanup
+
+Five tools were listed twice, once in the free list and once in the local list. The free
+list's `Local / Self-hosted` category had been doing the job `local_resources.csv` now does
+properly, with hardware requirements and licences per tool.
+
+That category is retired. Ollama, LM Studio, Jan, GPT4All and Stable Diffusion (via
+DiffusionBee, listed there as `DiffusionBee`) were removed from `resources.csv`; all five
+were already present in the local pathway, so nothing was lost. Free resources drop
+71 → 66, and no tool is now listed in more than one pathway.
+
+Counts in `README.md` were also stale and have been corrected to 66 free, 50 local,
+28 paid.
+
+Freemium pairs such as `Claude (Anthropic)` / `Claude Pro / Team / Max` are untouched —
+a free tier and a separately-named paid plan are intended to coexist.
+
+---
+
 ## [2026-08] — August 2026 refresh
 
 71 free resources (was 65), 6 paid (was 0).

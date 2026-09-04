@@ -40,5 +40,3 @@ date,action,name,category,url,notes
 2026-09-03,add,SWE-agent,Code Assistant,https://github.com/princeton-nlp/SWE-agent,Princeton agent harness turning LLMs into software engineers for GitHub issues
 2026-09-03,add,Roo Code,Code Assistant,https://github.com/RooVetGit/Roo-Code,Autonomous coding agent harness for VS Code with custom modes and MCP tools
 2026-09-03,add,Goose,Agent Framework,https://github.com/aaif-goose/goose,Block and Linux Foundation AAIF open-source developer agent harness with MCP
-
-
