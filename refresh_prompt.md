@@ -123,4 +123,4 @@ Output a summary (also paste it into the PR body above):
 
 Open a Claude Code session in this project directory and paste the prompt above.
 
-Or use the scheduled agent (see `CLAUDE.md`) which runs this automatically.
+Or use the scheduled agent (see `AGENTS.md`) which runs this automatically.
