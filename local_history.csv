@@ -40,5 +40,7 @@ date,action,name,category,url,notes
 2026-09-03,add,SWE-agent,Code Assistant,https://github.com/princeton-nlp/SWE-agent,Princeton agent harness turning LLMs into software engineers for GitHub issues
 2026-09-03,add,Roo Code,Code Assistant,https://github.com/RooVetGit/Roo-Code,Autonomous coding agent harness for VS Code with custom modes and MCP tools
 2026-09-03,add,Goose,Agent Framework,https://github.com/aaif-goose/goose,Block and Linux Foundation AAIF open-source developer agent harness with MCP
-
-
+2026-09-05,add,TokenSpeed,Serving Engine,https://github.com/lightseekorg/tokenspeed,"MIT-licensed agentic inference engine with separated control/execution planes; 2.1k stars, daily commits through Sep 4 2026"
+2026-09-05,add,Atomic Chat,Desktop Client,https://github.com/AtomicBot-ai/Atomic-Chat,"Offline-first desktop/mobile LLM chat app forked from Jan and since diverged into its own engine; ~1.4k stars, Apache-2.0, commits through Sep 4 2026"
+2026-09-05,add,LocalScore,Hardware / Benchmarking,https://github.com/cjpais/LocalScore,"Mozilla Builders local LLM throughput/latency benchmark CLI with public leaderboard; fills the previously-empty Hardware / Benchmarking category"
+2026-09-05,add,NeuTTS Air,Audio & Speech,https://github.com/neuphonic/neutts-air,"748M-param on-device TTS model with 3-second voice cloning, runs real-time on CPU alone; Apache-2.0, commits through Jul 22 2026"

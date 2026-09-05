@@ -9,6 +9,21 @@ files are append-only and are the source of truth. This file is the human-readab
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
+## [2026-09] — Weekly local refresh: benchmarking & on-device TTS
+
+54 local tools (was 50). Filled the previously-empty **Hardware / Benchmarking** category and added a CPU-only on-device TTS model. Also normalized `local_resources.csv` and `local_history.csv` to LF line endings and removed a stray mid-file blank row and trailing blank lines that had crept in from earlier edits — no content changed.
+
+### Added
+- **TokenSpeed** (LightSeek) — Agentic LLM inference engine separating a C++ control-plane state machine from a Python execution plane; targets TensorRT-LLM-class latency with vLLM-like usability on datacenter GPUs.
+- **Atomic Chat** — Offline-first desktop/mobile LLM chat app with a Hugging Face model browser and local OpenAI-compatible server; began as a fork of Jan and has since diverged into its own engine and roadmap.
+- **LocalScore** (Mozilla Builders) — Open-source CLI benchmark, built on llamafile, that measures local LLM throughput/latency on your own hardware against a public leaderboard.
+- **NeuTTS Air** (Neuphonic) — 748M-parameter on-device text-to-speech model with 3-second voice cloning that runs in real time on CPU alone.
+
+### Flagged for follow-up (not changed here)
+- `resources.csv` still lists **Ollama**, **LM Studio**, **Jan**, **GPT4All**, and **Stable Diffusion (via DiffusionBee)** under its "Local / Self-hosted" / "Image Generation" categories at the exact same URLs as their `local_resources.csv` entries — a one-tool-two-pathways duplication, not a freemium pair. Recommend removing these five rows from `resources.csv` since each runs entirely on the reader's own hardware.
+- **GPT4All**'s last commit is May 27, 2025 (15+ months stale) with multiple unanswered "is this dead?" issues, though the repo is not formally archived — worth a manual look before citing it as actively maintained.
+- The local-tool category taxonomy in current use (`Open Weights (LLM)`, `Vision & Multimodal`, `Image & Video Gen`, `Audio & Speech`, `Evaluation & Harnesses`) has drifted from the list documented in `CLAUDE.md` / `local_refresh_prompt.md` (`Image / Audio / Video`, no model/vision/eval categories at all). This refresh followed the categories already established in the data for consistency; recommend reconciling the docs with reality.
+
 ## [2026-09] — AI Agent & Coding Harnesses addition
 
 50 local tools (was 37). Added dedicated tracking for both **Autonomous Coding Agent Harnesses** (modular terminal runtimes turning LLMs into software engineers) and **Evaluation & Benchmark Harnesses**.
