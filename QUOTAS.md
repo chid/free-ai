@@ -1,6 +1,6 @@
 # Quota Notes -- Paid AI, 2026
 
-*Last reviewed: 28 August 2026.*
+*Last reviewed: 10 September 2026.*
 
 This file tracks **how paid AI tools meter usage**, not what they cost. Headline
 prices have barely moved in 2026 -- $20/month is still the anchor for a pro plan.
@@ -34,14 +34,20 @@ compute did you consume".
 | **14 May 2024** | Google AI Studio introduces Gemini 1.5 Flash free tier: 15 RPM, 1M TPM, 1,500 RPD, and 1M context. |
 | **Mar 2026** | Anthropic reduces Claude Code 5-hour limits during weekday peak hours (5-11 AM PT). |
 | **19 Mar 2026** | Windsurf retires credits entirely, moving to daily + weekly quotas. Pro goes $15 -> $20. |
+| **1-7 Apr 2026** | Google removes Gemini Pro models (2.5 Pro / 3 Pro / 3.1 Pro) from the AI Studio free tier; free tier becomes Flash/Flash-Lite/Gemma only. |
 | **Apr 2026** | GitHub pauses new individual Copilot signups; reopens gradually from 17 June. |
 | **6 May 2026** | Anthropic permanently doubles Claude Code's 5-hour limits (weekly cap unchanged). |
 | **13 May 2026** | Claude Code weekly limits run 50% above published standard -- extended three times, most recently on 19 Aug through 31 Aug 2026, with Anthropic saying it hopes to make it permanent. |
+| **15 May 2026** | Amazon closes new Amazon Q Developer free-tier signups; full end of support 30 Apr 2027. Kiro is the replacement. |
 | **1 Jun 2026** | GitHub Copilot replaces premium-request quotas with token-based **AI Credits** on all plans. Inline completions and next-edit suggestions stay free and never touch the balance. |
 | **15 Jun 2026** | Anthropic splits programmatic use off the subscription: Agent SDK calls, `claude -p` headless mode and third-party Agent-SDK tools draw from a **separate monthly credit pool** ($20 Pro / $100 Max 5x / $200 Max 20x). |
-| **17 Jun 2026** | Google AI Studio deprecates legacy Gemini 2.5 Pro and Flash endpoints; active Flash models (3.6 Flash, 2.5 Flash-Lite) standardize at 15 RPM, 1M TPM, 1,500 RPD with up to 2M context. |
+| **17 Jun 2026** | Google AI Studio standardises active Flash models (3.6 Flash, 2.5 Flash-Lite) at 15 RPM, 1M TPM, 1,500 RPD with up to 2M context. (An earlier version of this file claimed 2.5 Pro/Flash endpoints were *retired* on this date -- wrong; that date traces to the June 2025 release. The real tightening was 1-7 Apr above and 19 Jun below.) |
+| **19 Jun 2026** | Google blocks unrestricted AI Studio API keys and stops publishing static free-tier quotas; limits are in-account only from here on. |
 | **Mid-Jul 2026** | OpenAI drops the 5-hour Codex cap alongside GPT-5.6 Sol, leaving a single weekly quota. |
 | **25 Aug 2026** | OpenAI restores the 5-hour cap for Codex and ChatGPT Work on **Plus only**; Pro ($100/$200) keeps it disabled. |
+| **Sep 2026** | Hugging Face Inference Providers moves free access from open rate limits to credits: **$0.10/month** of compute credits, pay-as-you-go beyond. |
+| **Sep 2026** | Kling ties daily login credit grants to paying subscribers; the free tier drops to ~66 credits/month (the old "66 credits/day" figure traced to the $1=66-credit purchase rate). |
+| **Sep 2026** | ElevenLabs re-denominates the free tier from 10k chars/month to 10k unified credits usable across TTS, STT, SFX and music. |
 
 ---
 
@@ -49,10 +55,10 @@ compute did you consume".
 
 | Tool | Plans | Metered by | Notes |
 |---|---|---|---|
-| **Google AI Studio (Gemini)** | Free API key (per-project) / Pay-as-you-go | **Tri-metered**: RPM (15), TPM (1M), RPD (1,500) | Limits apply at the **Google Cloud project level** across all keys. Flash models get 1,500 requests/day, up to 2M tokens context, and free 2GB temporary file uploads. Pro models are tightly throttled (2 RPM, 50 RPD). **Privacy tradeoff**: on the free tier, prompts and responses may be human-reviewed and used to train Google products; attaching billing removes training use but converts calls to pay-as-you-go. |
+| **Google AI Studio (Gemini)** | Free API key (per-project) / Pay-as-you-go | **Tri-metered**: RPM (15), TPM (1M), RPD (1,500) | Limits apply at the **Google Cloud project level** across all keys. Flash models get 1,500 requests/day, up to 2M tokens context, and free 2GB temporary file uploads. **Sep 2026 caveats**: Pro models are no longer on the free tier at all (since Apr 2026); unrestricted API keys are blocked (since 19 Jun 2026); Google no longer publishes these static figures -- verify them in-account. **Privacy tradeoff**: on the free tier, prompts and responses may be human-reviewed and used to train Google products; attaching billing removes training use but converts calls to pay-as-you-go. |
 | **Claude Code** | Pro $20 / Max 5x $100 / Max 20x $200 | 5-hour rolling window **and** a weekly cap on active compute hours | Window starts on your first prompt, not a fixed clock. The bucket is **shared** across Claude Code, claude.ai and Cowork. Roughly 10-45 prompts per window on Pro, up to ~900 on Max 20x. Programmatic use is a separate pool (see 15 Jun). |
 | **ChatGPT / Codex** | Plus $20 / Pro $100 / $200 | Rolling window + weekly quota, per surface | Plus: ~160 GPT-5.5 messages/3h, ~3,000 GPT-5.5 Thinking/week. Codex 5-hour cap is back on Plus as of 25 Aug; Pro is exempt. Overflow is buyable as credits. |
-| **GitHub Copilot** | Free / Pro $10 / Pro+ $39 / Max $100 | Token-based **AI Credits** | Pro includes $10/mo of credits, Pro+ $70. Chat, agent mode, code review and Copilot CLI draw down; **completions do not**. Free plan still 2,000 completions + 50 chats/month. |
+| **GitHub Copilot** | Free / Pro $10 / Pro+ $39 / Max $100 | Token-based **AI Credits** | Pro includes $10/mo of credits, Pro+ $70. Chat, agent mode, code review and Copilot CLI draw down; **completions do not**. Free plan: 2,000 completions/month unmetered -- chat/agent/CLI draw on a monthly AI Credits allowance whose size GitHub no longer publishes (the old "50 chats/month" figure has been dropped from the docs). |
 | **Cursor** | Free (Hobby) / Hobby $10 / Pro $20 / Pro+ $60 / Business $40/seat / Ultra $200 | Monthly credit pool | Replaced the old "fast requests" count -- the change that caused the most confusion. Frontier models sit behind Max Mode multipliers, which accelerates burn. Hobby limits are account-specific and not published as fixed numbers. |
 | **Windsurf** | Free / Pro $20 / Max $200 / Teams $40/user | Daily + weekly quotas | Credits gone since 19 Mar. Free keeps unlimited Tab autocomplete and inline edits plus ~25 Cascade Flow Actions/month. |
 | **OpenCode Go** | $5 first month, then $10/mo | **Dollar-denominated**: $12 per 5 hours, $30/week, $60/month | The clearest example of the shift -- the quota is literally priced in dollars of inference. One key, 18 open models via OpenCode Zen. Overflow falls back to your Zen balance if "Use balance" is on. Current model agreement runs through 31 Aug 2026. |
@@ -100,6 +106,10 @@ Google AI Studio represents the opposite extreme of the subscription clampdown:
 while developer coding subscriptions moved to restrictive 5-hour rolling windows
 or token credit burn-downs, Google continues to offer one of the most generous
 free developer tiers in the industry.
+
+*Sep 2026 update: that claim is softening. Pro models left the free tier (Apr
+2026) and unrestricted API keys were blocked (19 Jun 2026); the static figures
+below are the last published values -- Google now shows quotas in-account only.*
 
 Current Flash models (such as 3.6 Flash and 2.5 Flash-Lite) provide **15 RPM**,
 **1,000,000 TPM**, and **1,500 requests per day** with up to a **2M token context window**,
@@ -166,7 +176,7 @@ python3 quotas.py history --product "Google" --json
 
 ## Sources
 
-Reviewed August 2026. These change often -- re-verify before relying on a number.
+Reviewed September 2026. These change often -- re-verify before relying on a number.
 
 - [Claude Code rate limits & usage quotas](https://www.truefoundry.com/blog/claude-code-limits-explained) | [Claude usage limits, dated timeline](https://explainx.ai/blog/claude-usage-limits-2026-timeline-explained)
 - [The flat-rate AI coding subscription era is ending](https://medium.com/activated-thinker/the-flat-rate-ai-coding-subscription-era-is-ending-what-github-copilot-claude-code-and-cursor-9763e043a63a)
@@ -174,4 +184,6 @@ Reviewed August 2026. These change often -- re-verify before relying on a number
 - [OpenAI restores 5-hour Codex limits for Plus](https://9to5mac.com/2026/08/24/openai-restores-5-hour-codex-and-work-limits-for-chatgpt-plus-users/) | [ChatGPT Plus limits 2026](https://customgpt.ai/chatgpt-plus-limits-2026/)
 - [Cursor pricing 2026](https://www.nxcode.io/resources/news/cursor-ai-pricing-plans-guide-2026) | [Windsurf pricing 2026](https://www.nocode.mba/articles/windsurf-pricing)
 - [OpenCode Go docs](https://opencode.ai/go) | [OpenCode Go pricing, limits & models](https://hackup.ai/ai-plans/opencode/)
+- [Gemini API deprecations](https://ai.google.dev/gemini-api/docs/deprecations) | [Hugging Face Inference Providers pricing](https://huggingface.co/docs/inference-providers/en/pricing)
+- [Kling credits policy](https://kling.ai/docs/point-policy) | [Amazon Q Developer end-of-support announcement](https://aws.amazon.com/blogs/devops/amazon-q-developer-end-of-support-announcement/)
 

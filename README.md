@@ -1,10 +1,10 @@
 # Awesome Free AI
 
-> A snapshot of genuinely free (or free-tier) AI tools, APIs, and platforms **as they existed in August 2026**.
+> A snapshot of genuinely free (or free-tier) AI tools, APIs, and platforms **as they existed in September 2026**.
 
 Free tiers change fast — tools get paywalled, rebranded, or shut down. This list captures what was on offer at the time of each update, with every change tracked in [`history.csv`](history.csv) and summarised in [`CHANGELOG.md`](CHANGELOG.md). Think of it less as a permanent directory and more as a dated edition: accurate when written, audited on refresh.
 
-**66 resources** across 15 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on. Dedicated local & self-hosted runners and models live in [`local_resources.csv`](local_resources.csv) (50 tools), tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv) (28 of them), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
+**72 resources** across 15 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on. Dedicated local & self-hosted runners and models live in [`local_resources.csv`](local_resources.csv) (54 tools), tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv) (28 of them), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
 
 
 ---
@@ -42,13 +42,13 @@ Full-featured AI chat interfaces with free tiers.
 
 Programmatic access to large language models with free quotas.
 
-- **[Google AI Studio](https://aistudio.google.com)** — Gemini API with a generous free quota (15 RPM, 1,500 RPD) — current Flash models (3.6 Flash, 2.5 Flash-Lite) are free; the Gemini 2.5 Pro/Flash endpoints retired June 17 2026. *Free API key: 15 RPM, 1,500 RPD, 1M TPM, 1M+ context; no credit card.*
+- **[Google AI Studio](https://aistudio.google.com)** — Gemini API with a free tier on current Flash models (3.x Flash, Flash-Lite, Gemma); Pro models moved to paid tiers in April 2026 and unrestricted API keys have been blocked since June 2026. *Free API key: Flash-family models only, quotas shown in-account (no published table since mid-2026); no credit card.*
 - **[Groq](https://console.groq.com)** — Blazing-fast inference for open models (Llama etc.). *Free tier: ~30 requests/min on open models.*
 - **[Together AI](https://api.together.xyz)** — Serverless inference for 100+ open-source models. *$5 free credit on signup.*
 - **[Mistral AI (La Plateforme)](https://console.mistral.ai)** — Access to Mistral models via API. *Free tier available.*
 - **[Cohere](https://dashboard.cohere.com)** — NLP-focused models for generation and embeddings. *Free trial key: 1000 calls/month, non-commercial use only.*
-- **[Hugging Face Inference API](https://huggingface.co/inference-api)** — Free serverless inference for thousands of public models. *Free with rate limits.*
-- **[OpenRouter](https://openrouter.ai)** — Unified API routing to many models; community-funded :free tier gives rate-limited access to many models. *Free tier: 14 models at ~50 requests/day (up to 1M context).*
+- **[Hugging Face Inference API](https://huggingface.co/inference-api)** — Serverless inference for thousands of public models; switched from rate-limit-based free access to monthly compute credits in 2026. *Free: $0.10/month in Inference Providers credits (pay-as-you-go beyond).*
+- **[OpenRouter](https://openrouter.ai)** — Unified API routing to many models; community-funded :free tier gives rate-limited access to many models. *Free tier: ~18 models at 50 requests/day, 1000/day with $10 lifetime credit (up to 1M context).*
 - **[Cerebras](https://cloud.cerebras.ai)** — Ultra-fast inference API for open models (Llama 4 and Qwen) via custom silicon. *Free tier: 1M tokens/day with no credit card.*
 - **[Chutes.ai](https://chutes.ai)** — Decentralised serverless inference on the Bittensor network — frequently hosts free or near-free DeepSeek and other open-model endpoints. *Free tier available; pricing fluctuates with network conditions.*
 - **[Puter.js](https://developer.puter.com)** — Browser-native JS library giving free access to DeepSeek V4 Flash/Pro and other models with no API key or server setup. *Completely free for developers; user-pays model covers costs.*
@@ -68,18 +68,20 @@ Put many providers behind one interface, with fallback and budget control.
 
 AI tools that live in your editor or terminal.
 
-- **[GitHub Copilot](https://github.com/features/copilot)** — AI code completion in your editor; completions stay free and unmetered, while chat, agent mode and CLI draw on AI Credits from June 2026. *Free for all users (2000 completions + 50 chats/month).*
+- **[GitHub Copilot](https://github.com/features/copilot)** — AI code completion in your editor; completions stay free and unmetered, while chat, agent mode and CLI draw on AI Credits from June 2026. *Free for all users: 2000 completions/month unmetered; chat, agent and CLI draw on a monthly AI Credits allowance.*
 - **[Windsurf (formerly Codeium)](https://windsurf.com)** — AI-native code editor with the agentic Cascade feature (Codeium rebranded); credit system retired March 2026 in favour of daily/weekly quotas. *Free tier: unlimited Tab autocomplete and inline edits + ~25 Cascade Flow Actions/month.*
 - **[Cursor](https://cursor.sh)** — AI-first code editor built on VS Code; free plan is now branded Hobby. *Free Hobby plan: limited Agent requests and Tab completions, no credit card.*
 - **[Continue](https://continue.dev)** — Open-source AI code assistant for VS Code / JetBrains. *Completely free.*
 - **[Aider](https://aider.chat)** — AI pair programming in your terminal. *Completely free (bring your own key).*
 - **[Antigravity](https://antigravity.google)** — Google's AI-native IDE and `agy` CLI that coordinate Manager/Writer/Critic/Tester agents; the official replacement for Gemini CLI. *Free with a personal Google account (generous Gemini quota).*
-- **[Amazon Q Developer](https://aws.amazon.com/q/developer)** — AWS's AI coding assistant with IDE inline suggestions and agentic coding in VS Code and JetBrains. *Free tier: unlimited completions + 50 agentic tasks/month.*
+- **[Kiro](https://kiro.dev)** — AWS's agentic IDE with spec-driven development and review-first agent runs; the replacement for Amazon Q Developer (sunsetting April 2027). *Free plan: $0/month with monthly credits, Claude Sonnet 4.5 and open-weight models.*
 - **[Freebuff](https://freebuff.com)** — AI coding agent that runs in your terminal — ad-supported so it costs nothing; built on Codebuff with specialised sub-agents for file picking, code review, and browser use. *Completely free (ad-supported in CLI).*
 - **[OpenCode](https://opencode.ai)** — Open-source terminal coding agent from the SST team with a TUI interface and support for 75+ LLMs including local models via Ollama; the optional OpenCode Go plan adds 18 hosted open models for $10/mo. *Completely free; bring your own key or use free providers.*
 - **[Cline](https://cline.bot)** — MIT-licensed autonomous coding agent for VS Code; the project most other VS Code agents were forked from. *Completely free; open-source (bring your own key).*
 - **[Kilo Code](https://kilo.ai)** — Open-source coding agent for VS Code, JetBrains, CLI and Slack with access to 500+ models at zero inference markup. *Completely free; open-source (bring your own key at list price).*
 - **[Zed](https://zed.dev)** — High-performance open-source editor written in Rust with native AI, MCP support and multiplayer editing. *Free Personal plan: 2000 edit predictions/month.*
+- **[Multi](https://multi.dev)** — AI coding agent for VS Code and JetBrains with checkpoints, worktree isolation and parallel sub-agents; BYOK across 100+ models. *Free for individual use — all features with no request limits (BYOK).*
+- **[Matilda (Maincode)](https://www.maincode.com/matilda-code)** — Australian sovereign-AI coding agent from Maincode — terminal CLI and desktop app that plans edits across your repo and opens PRs. *Free during Public Beta.*
 
 ## Code & UI Builders
 
@@ -106,7 +108,7 @@ AI tools for generating or editing video.
 - **[Runway](https://runwayml.com)** — AI video generation and editing tools. *Free tier (limited credits).*
 - **[CapCut](https://capcut.com)** — AI video editing with auto-captions and effects. *Free tier available.*
 - **[Descript](https://descript.com)** — AI video/audio editing with transcription. *Free tier available.*
-- **[Kling AI](https://kling.ai)** — High-quality text-to-video and image-to-video generation from Kuaishou. *Free tier: 66 credits/day (watermarked outputs).*
+- **[Kling AI](https://kling.ai)** — High-quality text-to-video and image-to-video generation from Kuaishou. *Free tier: ~66 credits/month (daily login grants are now tied to paid plans; watermarked outputs).*
 - **[Pika](https://pika.art)** — AI video generation and image-animation with text-to-video controls. *Free plan with monthly credits.*
 - **[Dreamina (Seedance 2.0)](https://dreamina.capcut.com)** — ByteDance's text- and image-to-video generator running the Seedance 2.0 model with native audio. *Free daily credits (~2-3 videos/day) at up to 1080p, watermark-free.*
 
@@ -114,7 +116,8 @@ AI tools for generating or editing video.
 
 Text-to-speech, voice cloning, and speech recognition.
 
-- **[ElevenLabs](https://elevenlabs.io)** — High-quality AI text-to-speech and voice cloning. *Free tier (10k chars/month).*
+- **[ElevenLabs](https://elevenlabs.io)** — High-quality AI text-to-speech and voice cloning. *Free tier (10k credits/month across TTS, STT, SFX and music).*
+- **[Fish Audio](https://fish.audio)** — High-quality TTS and voice cloning (S2.1 Pro) with a free flagship API tier available for an initial period. *Free: 8,000 credits/month (~7 min generation, 3 public voice slots), no credit card.*
 - **[Whisper (OpenAI)](https://github.com/openai/whisper)** — State-of-the-art open-source speech recognition. *Completely free.*
 
 ## Music Generation
@@ -123,6 +126,7 @@ Generate original music from text prompts.
 
 - **[Suno](https://suno.com)** — AI music generation from text prompts; free-tier tracks stream and share on Suno but can no longer be downloaded. *Free: 50 credits/day (~10 songs); no downloads, no commercial use.*
 - **[Udio](https://udio.com)** — AI music generation and remixing. *Free: 10 songs/month.*
+- **[Treblo](https://treblo.com)** — Turn prompts or your own lyrics into full songs with vocals in any genre (formerly Sonauto); output rights assigned to the user. *Completely free: unlimited songs on the Melodia v3 model, downloads in 5 formats.*
 
 
 ## Search & Research
@@ -153,6 +157,8 @@ Open-source libraries for building agents, RAG pipelines, and optimised prompts.
 - **[AgentScope](https://github.com/modelscope/agentscope)** 🇨🇳 — Alibaba's production-ready multi-agent framework with visual Studio UI and distributed execution support. *Completely free; open-source.*
 - **[LlamaIndex](https://llamaindex.ai)** — Framework for connecting LLMs to external data sources and building retrieval-augmented generation pipelines. *Completely free; open-source.*
 - **[DSPy](https://dspy.ai)** — Stanford framework for algorithmically optimizing LLM prompts and pipelines instead of hand-writing them. *Completely free; open-source.*
+- **[Hermes Agent](https://github.com/NousResearch/hermes-agent)** — Nous Research's self-improving personal agent with persistent cross-session memory, automatic skill creation and multi-channel support. *Completely free; open-source (MIT).*
+- **[m_flow](https://github.com/FlowElement-xinliuyuansu/m_flow)** — Bio-inspired cognitive memory and Graph-RAG engine with episodic and procedural memory; plugs into LangChain/LlamaIndex and MCP. *Completely free; open-source (Apache-2.0).*
 ---
 
 ## Contributing

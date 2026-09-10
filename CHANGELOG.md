@@ -9,6 +9,70 @@ files are append-only and are the source of truth. This file is the human-readab
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
+## [2026-09] — Free-list refresh: 7 additions, 1 removal, 6 tier corrections
+
+Snapshot moved from 66 to **72** free resources (66 → 65 after the Amazon Q
+removal, +7 new tools). Research verified against official pricing/docs pages on
+2026-09-10.
+
+### Added
+
+- **Kiro** (Code Assistant) — AWS's agentic IDE and the official replacement for
+  Amazon Q Developer; free $0 plan with monthly credits
+- **Hermes Agent** (Agent Framework) — Nous Research's MIT-licensed self-improving
+  personal agent with persistent memory and automatic skill creation
+- **Multi** (Code Assistant) — free for individual use, BYOK across 100+ models
+- **Treblo** (Audio / Music) — unlimited free songs on Melodia v3 (formerly Sonauto)
+- **Fish Audio** (Audio / Voice) — 8,000 credits/month free + free flagship API
+  (flagged by the vendor as "initial period"; watch for tightening)
+- **m_flow** (RAG Framework) — Apache-2.0 cognitive-memory / Graph-RAG engine
+- **Matilda (Maincode)** (Code Assistant) — Maincode's Australian sovereign-AI
+  coding agent (terminal CLI + desktop app); free during Public Beta
+
+### Removed
+
+- **Amazon Q Developer** — free-tier signups blocked since 15 May 2026; end of
+  support 30 Apr 2027. Replaced in the list by Kiro.
+
+### Tier corrections (verified 2026-09-10)
+
+- **Google AI Studio** — corrected a wrong note: Gemini 2.5 Pro/Flash endpoints
+  were *not* retired June 17 2026 (that was the 2025 release date). Real changes:
+  Gemini Pro models left the free tier ~Apr 2026 (free is now Flash/Flash-Lite/Gemma
+  only), Google no longer publishes static quota numbers, and unrestricted API keys
+  have been blocked since 19 Jun 2026
+- **Hugging Face Inference API** — now credits-based: $0.10/month free Inference
+  Providers credits instead of open rate-limited access
+- **Kling AI** — "66 credits/day" was a misread of the $1=66-credit purchase rate;
+  free tier is ~66 credits/month, daily grants now tied to paid plans
+- **GitHub Copilot** — the "50 chats/month" figure no longer appears in official
+  docs; chat/agent/CLI draw on an unpublished monthly AI Credits allowance
+- **OpenRouter** — :free pool grew from 14 to ~18 models (fluctuates); documented
+  the 1000/day limit for accounts with $10+ lifetime credit
+- **ElevenLabs** — free tier re-denominated from 10k chars/month to 10k
+  credits/month usable across TTS, STT, SFX and music
+
+### Checked and unchanged
+
+Windsurf, Cursor, Suno, Cloudflare Workers AI, Cerebras, SambaNova Cloud, Lovable,
+Zed, Groq, Mistral La Plateforme. Udio shows conflicting free-tier figures in
+third-party sources — left as-is pending an official source.
+
+## [2026-09] — Weekly local refresh: benchmarking & on-device TTS
+
+54 local tools (was 50). Filled the previously-empty **Hardware / Benchmarking** category and added a CPU-only on-device TTS model. Also normalized `local_resources.csv` and `local_history.csv` to LF line endings and removed a stray mid-file blank row and trailing blank lines that had crept in from earlier edits — no content changed.
+
+### Added
+- **TokenSpeed** (LightSeek) — Agentic LLM inference engine separating a C++ control-plane state machine from a Python execution plane; targets TensorRT-LLM-class latency with vLLM-like usability on datacenter GPUs.
+- **Atomic Chat** — Offline-first desktop/mobile LLM chat app with a Hugging Face model browser and local OpenAI-compatible server; began as a fork of Jan and has since diverged into its own engine and roadmap.
+- **LocalScore** (Mozilla Builders) — Open-source CLI benchmark, built on llamafile, that measures local LLM throughput/latency on your own hardware against a public leaderboard.
+- **NeuTTS Air** (Neuphonic) — 748M-parameter on-device text-to-speech model with 3-second voice cloning that runs in real time on CPU alone.
+
+### Flagged for follow-up (not changed here)
+- `resources.csv` still lists **Ollama**, **LM Studio**, **Jan**, **GPT4All**, and **Stable Diffusion (via DiffusionBee)** under its "Local / Self-hosted" / "Image Generation" categories at the exact same URLs as their `local_resources.csv` entries — a one-tool-two-pathways duplication, not a freemium pair. Recommend removing these five rows from `resources.csv` since each runs entirely on the reader's own hardware.
+- **GPT4All**'s last commit is May 27, 2025 (15+ months stale) with multiple unanswered "is this dead?" issues, though the repo is not formally archived — worth a manual look before citing it as actively maintained.
+- The local-tool category taxonomy in current use (`Open Weights (LLM)`, `Vision & Multimodal`, `Image & Video Gen`, `Audio & Speech`, `Evaluation & Harnesses`) has drifted from the list documented in `CLAUDE.md` / `local_refresh_prompt.md` (`Image / Audio / Video`, no model/vision/eval categories at all). This refresh followed the categories already established in the data for consistency; recommend reconciling the docs with reality.
+
 ## [2026-09] — AI Agent & Coding Harnesses addition
 
 50 local tools (was 37). Added dedicated tracking for both **Autonomous Coding Agent Harnesses** (modular terminal runtimes turning LLMs into software engineers) and **Evaluation & Benchmark Harnesses**.

@@ -47,3 +47,10 @@ date,vendor,product,tier,feature_or_model,metric,limit_value,unit,window,change_
 2026-08-25,OpenAI,ChatGPT / Codex,Plus ($20),Codex / Work,messages,160,per_3h,3h,decrease,Restored rolling window cap (~160 messages per 3h) on Plus; Pro ($100/$200) remains exempt
 2026-08-25,OpenAI,ChatGPT / Codex,Pro ($200),Codex / Work,messages,unlimited,per_5h,5h,init,Pro tier explicitly exempt from restored 5-hour Codex limits
 2026-08-28,OpenCode,OpenCode Go,Go ($10),18 Open Models,models,18,hosted_models,30d,init,"Hosted models include DeepSeek V4 Pro, Qwen3.8 Max, Grok 4.5, GLM-5.2, Kimi K3, GPT 5.6 Luna"
+2026-09-10,Google,Google AI Studio,Free,Gemini Pro (2.5 Pro / 3 Pro),models,0,hosted_models,30d,decrease,"Pro models removed from the free tier ~1-7 Apr 2026; free tier now Flash/Flash-Lite/Gemma only"
+2026-09-10,Google,Google AI Studio,Free,API keys (unrestricted),unrestricted_keys,0,keys,-,decrease,"Unrestricted API keys blocked since 19 Jun 2026; quotas moved in-account with no published table"
+2026-09-10,GitHub,Copilot,Free,Chat / Agent / CLI,credits_usd,unpublished,per_month,30d,restructure,"50 chats/month figure removed from docs; chat, agent and CLI now draw on an unpublished monthly AI Credits allowance"
+2026-09-10,Hugging Face,Inference Providers,Free,All providers,credits_usd,0.10,per_month,30d,restructure,"Free access moved from open rate limits to $0.10/month compute credits; pay-as-you-go beyond"
+2026-09-10,Kling,Kling AI,Free,Video generation,credits,66,per_month,30d,decrease,"66 credits/day was a misread of the $1=66-credit purchase rate; daily login grants now tied to paid plans; free tier ~66 credits/month"
+2026-09-10,ElevenLabs,ElevenLabs,Free,TTS / STT / SFX / music,credits,10000,per_month,30d,restructure,"Free tier re-denominated from 10k chars/month to 10k unified credits across TTS, STT, SFX and music"
+2026-09-10,OpenRouter,OpenRouter :free,Free,All :free models,models,18,hosted_models,1d,increase,":free model count 14 -> 18 as of 2026-09-10 (fluctuates); 50/day and 1000/day limits unchanged"
