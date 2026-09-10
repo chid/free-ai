@@ -53,3 +53,8 @@ date,action,name,category,url,notes
 2026-09-03,edit,Google AI Studio,LLM API,https://aistudio.google.com,"free_tier clarified with exact quantitative rate limits: 15 RPM, 1,500 RPD, 1M TPM, 1M+ context; tracking in quota_history.csv"
 2026-09-03,edit,Claude (Anthropic),LLM Chatbot,https://claude.ai,"clarified free tier rolling limits: dynamic 5-hour rolling windows (~10-30 msgs/5h); tracking in quota_history.csv"
 2026-09-03,edit,ChatGPT,LLM Chatbot,https://chat.openai.com,"clarified free tier limits: frontier access capped at ~10-16 msgs/3h before mini fallback; tracking in quota_history.csv"
+2026-09-05,remove,Ollama,Local / Self-hosted,https://ollama.com,"moved to local_resources.csv (as 'Ollama') — runs on your own hardware, so it belongs to the local pathway; a tool is listed in exactly one pathway"
+2026-09-05,remove,LM Studio,Local / Self-hosted,https://lmstudio.ai,"moved to local_resources.csv (as 'LM Studio') — runs on your own hardware, so it belongs to the local pathway; a tool is listed in exactly one pathway"
+2026-09-05,remove,Jan,Local / Self-hosted,https://jan.ai,"moved to local_resources.csv (as 'Jan') — runs on your own hardware, so it belongs to the local pathway; a tool is listed in exactly one pathway"
+2026-09-05,remove,GPT4All,Local / Self-hosted,https://gpt4all.io,"moved to local_resources.csv (as 'GPT4All') — runs on your own hardware, so it belongs to the local pathway; a tool is listed in exactly one pathway"
+2026-09-05,remove,Stable Diffusion (via DiffusionBee),Image Generation,https://diffusionbee.com,"moved to local_resources.csv (as 'DiffusionBee') — runs on your own hardware, so it belongs to the local pathway; a tool is listed in exactly one pathway"
