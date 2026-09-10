@@ -1,10 +1,10 @@
 # Awesome Free AI
 
-> A snapshot of genuinely free (or free-tier) AI tools, APIs, and platforms **as they existed in August 2026**.
+> A snapshot of genuinely free (or free-tier) AI tools, APIs, and platforms **as they existed in September 2026**.
 
 Free tiers change fast — tools get paywalled, rebranded, or shut down. This list captures what was on offer at the time of each update, with every change tracked in [`history.csv`](history.csv) and summarised in [`CHANGELOG.md`](CHANGELOG.md). Think of it less as a permanent directory and more as a dated edition: accurate when written, audited on refresh.
 
-**71 resources** across 15 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on. Dedicated local & self-hosted runners and models live in [`local_resources.csv`](local_resources.csv) (54 tools), tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv) (28 of them), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
+**72 resources** across 15 categories. Browse the [web view](index.html) for a filterable, searchable UI, or read on. Dedicated local & self-hosted runners and models live in [`local_resources.csv`](local_resources.csv) (54 tools), tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv) (28 of them), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
 
 
 ---
@@ -81,6 +81,7 @@ AI tools that live in your editor or terminal.
 - **[Kilo Code](https://kilo.ai)** — Open-source coding agent for VS Code, JetBrains, CLI and Slack with access to 500+ models at zero inference markup. *Completely free; open-source (bring your own key at list price).*
 - **[Zed](https://zed.dev)** — High-performance open-source editor written in Rust with native AI, MCP support and multiplayer editing. *Free Personal plan: 2000 edit predictions/month.*
 - **[Multi](https://multi.dev)** — AI coding agent for VS Code and JetBrains with checkpoints, worktree isolation and parallel sub-agents; BYOK across 100+ models. *Free for individual use — all features with no request limits (BYOK).*
+- **[Matilda (Maincode)](https://www.maincode.com/matilda-code)** — Australian sovereign-AI coding agent from Maincode — terminal CLI and desktop app that plans edits across your repo and opens PRs. *Free during Public Beta.*
 
 ## Code & UI Builders
 

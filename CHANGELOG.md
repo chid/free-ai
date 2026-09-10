@@ -9,10 +9,10 @@ files are append-only and are the source of truth. This file is the human-readab
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
-## [2026-09] — Free-list refresh: 6 additions, 1 removal, 6 tier corrections
+## [2026-09] — Free-list refresh: 7 additions, 1 removal, 6 tier corrections
 
-Snapshot moved from 66 to **71** free resources (66 → 65 after the Amazon Q
-removal, +6 new tools). Research verified against official pricing/docs pages on
+Snapshot moved from 66 to **72** free resources (66 → 65 after the Amazon Q
+removal, +7 new tools). Research verified against official pricing/docs pages on
 2026-09-10.
 
 ### Added
@@ -26,6 +26,8 @@ removal, +6 new tools). Research verified against official pricing/docs pages on
 - **Fish Audio** (Audio / Voice) — 8,000 credits/month free + free flagship API
   (flagged by the vendor as "initial period"; watch for tightening)
 - **m_flow** (RAG Framework) — Apache-2.0 cognitive-memory / Graph-RAG engine
+- **Matilda (Maincode)** (Code Assistant) — Maincode's Australian sovereign-AI
+  coding agent (terminal CLI + desktop app); free during Public Beta
 
 ### Removed
 

@@ -71,3 +71,4 @@ date,action,name,category,url,notes
 2026-09-10,add,Treblo,Audio / Music,https://treblo.com,"unlimited free song generation on Melodia v3 (formerly Sonauto); found via refresh"
 2026-09-10,add,Fish Audio,Audio / Voice,https://fish.audio,"TTS and voice cloning with 8k credits/month free plus a free flagship API tier; found via refresh"
 2026-09-10,add,m_flow,RAG Framework,https://github.com/FlowElement-xinliuyuansu/m_flow,"open-source cognitive memory and Graph-RAG engine; found via refresh"
+2026-09-10,add,Matilda (Maincode),Code Assistant,https://www.maincode.com/matilda-code,Maincode terminal CLI + desktop coding agent; free during Public Beta; added manually at user request
