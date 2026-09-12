@@ -58,6 +58,39 @@ Windsurf, Cursor, Suno, Cloudflare Workers AI, Cerebras, SambaNova Cloud, Lovabl
 Zed, Groq, Mistral La Plateforme. Udio shows conflicting free-tier figures in
 third-party sources — left as-is pending an official source.
 
+## [2026-09] — Weekly local refresh: RAG stores, agentic MoE, and new TTS/vision models
+
+60 local tools (was 54). Filled a gap in **Embeddings / RAG** (a self-hosted vector
+database alongside the existing embedding server) and added a frontier open-weight
+successor model, two new TTS projects, and a new open vision-language model.
+
+### Added
+- **GLM-5** (Z.ai) — Frontier-scale MoE model family for agentic coding and
+  long-horizon engineering, successor generation to GLM-4; GLM-5.3-Flash variant
+  runs on a single high-end consumer GPU.
+- **Qdrant** — Rust-based, self-hostable vector similarity search engine with
+  quantization and on-disk storage; fills the Embeddings / RAG category's
+  vector-store gap (the existing entry there is an embedding server, not a store).
+- **RAGFlow** — Self-hosted, deep-document RAG engine with agentic retrieval,
+  citation grounding, and a built-in agent/workflow layer.
+- **Chatterbox** (Resemble AI) — Open-source TTS with emotion control and instant
+  voice cloning; Multilingual v3 covers ~25 languages.
+- **MOSS-TTS** (OpenMOSS) — Open speech family spanning long-form TTS, dialogue
+  synthesis, voice design, sound effects, and realtime streaming, with CPU-only
+  and GGUF/ONNX deployment paths.
+- **LLaVA-OneVision-2** — Open 8B vision-language model unifying image, long-form
+  video, and 3D spatial reasoning in one architecture with a fully released
+  training pipeline.
+
+### Edited (drift)
+- **GLM-4 / GLM-Edge** and **CogVideoX** — both point to repos under the `THUDM`
+  GitHub org, which renamed to `zai-org` (the Zhipu AI / Z.ai rebrand). Updated
+  both URLs to the new org; content, license, and category are unchanged.
+
+### Cross-pathway check
+No duplicates found — none of this week's additions appear in `resources.csv` or
+`paid_resources.csv` by name or URL.
+
 ## [2026-09] — Weekly local refresh: benchmarking & on-device TTS
 
 54 local tools (was 50). Filled the previously-empty **Hardware / Benchmarking** category and added a CPU-only on-device TTS model. Also normalized `local_resources.csv` and `local_history.csv` to LF line endings and removed a stray mid-file blank row and trailing blank lines that had crept in from earlier edits — no content changed.
