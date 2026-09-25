@@ -9,6 +9,64 @@ files are append-only and are the source of truth. This file is the human-readab
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
+## [2026-09-25] — Weekly local refresh: containers, red-teaming, and a DeepSeek V4 update
+
+65 local tools (was 60). Verified the README's local/paid counts against the
+actual CSV row counts (65 local, 28 paid — the paid count was already correct;
+the earlier `paid_resources.csv` count checked out via `python3 update.py`'s
+audit, which skips a stray blank trailing line that a naive line count does
+not).
+
+### Added
+- **RamaLama** (Red Hat / containers.io) — Container-native CLI that
+  auto-detects your GPU and pulls a hardened OCI image bundling llama.cpp,
+  vLLM, or MLX, run via Podman/Docker; MIT.
+- **VoxCPM2** (OpenBMB) — Tokenizer-free, diffusion-autoregressive TTS model
+  with natural-language voice design and zero-shot voice cloning across 30
+  languages.
+- **garak** (NVIDIA AI Red Team) — Open-source LLM vulnerability scanner
+  (50+ probes for prompt injection, jailbreaks, data leakage); a distinct
+  adversarial-security focus versus the capability-eval harnesses already
+  listed.
+- **Axolotl** — Config-driven (YAML) multi-GPU fine-tuning framework
+  (LoRA/QLoRA/full/DPO/GRPO via FSDP/DeepSpeed); complements the already-listed
+  Unsloth, which is tuned for single-GPU speed rather than multi-GPU scale.
+- **Apertus 1.5** (EPFL/ETH Zurich/CSCS) — Fully open multilingual LLM family
+  notable for publishing complete training data recipes alongside weights, not
+  just the weights themselves.
+
+### Edited (version bump)
+- **DeepSeek-R1 / V3 → DeepSeek-R1 / V4** — DeepSeek-V4-Pro/V4-Flash (MIT,
+  1M-token context) supersede the V3 line as the flagship open-weight MoE
+  models; R1 remains current for reasoning. URL updated to the V4-Pro model
+  card.
+
+### Considered but not added
+- **OpenCode** — already correctly listed in `resources.csv` (free pathway;
+  bring-your-own-key or free providers, with local models via Ollama also
+  supported) alongside a separate **OpenCode Go** paid plan in
+  `paid_resources.csv`. Not local-only, so it stays a freemium pair in the
+  free/paid pathways rather than duplicating into this list.
+- **OpenClaw** (Agent Framework) — self-hosted personal agent runtime; skipped
+  after research found wildly inconsistent star counts (68k–390k depending on
+  source) and numerous near-identical mirror repos, which reads as
+  manipulated/SEO-farmed metrics rather than a reliably verifiable project.
+- **LTX-2.5** (Image & Video Gen) — open-weight video model, but ships under a
+  custom "Community License" with a revenue-based commercial threshold rather
+  than a standard OSI license like the rest of this category (GPL/AGPL/Apache).
+- **GPUStack** (Serving Engine) — legitimate and active, but it's a cluster
+  orchestrator layered on top of vLLM/SGLang/TensorRT-LLM rather than a serving
+  engine in its own right; didn't fit the category cleanly.
+- **DeepSeek Harness (dsh)**, **Juggler**, **GPTQModel**, **IBM Granite 4.2** —
+  active and plausible, but either explicitly labeled an early/unstable
+  developer preview, too new to judge maturity, or redundant with an
+  already-listed tool covering the same niche.
+
+### Cross-pathway check
+No duplicates found among this week's additions in `resources.csv` or
+`paid_resources.csv` by name or URL. See "Considered but not added" above for
+OpenCode, which is correctly listed in the free/paid pathways already.
+
 ## [2026-09] — Free-list refresh: 7 additions, 1 removal, 6 tier corrections
 
 Snapshot moved from 66 to **72** free resources (66 → 65 after the Amazon Q
@@ -57,6 +115,39 @@ removal, +7 new tools). Research verified against official pricing/docs pages on
 Windsurf, Cursor, Suno, Cloudflare Workers AI, Cerebras, SambaNova Cloud, Lovable,
 Zed, Groq, Mistral La Plateforme. Udio shows conflicting free-tier figures in
 third-party sources — left as-is pending an official source.
+
+## [2026-09] — Weekly local refresh: RAG stores, agentic MoE, and new TTS/vision models
+
+60 local tools (was 54). Filled a gap in **Embeddings / RAG** (a self-hosted vector
+database alongside the existing embedding server) and added a frontier open-weight
+successor model, two new TTS projects, and a new open vision-language model.
+
+### Added
+- **GLM-5** (Z.ai) — Frontier-scale MoE model family for agentic coding and
+  long-horizon engineering, successor generation to GLM-4; GLM-5.3-Flash variant
+  runs on a single high-end consumer GPU.
+- **Qdrant** — Rust-based, self-hostable vector similarity search engine with
+  quantization and on-disk storage; fills the Embeddings / RAG category's
+  vector-store gap (the existing entry there is an embedding server, not a store).
+- **RAGFlow** — Self-hosted, deep-document RAG engine with agentic retrieval,
+  citation grounding, and a built-in agent/workflow layer.
+- **Chatterbox** (Resemble AI) — Open-source TTS with emotion control and instant
+  voice cloning; Multilingual v3 covers ~25 languages.
+- **MOSS-TTS** (OpenMOSS) — Open speech family spanning long-form TTS, dialogue
+  synthesis, voice design, sound effects, and realtime streaming, with CPU-only
+  and GGUF/ONNX deployment paths.
+- **LLaVA-OneVision-2** — Open 8B vision-language model unifying image, long-form
+  video, and 3D spatial reasoning in one architecture with a fully released
+  training pipeline.
+
+### Edited (drift)
+- **GLM-4 / GLM-Edge** and **CogVideoX** — both point to repos under the `THUDM`
+  GitHub org, which renamed to `zai-org` (the Zhipu AI / Z.ai rebrand). Updated
+  both URLs to the new org; content, license, and category are unchanged.
+
+### Cross-pathway check
+No duplicates found — none of this week's additions appear in `resources.csv` or
+`paid_resources.csv` by name or URL.
 
 ## [2026-09] — Weekly local refresh: benchmarking & on-device TTS
 
