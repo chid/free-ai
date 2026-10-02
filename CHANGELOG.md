@@ -9,6 +9,62 @@ files are append-only and are the source of truth. This file is the human-readab
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
+## [2026-09-26] — Weekly local refresh: Rust serving, AMD's Lemonade, and two new frontier open-weight MoEs
+
+76 local tools (was 65). Verified the README's local/paid/free counts against
+the actual CSV row counts via `python3 update.py`'s audit (72 free, 28 paid,
+76 local) and corrected the stale "65 tools" figure for `local_resources.csv`.
+
+### Added
+- **Lemonade SDK** (AMD) — Local Runner. Local AI server that auto-detects
+  GPU/NPU and serves optimized LLM/image/speech models via an
+  OpenAI/Anthropic/Ollama-compatible API; Apache-2.0.
+- **mistral.rs** — Serving Engine. Rust-based inference/serving engine across
+  45+ architectures (text/vision/video/audio) with OpenAI/Anthropic-compatible
+  APIs; MIT.
+- **Cherry Studio** — Desktop Client. Electron desktop AI client unifying
+  chat, agents, and MCP tool calling across cloud and local (Ollama/LM Studio)
+  backends; AGPL-3.0.
+- **LibreChat** — Web UI. Self-hosted multi-provider chat platform with
+  agents, MCP, and code interpreter, runnable entirely against local/self-hosted
+  inference; MIT.
+- **smolagents** (Hugging Face) — Agent Framework. Barebones code-writing
+  agent library with first-class local execution via transformers/Ollama;
+  Apache-2.0.
+- **LLaMA-Factory** — Fine-tuning / Quant. Zero-code CLI + web UI (LLaMA
+  Board) for LoRA/QLoRA/full fine-tuning across 100+ model families;
+  complements the already-listed Unsloth/Axolotl with the widest single-tool
+  model coverage. Apache-2.0.
+- **LanceDB** — Embeddings / RAG. Embedded (in-process), serverless vector
+  database for local multimodal RAG — a lighter-weight complement to the
+  already-listed Qdrant server; Apache-2.0.
+- **Kimi K3** (Moonshot AI) — Open Weights (LLM). Frontier open-weight MoE
+  (2.8T total, 16-of-896 experts active) with native multimodal input and 1M
+  context; ships under a custom Kimi K3 License (free for most uses).
+- **MiniMax-M3** — Open Weights (LLM). Open-weight mixed-modality MoE (~428B
+  total, ~23B active) with 1M context and MiniMax Sparse Attention; custom
+  Community License.
+- **TADA** (Hume AI) — Audio & Speech. Open speech-language model using
+  synchronized token alignment for low-hallucination long-form TTS in 1B/3B
+  sizes; MIT code, Llama 3.2 Community License weights.
+- **lmms-eval** — Evaluation & Harnesses. Multimodal (text/image/video/audio)
+  evaluation toolkit across 30+ model families — fills a gap next to this
+  list's existing text-only evaluation harnesses; Apache-2.0.
+
+### Considered but not added
+- **opencode** (sst/opencode) — already correctly listed in `resources.csv`
+  as **OpenCode** (free pathway, local models via Ollama also supported)
+  alongside the separate **OpenCode Go** paid plan; not local-only, so it
+  stays a freemium pair rather than duplicating into this list.
+- **LTX-2** (Lightricks) — open-weight audio+video diffusion model; still
+  excluded for the same reason as last week's "LTX-2.5" rejection — it ships
+  under a custom Community License with a revenue-based commercial threshold
+  rather than a standard OSI license, and unlike this week's Open Weights
+  (LLM) additions there's no established precedent for that in the Image &
+  Video Gen category (its existing rows are all GPL/AGPL/Apache).
+- **GPUStack** — reconsidered, still excluded: a GPU-cluster orchestrator
+  layered on vLLM/SGLang rather than a serving engine in its own right.
+
 ## [2026-09-25] — Weekly local refresh: containers, red-teaming, and a DeepSeek V4 update
 
 65 local tools (was 60). Verified the README's local/paid counts against the
