@@ -9,6 +9,29 @@ files are append-only and are the source of truth. This file is the human-readab
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
+## [2026-10] — Local additions: FLUX 3 and the Qwen Omni family + model timeline prompt
+
+Three open-weight additions to `local_resources.csv`, researched 2026-10-03:
+
+- **FLUX 3 (Black Forest Labs)** (Image & Video Gen) — multimodal video+audio/
+  image/action foundation model on the Self-Flow backbone; FLUX 3 Action 7B open
+  weights shipped 2026-09-22, FLUX 3 Dev open-weight backbone announced for
+  later 2026 (Early Access 2026-07-23)
+- **Qwen3-Omni** (Vision & Multimodal) — open-weight 30B-A3B omni-modal MoE
+  (Apache-2.0, Sep 2025): text/image/audio/video in, text or real-time speech out
+- **Qwen3.5-Omni** (Vision & Multimodal) — next-generation omni-modal LLM
+  (Mar 2026); the Light variant ships open weights for local GPUs while the
+  Plus tier and Qwen3.8-Omni-Flash (Sep 2026) are API-only
+
+Also added [`models_viz_prompt.md`](models_viz_prompt.md) — a one-time setup
+prompt to build an open-weights model release timeline (`models.html` +
+`model_releases.csv`), seeded from models.fyi and applying a rolling two-year
+window with a `notable` escape hatch for classics.
+
+The timeline itself is now built: [`models.html`](models.html) ships seeded
+with 75 releases — 15 notable classics plus 60 in the window, 41 with open
+weights shipped and FLUX 3 Dev announced — backed by `model_releases.csv` and
+its append-only `model_releases_history.csv`.
 ## [2026-09-26] — Weekly local refresh: Rust serving, AMD's Lemonade, and two new frontier open-weight MoEs
 
 76 local tools (was 65). Verified the README's local/paid/free counts against
@@ -122,6 +145,7 @@ not).
 No duplicates found among this week's additions in `resources.csv` or
 `paid_resources.csv` by name or URL. See "Considered but not added" above for
 OpenCode, which is correctly listed in the free/paid pathways already.
+||||||| parent of b27e4d0 (viz: add model release timeline (models.html + model_releases.csv))
 
 ## [2026-09] — Free-list refresh: 7 additions, 1 removal, 6 tier corrections
 

@@ -1,0 +1,76 @@
+date,action,name,notes
+2026-10-03,add,GPT-3,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,Stable Diffusion,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,ChatGPT (GPT-3.5),seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,LLaMA 1,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,GPT-4,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,LLaMA 2,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,Mistral 7B,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,Mixtral 8x7B,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,Claude 3 (Haiku/Sonnet/Opus),seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,Llama 3,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,GPT-4o,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,Claude 3.5 Sonnet,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,Llama 3.1 405B,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,FLUX.1,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,OpenAI o1,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face; notable classic
+2026-10-03,add,Whisper large-v3-turbo,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Claude 3.5 Sonnet (Oct),seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Qwen2.5-Coder-32B,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Sora,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Gemini 2.0 Flash,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,DeepSeek-V3,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Kokoro-82M,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,DeepSeek-R1,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,o3-mini,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Grok 3,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Claude 3.7 Sonnet,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,GPT-4.5,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Gemma 3,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Gemini 2.5 Pro,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Llama 4 Scout/Maverick,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,GPT-4.1,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,o3 / o4-mini,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Qwen3,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Veo 3,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Claude Opus 4 / Sonnet 4,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,DeepSeek-R1-0528,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,FLUX.1 Kontext [dev],seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Grok 4,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Kimi K2,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Voxtral,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Qwen3-Coder,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,GLM-4.5,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,gpt-oss,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,GPT-5,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Gemini 2.5 Flash Image (nano-banana),seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Qwen3-Omni,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Claude Sonnet 4.5,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,DeepSeek-V3.2-Exp,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Sora 2,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Qwen3-VL,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,MiniMax-M2,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Z-Image Turbo,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Kimi K2 Thinking,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,GPT-5.1,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Gemini 3 Pro,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Claude Opus 4.5,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,FLUX.2 [dev],seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Mistral Large 3,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Qwen3.5,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Qwen3.5-Omni,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Kimi K2.6,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Gemini 3.1 Flash TTS,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Gemma 4 (31B),seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,GPT-5.5,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Grok 4.20,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,FLUX 3,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; FLUX 3 Dev open weights announced not yet shipped
+2026-10-03,add,DeepSeek V4,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,GLM-5 (5.2/5.3),seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Kimi K3,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,MiniMax M3,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Qwen3.8,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Qwen3.8-Omni-Flash,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Grok 4.7,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,Claude Opus 5.5,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face
+2026-10-03,add,FLUX 3 Action,seed pass 2026-10-03 from models.fyi / Epoch AI / lab blogs; open-weight status verified on Hugging Face

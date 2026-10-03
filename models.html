@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Release Timeline — Open Weights vs the Frontier</title>
+  <style>
+    :root {
+      --bg: #0b0d13;
+      --bg-gradient: radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.12) 0%, rgba(15, 17, 23, 0) 75%);
+      --surface: rgba(26, 29, 41, 0.7);
+      --surface-solid: #151824;
+      --surface-hover: rgba(34, 38, 58, 0.85);
+      --surface-active: #252a40;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: #7c3aed;
+      --border-hover: rgba(167, 139, 250, 0.35);
+      --accent: #7c3aed;
+      --accent-glow: rgba(124, 58, 237, 0.35);
+      --accent2: #a78bfa;
+      --accent-cyan: #38bdf8;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --green: #10b981;
+      --green-glow: rgba(16, 185, 129, 0.2);
+      --yellow: #f59e0b;
+      --purple: #c084fc;
+      --radius-sm: 6px;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+      --shadow-glow: 0 0 30px rgba(124, 58, 237, 0.15);
+      --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', system-ui, sans-serif;
+      background-color: var(--bg);
+      background-image: var(--bg-gradient);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2.5rem 1.25rem 5rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container { max-width: 980px; margin: 0 auto; position: relative; z-index: 1; }
+
+    header { text-align: center; margin-bottom: 2.25rem; }
+
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.3rem 0.85rem; background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 999px;
+      font-size: 0.76rem; font-weight: 600; color: var(--green);
+      margin-bottom: 1rem; letter-spacing: 0.02em;
+    }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green-glow); }
+
+    h1 { font-size: 2.3rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.6rem; }
+    h1 .grad {
+      background: linear-gradient(120deg, var(--accent2), var(--accent-cyan));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .subtitle { color: var(--text-muted); font-size: 1rem; max-width: 620px; margin: 0 auto; line-height: 1.55; }
+    .backlink {
+      display: inline-block; margin-top: 1.1rem; color: var(--text-subtle);
+      font-size: 0.85rem; text-decoration: none; transition: var(--transition);
+    }
+    .backlink:hover { color: var(--accent2); }
+
+    .count-row {
+      display: flex; justify-content: center; gap: 1.75rem; flex-wrap: wrap;
+      margin: 1.5rem auto 0; font-size: 0.85rem; color: var(--text-muted);
+    }
+    .count-row b { color: var(--text); font-variant-numeric: tabular-nums; }
+    .count-row .open-count b { color: var(--green); }
+
+    /* Controls */
+    .controls {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.1rem 1.25rem;
+      backdrop-filter: blur(12px); box-shadow: var(--shadow-sm);
+      display: grid; gap: 0.9rem; margin-bottom: 2rem;
+    }
+    .controls-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+    .search-wrap { position: relative; flex: 1 1 260px; }
+    .search-wrap svg {
+      position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%);
+      width: 15px; height: 15px; stroke: var(--text-subtle); pointer-events: none;
+    }
+    #search {
+      width: 100%; padding: 0.62rem 0.9rem 0.62rem 2.3rem;
+      background: var(--surface-solid); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text); font-size: 0.9rem;
+      outline: none; transition: var(--transition);
+    }
+    #search:focus { border-color: var(--border-focus); box-shadow: 0 0 0 3px var(--accent-glow); }
+    #search::placeholder { color: var(--text-subtle); }
+
+    select {
+      padding: 0.62rem 0.9rem; background: var(--surface-solid);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      color: var(--text); font-size: 0.9rem; outline: none; cursor: pointer;
+      transition: var(--transition); max-width: 220px;
+    }
+    select:focus { border-color: var(--border-focus); }
+
+    .chip-set { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+    .chip-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-subtle); margin-right: 0.25rem; }
+
+    .chip {
+      padding: 0.32rem 0.8rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+      background: var(--surface-solid); border: 1px solid var(--border);
+      color: var(--text-muted); cursor: pointer; transition: var(--transition);
+    }
+    .chip:hover { border-color: var(--border-hover); color: var(--text); }
+    .chip.active {
+      background: rgba(124, 58, 237, 0.18); border-color: var(--accent);
+      color: var(--accent2); box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .toggle-wrap {
+      display: inline-flex; align-items: center; gap: 0.55rem; cursor: pointer;
+      font-size: 0.82rem; color: var(--text-muted); user-select: none;
+    }
+    .toggle-wrap input { display: none; }
+    .toggle-track {
+      width: 34px; height: 19px; border-radius: 999px; background: var(--surface-active);
+      border: 1px solid var(--border); position: relative; transition: var(--transition); flex-shrink: 0;
+    }
+    .toggle-track::after {
+      content: ''; position: absolute; top: 2px; left: 2px; width: 13px; height: 13px;
+      border-radius: 50%; background: var(--text-subtle); transition: var(--transition);
+    }
+    .toggle-wrap input:checked + .toggle-track { background: rgba(124, 58, 237, 0.35); border-color: var(--accent); }
+    .toggle-wrap input:checked + .toggle-track::after { left: 16px; background: var(--accent2); }
+
+    /* Timeline */
+    .year-group { margin-bottom: 2rem; }
+    .year-heading {
+      display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.9rem;
+      font-size: 1.05rem; font-weight: 800; letter-spacing: -0.01em;
+    }
+    .year-heading .yr { color: var(--accent2); font-variant-numeric: tabular-nums; }
+    .year-heading .rule { flex: 1; height: 1px; background: linear-gradient(to right, var(--border-hover), transparent); }
+    .year-heading .yr-count { font-size: 0.75rem; font-weight: 600; color: var(--text-subtle); }
+
+    .rel {
+      position: relative; display: grid;
+      grid-template-columns: 92px 1fr auto; gap: 0.9rem; align-items: baseline;
+      padding: 0.7rem 1rem; margin-bottom: 0.45rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); transition: var(--transition);
+    }
+    .rel:hover { border-color: var(--border-hover); background: var(--surface-hover); box-shadow: var(--shadow-sm); transform: translateX(3px); }
+    .rel::before {
+      content: ''; position: absolute; left: -13px; top: 1.25rem; width: 7px; height: 7px;
+      border-radius: 50%; background: var(--text-subtle); border: 2px solid var(--bg);
+      transition: var(--transition);
+    }
+    .rel.open::before { background: var(--green); box-shadow: 0 0 8px var(--green-glow); }
+    .rel.announced::before { background: var(--yellow); box-shadow: 0 0 8px rgba(245, 158, 11, 0.3); }
+    .rel.classic { border-style: dashed; }
+
+    .rel-date { font-size: 0.78rem; color: var(--text-subtle); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .rel-main { min-width: 0; }
+    .rel-name {
+      font-weight: 700; font-size: 0.94rem; color: var(--text);
+      text-decoration: none; transition: var(--transition); margin-right: 0.4rem;
+    }
+    .rel-name:hover { color: var(--accent2); }
+    .rel-lab { font-size: 0.78rem; color: var(--text-muted); }
+    .rel-notes { font-size: 0.8rem; color: var(--text-subtle); margin-top: 0.2rem; line-height: 1.45; }
+    .rel-specs { font-size: 0.74rem; color: var(--text-muted); margin-top: 0.25rem; font-variant-numeric: tabular-nums; }
+    .rel-side { display: flex; flex-direction: column; align-items: flex-end; gap: 0.35rem; white-space: nowrap; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.18rem 0.55rem; border-radius: 999px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.02em;
+    }
+    .badge-open { background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); color: var(--green); }
+    .badge-announced { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); color: var(--yellow); }
+    .badge-api { background: rgba(148, 163, 184, 0.1); border: 1px solid rgba(148, 163, 184, 0.22); color: var(--text-muted); }
+    .badge-private { background: rgba(100, 116, 139, 0.12); border: 1px solid rgba(100, 116, 139, 0.3); color: var(--text-subtle); }
+
+    .tag {
+      padding: 0.14rem 0.5rem; border-radius: 999px; font-size: 0.68rem; font-weight: 600;
+      background: rgba(124, 58, 237, 0.12); border: 1px solid rgba(124, 58, 237, 0.3); color: var(--purple);
+    }
+    .tag-classic { background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3); color: var(--accent-cyan); }
+
+    .empty {
+      text-align: center; padding: 3rem 1rem; color: var(--text-subtle);
+      border: 1px dashed var(--border); border-radius: var(--radius-lg);
+    }
+    #error {
+      display: none; text-align: center; padding: 2.5rem; color: var(--yellow);
+      border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-lg);
+      background: rgba(245, 158, 11, 0.06); font-size: 0.92rem; line-height: 1.6;
+    }
+
+    footer {
+      margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+      color: var(--text-subtle); font-size: 0.8rem; line-height: 1.7; text-align: center;
+    }
+    footer a { color: var(--text-muted); text-decoration: none; border-bottom: 1px dotted var(--text-subtle); }
+    footer a:hover { color: var(--accent2); }
+
+    @media (max-width: 640px) {
+      .rel { grid-template-columns: 1fr; }
+      .rel-side { flex-direction: row; align-items: center; justify-content: flex-start; }
+      h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="status-badge"><span class="status-dot"></span><span id="seed-badge">Loading model data…</span></div>
+      <h1>Model Release <span class="grad">Timeline</span></h1>
+      <p class="subtitle">Notable AI model releases — frontier and open-weight, side by side. Open weights are the headline: green means you can download and run it today.</p>
+      <a class="backlink" href="index.html">← Back to the resources directory</a>
+      <div class="count-row">
+        <span id="count-total"></span>
+        <span class="open-count" id="count-open"></span>
+        <span id="count-window"></span>
+      </div>
+    </header>
+
+    <div class="controls">
+      <div class="controls-row">
+        <div class="search-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="search" type="text" placeholder="Search model, lab or note…" autocomplete="off" />
+        </div>
+        <select id="lab-select"><option value="">All labs</option></select>
+        <label class="toggle-wrap">
+          <input type="checkbox" id="classics-toggle" checked />
+          <span class="toggle-track"></span>
+          Show notable classics
+        </label>
+      </div>
+      <div class="chip-set" id="weights-chips">
+        <span class="chip-label">Weights</span>
+      </div>
+      <div class="chip-set" id="modality-chips">
+        <span class="chip-label">Modality</span>
+      </div>
+    </div>
+
+    <div id="error"></div>
+    <div id="timeline"></div>
+
+    <footer>
+      <p>
+        The window rule: this timeline keeps the <b>last two years</b> of releases, plus
+        <span class="tag tag-classic">Classic</span> models marked notable — those stay forever.
+        Toggle them with the switch above.
+      </p>
+      <p style="margin-top: 0.7rem;">
+        Seeded from <a href="https://models.fyi">models.fyi</a>, Epoch AI's model database and lab
+        blog announcements; open-weight status verified against Hugging Face repos. Last seeded 2026-10-03.
+        Data in <a href="model_releases.csv"><code>model_releases.csv</code></a> — updates land via
+        <a href="https://github.com"><code>models_viz_prompt.md</code></a> monthly upkeep.
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    'use strict';
+
+    // --- Quote-aware CSV parsing (RFC-4180-ish, no external deps) ---
+    function parseCSV(text) {
+      const rows = [];
+      let row = [], field = '', inQuotes = false;
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        if (inQuotes) {
+          if (c === '"') {
+            if (text[i + 1] === '"') { field += '"'; i++; }
+            else inQuotes = false;
+          } else field += c;
+        } else if (c === '"') inQuotes = true;
+        else if (c === ',') { row.push(field); field = ''; }
+        else if (c === '\n' || c === '\r') {
+          if (c === '\r' && text[i + 1] === '\n') i++;
+          row.push(field); field = '';
+          if (row.length > 1 || row[0] !== '') rows.push(row);
+          row = [];
+        } else field += c;
+      }
+      if (field !== '' || row.length) { row.push(field); rows.push(row); }
+      const header = rows.shift().map(h => h.trim());
+      return rows.filter(r => r.length === header.length)
+                 .map(r => Object.fromEntries(header.map((h, i) => [h, r[i].trim()])));
+    }
+
+    // --- Dates: accept YYYY-MM-DD and YYYY-MM ---
+    function parseDate(s) {
+      const p = s.split('-').map(Number);
+      return new Date(p[0], p[1] - 1, p[2] || 1);
+    }
+    const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function fmtDate(d, raw) {
+      if (raw.length === 7) return MONTHS[d.getMonth()] + ' ' + d.getFullYear();
+      return MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    }
+
+    // --- State ---
+    const WEIGHTS_ORDER = ['Open', 'Open (announced)', 'API-only', 'Private'];
+    const state = { search: '', weights: 'All', modality: 'All', lab: '', classics: true };
+    let releases = [];
+
+    // Window rule: keep the last two years; older rows survive only if notable.
+    function cutoffDate() {
+      const now = new Date();
+      return new Date(now.getFullYear() - 2, now.getMonth(), now.getDate());
+    }
+
+    function matches(r, cutoff) {
+      const inWindow = parseDate(r.date) >= cutoff;
+      r._classic = !inWindow;
+      if (r._classic && !(r.notable === 'Yes' && state.classics)) return false;
+      if (state.weights !== 'All' && r.weights !== state.weights) return false;
+      if (state.modality !== 'All' && r.modality !== state.modality) return false;
+      if (state.lab && r.lab !== state.lab) return false;
+      if (state.search) {
+        const hay = (r.name + ' ' + r.lab + ' ' + r.notes).toLowerCase();
+        if (!hay.includes(state.search)) return false;
+      }
+      return true;
+    }
+
+    function weightsBadge(w) {
+      const cls = w === 'Open' ? 'badge-open'
+        : w === 'Open (announced)' ? 'badge-announced'
+        : w === 'API-only' ? 'badge-api' : 'badge-private';
+      const label = w === 'Open' ? 'Open weights'
+        : w === 'Open (announced)' ? 'Open (announced)'
+        : w;
+      return '<span class="badge ' + cls + '">' + label + '</span>';
+    }
+
+    function esc(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function relCard(r) {
+      const d = parseDate(r.date);
+      const specs = [r.params, r.context && r.context !== '—' ? r.context + ' context' : '']
+        .filter(Boolean).join(' · ');
+      const classes = ['rel'];
+      if (r.weights === 'Open') classes.push('open');
+      if (r.weights === 'Open (announced)') classes.push('announced');
+      if (r._classic) classes.push('classic');
+      return '<div class="' + classes.join(' ') + '">' +
+        '<div class="rel-date" title="' + esc(r.date) + '">' + fmtDate(d, r.date) + '</div>' +
+        '<div class="rel-main">' +
+          '<a class="rel-name" href="' + esc(r.source_url) + '" target="_blank" rel="noopener">' + esc(r.name) + '</a>' +
+          '<span class="rel-lab">' + esc(r.lab) + '</span>' +
+          (r.notes && r.notes !== '—' ? '<div class="rel-notes">' + esc(r.notes) + '</div>' : '') +
+          (specs ? '<div class="rel-specs">' + esc(specs) + '</div>' : '') +
+        '</div>' +
+        '<div class="rel-side">' +
+          weightsBadge(r.weights) +
+          '<span class="tag">' + esc(r.modality) + '</span>' +
+          (r._classic ? '<span class="tag tag-classic">Classic</span>' : '') +
+        '</div>' +
+      '</div>';
+    }
+
+    function render() {
+      const cutoff = cutoffDate();
+      const visible = releases.filter(r => matches(r, cutoff))
+                              .sort((a, b) => parseDate(b.date) - parseDate(a.date));
+
+      // Counts (header)
+      const openCount = visible.filter(r => r.weights === 'Open' || r.weights === 'Open (announced)').length;
+      document.getElementById('count-total').innerHTML = '<b>' + visible.length + '</b> of ' + releases.length + ' releases';
+      document.getElementById('count-open').innerHTML = '<b>' + openCount + '</b> open-weight';
+      document.getElementById('count-window').innerHTML = 'window since <b>' + MONTHS[cutoff.getMonth()] + ' ' + cutoff.getFullYear() + '</b>';
+
+      // Timeline grouped by year, newest first
+      const groups = new Map();
+      for (const r of visible) {
+        const y = parseDate(r.date).getFullYear();
+        if (!groups.has(y)) groups.set(y, []);
+        groups.get(y).push(r);
+      }
+      const tl = document.getElementById('timeline');
+      if (!visible.length) {
+        tl.innerHTML = '<div class="empty">Nothing matches these filters.</div>';
+        return;
+      }
+      let html = '';
+      for (const [y, rows] of [...groups.entries()].sort((a, b) => b[0] - a[0])) {
+        html += '<div class="year-group"><div class="year-heading">' +
+          '<span class="yr">' + y + '</span><span class="rule"></span>' +
+          '<span class="yr-count">' + rows.length + ' release' + (rows.length > 1 ? 's' : '') + '</span></div>';
+        html += rows.map(relCard).join('') + '</div>';
+      }
+      tl.innerHTML = html;
+    }
+
+    function buildControls() {
+      // Weights chips
+      const wc = document.getElementById('weights-chips');
+      for (const w of ['All', ...WEIGHTS_ORDER]) {
+        const b = document.createElement('button');
+        b.className = 'chip' + (w === state.weights ? ' active' : '');
+        b.textContent = w === 'Open (announced)' ? 'Announced' : w;
+        b.onclick = () => {
+          state.weights = w;
+          [...wc.querySelectorAll('.chip')].forEach(c => c.classList.remove('active'));
+          b.classList.add('active');
+          render();
+        };
+        wc.appendChild(b);
+      }
+
+      // Modality chips (from data)
+      const modalities = [...new Set(releases.map(r => r.modality))].sort();
+      const mc = document.getElementById('modality-chips');
+      for (const m of ['All', ...modalities]) {
+        const b = document.createElement('button');
+        b.className = 'chip' + (m === 'All' ? ' active' : '');
+        b.textContent = m;
+        b.onclick = () => {
+          state.modality = m;
+          [...mc.querySelectorAll('.chip')].forEach(c => c.classList.remove('active'));
+          b.classList.add('active');
+          render();
+        };
+        mc.appendChild(b);
+      }
+
+      // Lab dropdown
+      const labs = [...new Set(releases.map(r => r.lab))].sort();
+      const sel = document.getElementById('lab-select');
+      for (const l of labs) {
+        const o = document.createElement('option');
+        o.value = l; o.textContent = l;
+        sel.appendChild(o);
+      }
+      sel.onchange = () => { state.lab = sel.value; render(); };
+
+      // Search + classics toggle
+      document.getElementById('search').oninput = e => { state.search = e.target.value.trim().toLowerCase(); render(); };
+      document.getElementById('classics-toggle').onchange = e => { state.classics = e.target.checked; render(); };
+    }
+
+    // --- Boot ---
+    fetch('model_releases.csv')
+      .then(res => {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.text();
+      })
+      .then(text => {
+        releases = parseCSV(text);
+        if (!releases.length) throw new Error('model_releases.csv parsed to zero rows');
+        document.getElementById('seed-badge').textContent =
+          releases.length + ' releases · seeded 2026-10-03';
+        buildControls();
+        render();
+      })
+      .catch(err => {
+        const box = document.getElementById('error');
+        box.style.display = 'block';
+        box.innerHTML = 'Could not load <code>model_releases.csv</code> (' + esc(err.message) + '). ' +
+          'This page fetches the CSV at load time, so it needs a local server — run ' +
+          '<code>python3 -m http.server 8080</code> and open <code>http://localhost:8080/models.html</code>.';
+      });
+  </script>
+</body>
+</html>
