@@ -147,6 +147,11 @@ No duplicates found among this week's additions in `resources.csv` or
 OpenCode, which is correctly listed in the free/paid pathways already.
 ||||||| parent of b27e4d0 (viz: add model release timeline (models.html + model_releases.csv))
 
+The whole site now deploys to GitHub Pages at
+[chid.github.io/free-ai](https://chid.github.io/free-ai/) —
+`.github/workflows/pages.yml` publishes the tracked files on every push to
+`main`, no build step.
+
 ## [2026-09] — Free-list refresh: 7 additions, 1 removal, 6 tier corrections
 
 Snapshot moved from 66 to **72** free resources (66 → 65 after the Amazon Q
