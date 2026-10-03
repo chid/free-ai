@@ -9,6 +9,54 @@ files are append-only and are the source of truth. This file is the human-readab
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
+## [2026-10-03] — Weekly local refresh: a 48.7k-star agent framework, an embeddable Rust runner, and a quantization toolkit
+
+80 local tools (was 76). Verified the README's local/paid/free counts against
+the actual CSV row counts via `python3 update.py`'s audit (72 free, 28 paid,
+80 local) — no drift found in existing rows this week.
+
+### Added
+- **nanobot** (HKUDS) — Agent Framework. Ultra-lightweight, self-hosted
+  personal AI agent framework in Python with a WebUI, terminal UI, long-term
+  memory, MCP tools, multi-agent delegation, and an OpenAI-compatible API;
+  connects to Ollama or any local OpenAI-compatible server. MIT, 48.7k stars,
+  v0.3.5 released Sep 15 2026.
+- **NobodyWho** — Local Runner. Embeddable Rust inference engine built on
+  llama.cpp for running GGUF models fully offline inside games and apps, with
+  bindings for Godot, Flutter, React Native, Swift, Kotlin, and Python;
+  EUPL-1.2.
+- **GPTQModel** (ModelCloud) — Fine-tuning / Quant. Extensible quantization
+  toolkit covering GPTQ, AWQ, GGUF, EXL3, FP8, and QQQ across NVIDIA, AMD,
+  Intel, and Apple Silicon — fills a general-purpose quantization gap next to
+  the already-listed finetuning-focused Unsloth/Axolotl/LLaMA-Factory.
+  Apache-2.0 core.
+- **HunyuanVideo-1.5** (Tencent) — Image & Video Gen. Lightweight open-weight
+  text-to-video / image-to-video diffusion model (8.3B params) running on
+  ~14GB consumer VRAM; custom Tencent Hunyuan Community License (commercial
+  use allowed outside EU/UK/South Korea, >100M MAU needs separate
+  permission) — same license-restriction pattern as the already-listed Kimi
+  K3 and MiniMax-M3 rows.
+
+### Considered but not added
+- **NVIDIA Dynamo** / **llm-d** — open-source disaggregated-serving
+  orchestration layers over vLLM/SGLang/TensorRT-LLM; excluded as
+  datacenter-cluster orchestration tooling rather than a tool a reader runs
+  on their own machine, which is a stricter bar than this list's existing
+  datacenter-class **TokenSpeed** entry.
+- Assorted single-file VRAM calculators (e.g. `llm-vram-calculator` forks) —
+  numerous small, thinly-differentiated hobby scripts; none stood out as the
+  clear best-in-class complement to the already-listed **LocalScore**.
+- **Breeze TTS 2** — strong open-weight TTS leaderboard result, but weights
+  are research/non-commercial only under the BreezeBlue license with no
+  self-hosted commercial path; code wrapper (Apache-2.0) alone isn't useful
+  without the weights, so left out pending a clearer license.
+
+### Verified, no drift
+- Spot-checked **Goose** (`aaif-goose/goose`) and **TokenSpeed**
+  (`lightseekorg/tokenspeed`) for archival/rename risk — both active;
+  `block/goose` redirects to the already-listed `aaif-goose/goose` URL, so no
+  edit needed.
+
 ## [2026-09-26] — Weekly local refresh: Rust serving, AMD's Lemonade, and two new frontier open-weight MoEs
 
 76 local tools (was 65). Verified the README's local/paid/free counts against
