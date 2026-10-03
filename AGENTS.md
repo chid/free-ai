@@ -35,6 +35,12 @@ A self-updating directory of free AI tools, served as a static web page driven b
 | `refresh_prompt.md` | Claude prompt for researching and adding free tools |
 | `paid_refresh_prompt.md` | Claude prompt for researching and adding paid-only tools |
 | `local_refresh_prompt.md` | Claude prompt for researching and adding local LLM tools |
+| `watch_setup_prompt.md` | One-time prompt to build `check_tiers.py` + `watch_pages.csv` (local tier-change watcher) |
+| `models_viz_prompt.md` | One-time prompt to build `models.html` + `model_releases.csv` (open-weights model release timeline, seeded from models.fyi) |
+| `models.html` | Static model release timeline page; fetches `model_releases.csv` at load — serve via `python3 -m http.server` |
+| `model_releases.csv` | Data for the timeline — notable releases, two-year rolling window plus `notable` classics |
+| `model_releases_history.csv` | Append-only seed/change log for `model_releases.csv` |
+| `.github/workflows/pages.yml` | Deploys the site (both pages + CSVs) to GitHub Pages on every push to `main` |
 
 
 > **Frontier model pricing & context windows:** see [models.dev](https://models.dev) — no need to track this ourselves.
@@ -79,6 +85,10 @@ python3 -m http.server 8080
 
 The page uses `fetch('resources.csv')` so it needs a server (not file://).
 
+The site is also published to GitHub Pages — <https://chid.github.io/free-ai/>
+(includes the model timeline at `/models.html`). The deploy workflow runs on
+every push to `main`; no build step, the artifact is just the tracked files.
+
 ## How to update
 
 **Manually via CLI:**
@@ -104,6 +114,9 @@ claude
 ```
 
 Or trigger the scheduled agent if one is configured (check `claude schedule list`).
+
+The model timeline (`models.html`) has its own monthly upkeep — at each refresh,
+paste the "Monthly upkeep" section of `models_viz_prompt.md`.
 
 ## Monthly PR workflow
 

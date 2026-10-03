@@ -1,0 +1,76 @@
+date,name,lab,modality,weights,license,params,context,notable,notes,source_url
+2020-06-11,GPT-3,OpenAI,text,Private,—,175B,2k,Yes,"The scale-up that made few-shot prompting mainstream",https://arxiv.org/abs/2005.14165
+2022-08-22,Stable Diffusion,Stability AI,image,Open,CreativeML OpenRAIL-M,890M,—,Yes,"First high-quality open text-to-image model; SD 1.5 followed in October",https://github.com/Stability-AI/stablediffusion
+2022-11-30,ChatGPT (GPT-3.5),OpenAI,text,Private,—,175B,4k,Yes,"Consumer AI's iPhone moment; 100M users in two months",https://openai.com/blog/chatgpt
+2023-02-24,LLaMA 1,Meta,text,Open,Non-commercial research,7B-65B,2k,Yes,"Gated research weights whose leak seeded the local-LLM ecosystem",https://github.com/facebookresearch/llama
+2023-03-14,GPT-4,OpenAI,text,API-only,—,—,8k-32k,Yes,"Set the frontier bar for two years",https://openai.com/research/gpt-4
+2023-07-18,LLaMA 2,Meta,text,Open,Llama Community License,7B-70B,4k,Yes,"First commercially usable open Llama",https://github.com/meta-llama/llama
+2023-09-27,Mistral 7B,Mistral AI,text,Open,Apache-2.0,7B,8k,Yes,"Proved small open models punch far above their size",https://mistral.ai/news/announcing-mistral-7b/
+2023-12-08,Mixtral 8x7B,Mistral AI,text,Open,Apache-2.0,47B MoE (13B active),32k,Yes,"First mainstream open mixture-of-experts",https://mistral.ai/news/mixtral-of-experts/
+2024-03-04,Claude 3 (Haiku/Sonnet/Opus),Anthropic,text,API-only,—,—,200k,Yes,"Set the 200k-context and ELO-leaderboard norms",https://www.anthropic.com/news/claude-3-haiku-sonnet-opus
+2024-04-18,Llama 3,Meta,text,Open,Llama Community License,8B/70B,8k,Yes,"Backbone of the 2024 fine-tune wave",https://github.com/meta-llama/llama3
+2024-05-13,GPT-4o,OpenAI,omni,API-only,—,—,128k,Yes,"Natively omni-modal flagship (o for omni)",https://openai.com/index/hello-gpt-4o/
+2024-06-20,Claude 3.5 Sonnet,Anthropic,text,API-only,—,—,200k,Yes,"Developer-favourite coding model of its era",https://www.anthropic.com/news/claude-3-5-sonnet
+2024-07-23,Llama 3.1 405B,Meta,text,Open,Llama Community License,405B,128k,Yes,"First open model at frontier scale",https://github.com/meta-llama/llama-models
+2024-08-01,FLUX.1,Black Forest Labs,image,Open,FLUX [dev] Non-Commercial; schnell Apache-2.0,12B,—,Yes,"Open image-generation state of the art from the original Stable Diffusion team",https://blackforestlabs.ai/announcing-black-forest-labs/
+2024-09-12,OpenAI o1,OpenAI,text,API-only,—,—,—,Yes,"Started the reasoning-model era",https://openai.com/index/introducing-openai-o1-preview/
+2024-10-10,Whisper large-v3-turbo,OpenAI,audio,Open,MIT,809M,—,,"4x-faster distilled speech recognition",https://github.com/openai/whisper
+2024-10-22,Claude 3.5 Sonnet (Oct),Anthropic,text,API-only,—,—,200k,,"First mainstream agentic computer-use model",https://www.anthropic.com/news/3-5-models-and-computer-use
+2024-11-12,Qwen2.5-Coder-32B,Alibaba,code,Open,Apache-2.0,0.5B-32B,128k,,"Open coding model matching GPT-4o-class code benchmarks",https://github.com/QwenLM/Qwen2.5-Coder
+2024-12-09,Sora,OpenAI,video,API-only,—,—,—,,"Text-to-video flagship released to consumers",https://openai.com/index/sora-is-here/
+2024-12-11,Gemini 2.0 Flash,Google,omni,API-only,—,—,1M,,"Speed tier with native multimodal input and tool use",https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/
+2024-12-26,DeepSeek-V3,DeepSeek,text,Open,MIT,671B MoE (37B active),128k,,"Frontier-class open MoE trained on a remarkably small compute budget",https://github.com/deepseek-ai/DeepSeek-V3
+2025-01,Kokoro-82M,hexgrad,audio,Open,Apache-2.0,82M,—,,"TTS quality-per-FLOP outlier that runs in real time on CPUs",https://huggingface.co/hexgrad/Kokoro-82M
+2025-01-20,DeepSeek-R1,DeepSeek,text,Open,MIT,671B MoE + distills,128k,,"Open reasoning model that matched o1 and reset the market",https://github.com/deepseek-ai/DeepSeek-R1
+2025-01-31,o3-mini,OpenAI,text,API-only,—,—,200k,,"First cheap high-reasoning API tier",https://openai.com/index/openai-o3-mini/
+2025-02-17,Grok 3,xAI,text,API-only,—,—,1M,,"Colossus-trained frontier model with DeepSearch",https://x.ai/news/grok-3
+2025-02-24,Claude 3.7 Sonnet,Anthropic,text,API-only,—,—,200k,,"First hybrid instant/extended-thinking model",https://www.anthropic.com/news/claude-3-7-sonnet
+2025-02-27,GPT-4.5,OpenAI,text,API-only,—,—,128k,,"Largest dense pretraining run OpenAI shipped; retired within months",https://openai.com/index/introducing-gpt-4-5/
+2025-03-12,Gemma 3,Google,vision,Open,Gemma Terms of Use,1B-27B,128k,,"Single-GPU multimodal line with 140-language coverage",https://blog.google/technology/developers/introducing-gemma3/
+2025-03-25,Gemini 2.5 Pro,Google,text,API-only,—,—,1M,,"Thinking-by-default with leading long-context retrieval",https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/
+2025-04-05,Llama 4 Scout/Maverick,Meta,vision,Open,Llama Community License,109B/400B MoE,10M (Scout),,"Meta's early-2025 MoE pivot; reception was mixed",https://ai.meta.com/blog/the-llama-4-herd/
+2025-04-14,GPT-4.1,OpenAI,text,API-only,—,—,1M,,"API coding and long-context refresh of the GPT-4o line",https://openai.com/index/gpt-4-1/
+2025-04-16,o3 / o4-mini,OpenAI,text,API-only,—,—,200k,,"Full o3 rollout with tool use inside the reasoning loop",https://openai.com/index/introducing-o3-and-o4-mini/
+2025-04-29,Qwen3,Alibaba,text,Open,Apache-2.0,0.6B-235B MoE,128k,,"Apache-2.0 hybrid-thinking family from 0.6B to 235B",https://github.com/QwenLM/Qwen3
+2025-05-20,Veo 3,Google,video,API-only,—,—,—,,"First mainstream video model with native audio",https://deepmind.google/models/veo/
+2025-05-22,Claude Opus 4 / Sonnet 4,Anthropic,text,API-only,—,—,200k,,"Agentic coding leap that powered the first Claude Code boom",https://www.anthropic.com/news/claude-4
+2025-05-28,DeepSeek-R1-0528,DeepSeek,text,Open,MIT,685B MoE,128k,,"R1 refresh that closed most of the gap to o3",https://huggingface.co/deepseek-ai/DeepSeek-R1-0528
+2025-06-26,FLUX.1 Kontext [dev],Black Forest Labs,image,Open,FLUX [dev] Non-Commercial,12B,—,,"In-context image editing without per-task fine-tuning",https://bfl.ai/blog/flux-1-kontext-dev
+2025-07-09,Grok 4,xAI,text,API-only,—,—,256k,,"Frontier refresh; a Heavy multi-agent variant followed weeks later",https://x.ai/news/grok-4
+2025-07-11,Kimi K2,Moonshot AI,text,Open,Modified MIT,1T MoE (32B active),128k,,"Trillion-parameter open MoE trained for agentic use",https://huggingface.co/moonshotai/Kimi-K2-Instruct
+2025-07-16,Voxtral,Mistral AI,audio,Open,Apache-2.0,3B/24B,32k,,"Open audio understanding (ASR plus audio QA) from Mistral",https://mistral.ai/news/voxtral
+2025-07-23,Qwen3-Coder,Alibaba,code,Open,Apache-2.0,480B MoE (35B active),256k,,"Open agentic-coding flagship in the Codex/GPT-4.1 class",https://github.com/QwenLM/Qwen3-Coder
+2025-07-28,GLM-4.5,Zhipu AI (Z.ai),text,Open,MIT,355B MoE (32B active),128k,,"Open MoE tuned for agentic tool use and coding",https://github.com/zai-org/GLM-4.5
+2025-08-05,gpt-oss,OpenAI,text,Open,Apache-2.0,20B/120B MoE,128k,,"OpenAI's first open weights since GPT-2",https://openai.com/index/introducing-gpt-oss/
+2025-08-07,GPT-5,OpenAI,text,API-only,—,—,400k,,"Unified flagship with automatic reasoning routing",https://openai.com/index/introducing-gpt-5/
+2025-08-26,Gemini 2.5 Flash Image (nano-banana),Google,image,API-only,—,—,—,,"Viral image editing and character-consistency model",https://deepmind.google/models/gemini/image/
+2025-09-22,Qwen3-Omni,Alibaba,omni,Open,Apache-2.0,30B-A3B MoE,32k,,"End-to-end omni-modal MoE: text/image/audio/video in; text or real-time speech out; open Captioner sibling",https://github.com/QwenLM/Qwen3-Omni
+2025-09-29,Claude Sonnet 4.5,Anthropic,text,API-only,—,—,200k,,"Long-horizon agentic coding leader of late 2025",https://www.anthropic.com/news/claude-sonnet-4-5
+2025-09-29,DeepSeek-V3.2-Exp,DeepSeek,text,Open,MIT,671B MoE,128k,,"Experimental sparse attention cutting API costs sharply",https://huggingface.co/deepseek-ai/DeepSeek-V3.2-Exp
+2025-09-30,Sora 2,OpenAI,video,API-only,—,—,—,,"Video-plus-audio generation with a cameo-verified social app",https://openai.com/index/sora-2/
+2025-10,Qwen3-VL,Alibaba,vision,Open,Apache-2.0,2B-235B MoE,256k,,"Open vision-language line with OCR and long-video understanding",https://github.com/QwenLM/Qwen3-VL
+2025-10-27,MiniMax-M2,MiniMax,text,Open,MIT,230B MoE (10B active),200k,,"Small-active-param agentic MoE at token-efficient pricing",https://huggingface.co/MiniMaxAI/MiniMax-M2
+2025-11,Z-Image Turbo,Alibaba Tongyi,image,Open,Apache-2.0,6B,—,,"Few-step open image generator sized for consumer GPUs",https://huggingface.co/Tongyi-MAI/Z-Image-Turbo
+2025-11-06,Kimi K2 Thinking,Moonshot AI,text,Open,Modified MIT,1T MoE (32B active),256k,,"Open thinking model that stays coherent across 200-300 tool calls",https://huggingface.co/moonshotai/Kimi-K2-Thinking
+2025-11-12,GPT-5.1,OpenAI,text,API-only,—,—,400k,,"Warm-toned refresh with adaptive reasoning effort",https://openai.com/index/gpt-5-1/
+2025-11-18,Gemini 3 Pro,Google,omni,API-only,—,—,1M,,"First Gemini 3 generation; topped the major leaderboards at launch",https://blog.google/products/gemini/gemini-3/
+2025-11-24,Claude Opus 4.5,Anthropic,text,API-only,—,—,200k,,"Frontier Opus with sharper pricing for agent workloads",https://www.anthropic.com/news/claude-opus-4-5
+2025-11-25,FLUX.2 [dev],Black Forest Labs,image,Open,FLUX [dev] Non-Commercial,32B,—,,"Open 32B image model with multi-reference control and 4MP output",https://bfl.ai/blog/flux-2
+2025-12-02,Mistral Large 3,Mistral AI,text,Open,Apache-2.0,675B MoE (41B active),256k,,"Frontier-class open MoE returning Mistral to the open race",https://mistral.ai/news/mistral-large-3
+2026-03-09,Qwen3.5,Alibaba,text,Open,Apache-2.0,4B-397B MoE,256k,,"Next Qwen base family; the open-weight foundation for Qwen3.5 variants",https://huggingface.co/collections/Qwen/qwen35
+2026-03-29,Qwen3.5-Omni,Alibaba,omni,Open,Apache-2.0 (Light),Light + Plus (huge MoE),256k,,"Omni-modal successor: 113-language ASR and 36-language speech generation; Light variant open while Plus is API-only",https://qwen.ai/blog?id=qwen3.5-omni
+2026-04,Kimi K2.6,Moonshot AI,text,Open,Modified MIT,1T MoE (32B active),256k,,"K2 refresh with stronger agentic and coding scores",https://huggingface.co/moonshotai
+2026-04-15,Gemini 3.1 Flash TTS,Google,audio,API-only,—,—,—,,"Most controllable Gemini voice model to date",https://deepmind.google/models/gemini/
+2026-05,Gemma 4 (31B),Google,vision,Open,Gemma Terms of Use,1B-31B,128k,,"Gemma line's largest open release to date",https://blog.google/technology/developers/
+2026-05,GPT-5.5,OpenAI,text,API-only,—,—,400k,,"Mid-2026 flagship step in the GPT-5.x line",https://openai.com/news/
+2026-05,Grok 4.20,xAI,text,API-only,—,—,256k,,"Mid-2026 Grok refresh",https://x.ai/news
+2026-07-23,FLUX 3,Black Forest Labs,video,Open (announced),TBD for FLUX 3 Dev,—,—,,"Multimodal Self-Flow backbone: video with native audio plus image generation; Video/Image in Early Access via API and FLUX 3 Dev open-weight backbone committed for later 2026",https://bfl.ai/blog/flux-3
+2026-07-31,DeepSeek V4,DeepSeek,text,Open,MIT,MoE (dated 0731/0813 checkpoints),256k,,"Open flagship line; Pro and Flash variants pushed past 80 percent on SWE-bench Verified",https://huggingface.co/deepseek-ai
+2026-08,GLM-5 (5.2/5.3),Zhipu AI (Z.ai),text,Open,MIT,MoE,256k,,"Z.ai's 2026 open flagship line",https://huggingface.co/zai-org
+2026-08,Kimi K3,Moonshot AI,text,Open,Modified MIT,MoE,256k,,"Moonshot's 2026 open flagship",https://huggingface.co/moonshotai
+2026-08,MiniMax M3,MiniMax,text,Open,MIT,MoE,200k,,"Third generation of MiniMax's token-efficient agentic line",https://huggingface.co/MiniMaxAI
+2026-08,Qwen3.8,Alibaba,text,Open,Apache-2.0,27B+ family,256k,,"Aug-2026 Qwen open refresh led by Qwen3.8-27B",https://huggingface.co/Qwen
+2026-09-18,Qwen3.8-Omni-Flash,Alibaba,omni,API-only,—,—,—,,"Next-gen native omni-modal model; agentic delivery focus; API-first",https://qwen.ai/blog?id=qwen3.8-omni-flash
+2026-09-21,Grok 4.7,xAI,text,API-only,—,—,256k,,"Coding and knowledge-work focused Grok update",https://x.ai/news
+2026-09-22,Claude Opus 5.5,Anthropic,text,API-only,—,—,200k,,"First of the Claude 5.5 family; largest single-day benchmark move of 2026",https://www.anthropic.com/news
+2026-09-22,FLUX 3 Action,Black Forest Labs,robotics,Open,TBD (open weights),7B,—,,"Open-weight world-action model for robot control derived from the FLUX 3 backbone; first on the RoboLab benchmark",https://bfl.ai/models/flux-3-action
