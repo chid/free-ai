@@ -26,7 +26,8 @@ A self-updating directory of free AI tools, served as a static web page driven b
 | `QUOTAS.md` | Notes on how paid AI plans meter usage — quota models, not prices |
 | `quota_history.csv` | Append-only log of quantitative rate limits, credit pools, and quota transitions over time |
 | `quotas.py` | CLI/library to query, filter, and compare quantitative quota histories |
-| `README.md` | Markdown rendering of `resources.csv`, regenerated each refresh |
+| `README.md` | Markdown rendering of `resources.csv`, regenerated each refresh (keep the banner/live-site header block) |
+| `assets/banner.svg` | README banner (also served by Pages) |
 | `update.py` | Interactive CLI for manual changes (writes history automatically) |
 | `sync_activity.py` | Syncs latest commit dates, stars, and model updates from GitHub/HuggingFace |
 | `activity.json` | Cached metadata and live activity timestamps for GitHub/HuggingFace resources |
