@@ -18,7 +18,6 @@ Ideogram,Image Generation,https://ideogram.ai,Text-to-image with strong typograp
 Playground AI,Image Generation,https://playground.com,Image generation and editing,Free tier available,Yes,"image,art,editing"
 Canva AI,Image Generation,https://canva.com,AI image generation and design tools,Free tier with AI features,Yes,"image,design,templates"
 GitHub Copilot,Code Assistant,https://github.com/features/copilot,"AI code completion in your editor; completions stay free and unmetered, while chat, agent mode and CLI draw on AI Credits from June 2026","Free for all users: 2000 completions/month unmetered; chat, agent and CLI draw on a monthly AI Credits allowance",Yes,"coding,autocomplete,ide"
-Windsurf (formerly Codeium),Code Assistant,https://windsurf.com,AI-native code editor with the agentic Cascade feature (Codeium rebranded); credit system retired March 2026 in favour of daily/weekly quotas,Free tier: unlimited Tab autocomplete and inline edits + ~25 Cascade Flow Actions/month,Yes,"coding,editor,autocomplete,agent,ide"
 Cursor,Code Assistant,https://cursor.sh,AI-first code editor built on VS Code; free plan is now branded Hobby,"Free Hobby plan: limited Agent requests and Tab completions, no credit card",Yes,"coding,editor,chat"
 Continue,Code Assistant,https://continue.dev,Open-source AI code assistant for VS Code / JetBrains,Completely free,No,"coding,open-source,ide,vscode"
 Aider,Code Assistant,https://aider.chat,AI pair programming in your terminal,Completely free (bring your own key),No,"coding,terminal,open-source"

@@ -4,12 +4,18 @@
 
 # Awesome Free AI
 
-> A snapshot of genuinely free (or free-tier) AI tools, APIs, and platforms **as they existed in September 2026**.
+![Free Resources](https://img.shields.io/badge/Free_Resources-72-success)
+![Local Tools](https://img.shields.io/badge/Local_Tools-79-blue)
+![Paid Tools](https://img.shields.io/badge/Paid_Tools-29-lightgrey)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Last Updated](https://img.shields.io/badge/Updated-October_2026-orange)
 
 Free tiers change fast — tools get paywalled, rebranded, or shut down. This list captures what was on offer at the time of each update, with every change tracked in [`history.csv`](history.csv) and summarised in [`CHANGELOG.md`](CHANGELOG.md). Think of it less as a permanent directory and more as a dated edition: accurate when written, audited on refresh.
 
 **72 resources** across 15 categories. Browse the [live site](https://chid.github.io/free-ai/) for a filterable, searchable UI, or read on. Dedicated local & self-hosted runners and models live in [`local_resources.csv`](local_resources.csv) (83 tools), tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv) (28 of them), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
 
+### What is this?
+A snapshot of genuinely free (or free-tier) AI tools, APIs, and platforms **as they existed in October 2026**. Free tiers change fast — tools get paywalled, rebranded, or shut down. This directory captures what was on offer at the time of each update, tracking every tier shift and limit change. Think of it less as a permanent directory and more as a dated edition: accurate when written, audited on refresh.
 
 ---
 
@@ -28,11 +34,11 @@ Free tiers change fast — tools get paywalled, rebranded, or shut down. This li
 - [Productivity](#productivity)
 - [Frameworks](#frameworks)
 - [Contributing](#contributing)
+- [See Also](#see-also)
 
 ---
 
 ## LLM Chatbots
-
 Full-featured AI chat interfaces with free tiers.
 
 - **[Claude (Anthropic)](https://claude.ai)** — Anthropic's AI assistant — strong reasoning and long context. *Free tier with dynamic 5-hour rolling limits (~10-30 msgs/5h).*
@@ -43,7 +49,6 @@ Full-featured AI chat interfaces with free tiers.
 - **[DeepSeek](https://chat.deepseek.com)** — Free chatbot featuring strong reasoning and coding from DeepSeek's open-weight models. *Free with usage limits.*
 
 ## LLM APIs
-
 Programmatic access to large language models with free quotas.
 
 - **[Google AI Studio](https://aistudio.google.com)** — Gemini API with a free tier on current Flash models (3.x Flash, Flash-Lite, Gemma); Pro models moved to paid tiers in April 2026 and unrestricted API keys have been blocked since June 2026. *Free API key: Flash-family models only, quotas shown in-account (no published table since mid-2026); no credit card.*
@@ -61,7 +66,6 @@ Programmatic access to large language models with free quotas.
 - **[NVIDIA NIM](https://build.nvidia.com)** — OpenAI-compatible endpoints for 120+ open-weight models hosted by NVIDIA. *Free: 1000 API credits at ~40 requests/min, no credit card.*
 
 ## Routers & Clients
-
 Put many providers behind one interface, with fallback and budget control.
 
 - **[LiteLLM](https://litellm.ai)** — Unified OpenAI-compatible proxy that routes to 100+ LLM providers with automatic retries and rate-limit fallback. *Completely free; open-source.*
@@ -69,7 +73,6 @@ Put many providers behind one interface, with fallback and budget control.
 - **[Vercel AI Gateway](https://vercel.com/docs/ai-gateway)** — Single endpoint routing to 200+ models from 40+ providers with budgets, monitoring and fallbacks. *Free: $5 of gateway credit per month, refreshing every 30 days.*
 
 ## Code Assistants
-
 AI tools that live in your editor or terminal.
 
 - **[GitHub Copilot](https://github.com/features/copilot)** — AI code completion in your editor; completions stay free and unmetered, while chat, agent mode and CLI draw on AI Credits from June 2026. *Free for all users: 2000 completions/month unmetered; chat, agent and CLI draw on a monthly AI Credits allowance.*
@@ -88,7 +91,6 @@ AI tools that live in your editor or terminal.
 - **[Matilda (Maincode)](https://www.maincode.com/matilda-code)** — Australian sovereign-AI coding agent from Maincode — terminal CLI and desktop app that plans edits across your repo and opens PRs. *Free during Public Beta.*
 
 ## Code & UI Builders
-
 Generate full UIs and apps from a prompt in the browser.
 
 - **[v0 by Vercel](https://v0.dev)** — Generate React/UI components from prompts. *Free tier available.*
@@ -96,7 +98,6 @@ Generate full UIs and apps from a prompt in the browser.
 - **[Lovable](https://lovable.dev)** — AI full-stack app builder that generates React/TypeScript with a Supabase backend and deploys instantly. *Free tier: 5 credits/day (30/month); no credit card required.*
 
 ## Image Generation
-
 Text-to-image tools that are free or have a meaningful free tier.
 
 - **[Adobe Firefly](https://firefly.adobe.com)** — Adobe's generative image tools. *Free credits monthly.*
@@ -106,7 +107,6 @@ Text-to-image tools that are free or have a meaningful free tier.
 - **[Canva AI](https://canva.com)** — AI image generation and design tools. *Free tier with AI features.*
 
 ## Video Generation
-
 AI tools for generating or editing video.
 
 - **[Runway](https://runwayml.com)** — AI video generation and editing tools. *Free tier (limited credits).*
@@ -117,7 +117,6 @@ AI tools for generating or editing video.
 - **[Dreamina (Seedance 2.0)](https://dreamina.capcut.com)** — ByteDance's text- and image-to-video generator running the Seedance 2.0 model with native audio. *Free daily credits (~2-3 videos/day) at up to 1080p, watermark-free.*
 
 ## Audio & Voice
-
 Text-to-speech, voice cloning, and speech recognition.
 
 - **[ElevenLabs](https://elevenlabs.io)** — High-quality AI text-to-speech and voice cloning. *Free tier (10k credits/month across TTS, STT, SFX and music).*
@@ -125,16 +124,13 @@ Text-to-speech, voice cloning, and speech recognition.
 - **[Whisper (OpenAI)](https://github.com/openai/whisper)** — State-of-the-art open-source speech recognition. *Completely free.*
 
 ## Music Generation
-
 Generate original music from text prompts.
 
 - **[Suno](https://suno.com)** — AI music generation from text prompts; free-tier tracks stream and share on Suno but can no longer be downloaded. *Free: 50 credits/day (~10 songs); no downloads, no commercial use.*
 - **[Udio](https://udio.com)** — AI music generation and remixing. *Free: 10 songs/month.*
 - **[Treblo](https://treblo.com)** — Turn prompts or your own lyrics into full songs with vocals in any genre (formerly Sonauto); output rights assigned to the user. *Completely free: unlimited songs on the Melodia v3 model, downloads in 5 formats.*
 
-
 ## Search & Research
-
 AI-powered search engines and research tools.
 
 - **[Perplexity AI](https://www.perplexity.ai)** — AI-powered search with cited answers. *Free tier available.*
@@ -143,7 +139,6 @@ AI-powered search engines and research tools.
 - **[models.dev](https://models.dev)** — Comprehensive reference for frontier AI model pricing, context windows, and capabilities across all major labs. *Completely free.*
 
 ## Productivity
-
 AI tools for writing, notes, diagrams, and presentations.
 
 - **[NotebookLM](https://notebooklm.google.com)** — Google's AI research and note-taking tool (upload docs). *Free.*
@@ -151,8 +146,7 @@ AI tools for writing, notes, diagrams, and presentations.
 - **[Napkin AI](https://napkin.ai)** — Turn text into visuals and diagrams automatically. *Free tier available.*
 
 ## Frameworks
-
-Open-source libraries for building agents, RAG pipelines, and optimised prompts. All are free — costs come only from the models you connect.
+Open-source libraries for building agents, RAG pipelines, and optimized prompts. Represents Agent Frameworks, RAG Frameworks, and Prompt Optimization categories. All are free — costs come only from the models you connect.
 
 - **[LangChain](https://python.langchain.com)** — Provider-agnostic framework for building LLM chains and agents; includes LangGraph for stateful multi-agent workflows. *Completely free; open-source.*
 - **[CrewAI](https://crewai.com)** — Role-based multi-agent framework — define a crew of agents with distinct roles and goals; lowest barrier to entry of any major framework. *Completely free; open-source.*
@@ -163,28 +157,26 @@ Open-source libraries for building agents, RAG pipelines, and optimised prompts.
 - **[DSPy](https://dspy.ai)** — Stanford framework for algorithmically optimizing LLM prompts and pipelines instead of hand-writing them. *Completely free; open-source.*
 - **[Hermes Agent](https://github.com/NousResearch/hermes-agent)** — Nous Research's self-improving personal agent with persistent cross-session memory, automatic skill creation and multi-channel support. *Completely free; open-source (MIT).*
 - **[m_flow](https://github.com/FlowElement-xinliuyuansu/m_flow)** — Bio-inspired cognitive memory and Graph-RAG engine with episodic and procedural memory; plugs into LangChain/LlamaIndex and MCP. *Completely free; open-source (Apache-2.0).*
+
 ---
 
 ## Contributing
+The directory is powered entirely by CSV files. Edit them directly or use the CLI to add or change entries. All changes are logged automatically and reflected on the [Live Site](https://chid.github.io/free-ai/) and this [GitHub repository](https://github.com/chid/free-ai).
 
-The list is driven by [`resources.csv`](resources.csv) — edit that file to add or change entries.
+**The Three Pathways:**
+1. **[`resources.csv`](resources.csv)** — Tools with a genuine free tier.
+2. **[`local_resources.csv`](local_resources.csv)** — Local/self-hosted LLM runners, models, and clients.
+3. **[`paid_resources.csv`](paid_resources.csv)** — Paid-only tools with no meaningful free tier.
 
 **Quick add via CLI:**
 ```bash
 python3 update.py
 ```
 
-**Manual CSV edit** — append a row with these columns:
-```
-name, category, url, description, free_tier, requires_signup, tags
-```
-
-**Criteria for inclusion:**
-- Has a genuine free tier (no credit card required to start, unless noted)
-- Publicly accessible — not waitlisted or invite-only
-- Active and functional product
-- AI is a core part of the product, not a minor feature
-
-All changes are logged automatically to [`history.csv`](history.csv).
-
 **Automated refresh:** Open a Claude Code session here and paste [`refresh_prompt.md`](refresh_prompt.md) to have Claude research new tools and update the list.
+
+## See Also
+- **[Web Directory](https://chid.github.io/free-ai/)**: Filterable, searchable web view of all lists.
+- **[Model Timeline](https://chid.github.io/free-ai/models.html)**: Interactive timeline of notable open-weight model releases.
+- **[QUOTAS.md](QUOTAS.md)**: Insights on how paid AI plans meter usage and limit tokens.
+- **[models.dev](https://models.dev)**: Comprehensive reference for frontier AI model pricing, context windows, and lab capabilities.

@@ -3,6 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Curated directory of 180+ free, local, and paid AI tools — monthly verified. Search by category, tier, and tags." />
+  <meta name="theme-color" content="#7c3aed" />
+  <meta property="og:title" content="AI Resources Directory — Free, Local & Paid" />
+  <meta property="og:description" content="Curated directory of 180+ free, local, and paid AI tools — monthly verified for developers, researchers, and creators." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://chid.github.io/free-ai/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AI Resources Directory" />
+  <meta name="twitter:description" content="180+ free, local, and paid AI tools — monthly verified." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
   <title>AI Resources Directory — Free, Local &amp; Paid</title>
   <style>
     :root {
@@ -726,6 +736,140 @@
     }
 
     .modal-body tr:nth-child(even) { background: rgba(255, 255, 255, 0.015); }
+
+    /* Hero Stats Row */
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+      margin: 1.25rem 0 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    .hero-stat-num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: var(--text-subtle);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-stat-sep {
+      width: 1px;
+      height: 2.2rem;
+      background: var(--border);
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top: 3rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-brand strong {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-subtle);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent2);
+    }
+
+    /* Scroll to Top */
+    .scroll-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: var(--transition);
+      pointer-events: none;
+      z-index: 100;
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .scroll-top:hover {
+      background: #6d28d9;
+      transform: translateY(-2px);
+    }
+
+    /* Better Mobile */
+    @media (max-width: 640px) {
+      body { padding: 1.5rem 0.75rem 3rem; }
+      .grid { grid-template-columns: 1fr; gap: 0.85rem; }
+      .card { padding: 1rem; }
+      header h1 { font-size: 1.8rem; }
+      .hero-stats { gap: 0.75rem; }
+      .hero-stat-num { font-size: 1.2rem; }
+      .hero-stat-sep { height: 1.8rem; }
+      .tier-toggle-wrap { flex-wrap: wrap; }
+      .tier-btn { padding: 0.4rem 0.85rem; font-size: 0.8rem; }
+      .search-wrap { min-width: 100%; }
+      .site-footer { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 400px) {
+      .doc-links { gap: 0.4rem; }
+      .doc-link-btn { padding: 0.2rem 0.5rem; font-size: 0.75rem; }
+    }
   </style>
 </head>
 <body>
@@ -737,7 +881,16 @@
       <span id="live-status-text">Directory Live &bull; <span id="total-count">...</span> AI Resources Tracked</span>
     </div>
     <h1>AI Resources Directory</h1>
-    <p>Curated directory of free cloud tools, local runtimes, and paid frontier models</p>
+    <p>Curated free, local &amp; paid AI tools &mdash; monthly verified for developers, researchers, and creators</p>
+    <div class="hero-stats" id="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-num" id="hs-free">...</span><span class="hero-stat-label">Free Tools</span></div>
+      <div class="hero-stat-sep"></div>
+      <div class="hero-stat"><span class="hero-stat-num" id="hs-local">...</span><span class="hero-stat-label">Local / Self-Hosted</span></div>
+      <div class="hero-stat-sep"></div>
+      <div class="hero-stat"><span class="hero-stat-num" id="hs-paid">...</span><span class="hero-stat-label">Paid Tools</span></div>
+      <div class="hero-stat-sep"></div>
+      <div class="hero-stat"><span class="hero-stat-num" id="hs-cats">15</span><span class="hero-stat-label">Categories</span></div>
+    </div>
     <div class="doc-links">
       <a href="README.md" class="doc-link-btn doc-link" data-file="README.md">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -749,7 +902,15 @@
       </a>
       <a href="QUOTAS.md" class="doc-link-btn doc-link" data-file="QUOTAS.md">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        QUOTAS (Metering Guide)
+        QUOTAS
+      </a>
+      <a href="models.html" class="doc-link-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+        Model Timeline
+      </a>
+      <a href="https://github.com/chid/free-ai" class="doc-link-btn" target="_blank" rel="noopener noreferrer">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
       </a>
     </div>
   </header>
@@ -803,9 +964,27 @@
   </div>
 
   <div class="update-banner">
-    <strong>Contributing &amp; Updating:</strong> Edit <code>resources.csv</code>, <code>paid_resources.csv</code>, or <code>local_resources.csv</code> &mdash; or run <code>python3 update.py</code> (option 15 to sync live repo/model activity timestamps).
+    <strong>Missing a tool?</strong> Submit a pull request to <a href="https://github.com/chid/free-ai" target="_blank" rel="noopener noreferrer" style="color:var(--accent2)">chid/free-ai</a> &mdash; edit <code>resources.csv</code>, <code>paid_resources.csv</code>, or <code>local_resources.csv</code> directly, or run <code>python3 update.py</code> for a guided CLI.
   </div>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <strong>AI Resources Directory</strong>
+      <span>&mdash; open-source, community-curated</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/chid/free-ai" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="models.html">Model Timeline</a>
+      <a href="QUOTAS.md" class="doc-link" data-file="QUOTAS.md">Quotas</a>
+      <a href="https://models.dev" target="_blank" rel="noopener noreferrer">models.dev</a>
+    </div>
+  </footer>
 </div>
+
+<!-- Scroll to Top Button -->
+<button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
 
 <!-- Modal for viewing markdown docs -->
 <div class="modal-overlay" id="doc-modal">
@@ -1260,6 +1439,17 @@
       document.getElementById('all-count').textContent = total;
       document.getElementById('total-count').textContent = total;
 
+      // Hero stats
+      document.getElementById('hs-free').textContent = freeResources.length;
+      document.getElementById('hs-local').textContent = localResources.length;
+      document.getElementById('hs-paid').textContent = paidResources.length;
+      const allCats = new Set([
+        ...freeResources.map(r => r.category),
+        ...paidResources.map(r => r.category),
+        ...localResources.map(r => r.category)
+      ]);
+      document.getElementById('hs-cats').textContent = allCats.size;
+
       // Tier switcher buttons
       document.querySelectorAll('.tier-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1291,11 +1481,16 @@
   }
 
   init();
+
+  // Scroll to top button
+  const scrollBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  scrollBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 </script>
 </body>
 </html>
-
-
-
-
 
