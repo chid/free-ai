@@ -9,6 +9,20 @@ files are append-only and are the source of truth. This file is the human-readab
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
+## [2026-10-09] — Renamed the repository and added upstream review checks
+
+Renamed the repository to `chid/awesome-free-ai` and updated the published-site
+and repository links. Added a weekly GitHub Actions check for missing providers
+from `awesome-free-llm-apis` and newly listed model pages on models.fyi; both
+sources create review issues rather than adding entries automatically.
+
+## [2026-10-07] — Added a guide to following AI developments
+
+Added [`STAY_CURRENT.md`](STAY_CURRENT.md), a curated set of newsletters, blogs,
+podcasts, YouTube channels, research feeds, and communities, plus a low-noise
+routine for keeping up. Linked it from the live directory and README without
+changing the tool catalog or its counts.
+
 ## [2026-10-03] — Weekly local refresh: a 48.7k-star agent framework, an embeddable Rust runner, and a quantization toolkit
 
 This refresh added 4 tools (76 → 80); merging with the separately-landed

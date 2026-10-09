@@ -1,6 +1,6 @@
 <p align="center"><a href="https://chid.github.io/awesome-free-ai/"><img src="assets/banner.svg" alt="Awesome Free AI" width="100%"></a></p>
 
-<p align="center"><b><a href="https://chid.github.io/awesome-free-ai/">Live site</a></b> · <a href="https://chid.github.io/awesome-free-ai/models.html">Model timeline</a> · <a href="CHANGELOG.md">Changelog</a> · <a href="QUOTAS.md">Quotas</a></p>
+<p align="center"><b><a href="https://chid.github.io/awesome-free-ai/">Live site</a></b> · <a href="https://chid.github.io/awesome-free-ai/models.html">Model timeline</a> · <a href="STAY_CURRENT.md">Stay current on AI</a> · <a href="CHANGELOG.md">Changelog</a> · <a href="QUOTAS.md">Quotas</a></p>
 
 # Awesome Free AI
 
@@ -34,6 +34,8 @@ A snapshot of genuinely free (or free-tier) AI tools, APIs, and platforms **as t
 - [Productivity](#productivity)
 - [Frameworks](#frameworks)
 - [Contributing](#contributing)
+- [Automated upstream review](#automated-upstream-review)
+- [Stay Current on AI](STAY_CURRENT.md)
 - [See Also](#see-also)
 
 ---
@@ -175,8 +177,13 @@ python3 update.py
 
 **Automated refresh:** Open a Claude Code session here and paste [`refresh_prompt.md`](refresh_prompt.md) to have Claude research new tools and update the list.
 
+## Automated upstream review
+
+A weekly GitHub Actions workflow checks [awesome-free-llm-apis](https://github.com/mnfst/awesome-free-llm-apis) for providers missing from the free and paid catalogs, and checks [models.fyi](https://models.fyi) for newly listed model pages to review for the timeline. It opens review issues; entries are added only after they are checked against this project's criteria.
+
 ## See Also
 - **[Web Directory](https://chid.github.io/awesome-free-ai/)**: Filterable, searchable web view of all lists.
 - **[Model Timeline](https://chid.github.io/awesome-free-ai/models.html)**: Interactive timeline of notable open-weight model releases.
+- **[Stay current on AI](STAY_CURRENT.md)**: A curated mix of newsletters, blogs, podcasts, YouTube channels, research feeds, and communities.
 - **[QUOTAS.md](QUOTAS.md)**: Insights on how paid AI plans meter usage and limit tokens.
 - **[models.dev](https://models.dev)**: Comprehensive reference for frontier AI model pricing, context windows, and lab capabilities.

@@ -1,6 +1,6 @@
 # Free AI Resources — Project Guide
 
-A self-updating directory of free AI tools, served as a static web page driven by a CSV.
+A self-updating directory of free AI tools, served as a static web page driven by a CSV, with a guide to following AI developments.
 
 > **This file is the single source of truth for agent instructions in this repo.**
 > It follows the cross-tool `AGENTS.md` convention, so Claude Code, Antigravity,
@@ -19,6 +19,7 @@ A self-updating directory of free AI tools, served as a static web page driven b
 | `paid_resources.csv` | Source of truth — paid-only tools (no genuine free tier) |
 | `local_resources.csv` | Source of truth — local/self-hosted LLM runners, UIs, and engines |
 | `index.html` | Web page; fetches and renders CSV data at load time |
+| `STAY_CURRENT.md` | Curated guide to AI newsletters, blogs, podcasts, videos, research feeds, and communities |
 | `history.csv` | Append-only log of every add/remove/edit to `resources.csv` |
 | `paid_history.csv` | Append-only log of every add/remove/edit to `paid_resources.csv` |
 | `local_history.csv` | Append-only log of every add/remove/edit to `local_resources.csv` |
@@ -132,6 +133,7 @@ updates.
 - Every refresh adds a dated section at the top of `CHANGELOG.md` summarising adds, removes, tier changes, and fixes
 - When a vendor changes *how* it meters (credits, rolling windows, shared pools) rather than what it charges, record it in `QUOTAS.md` and date it — temporary boosts must never be written into a `free_tier` or `pricing` value undated
 - `README.md` mirrors `resources.csv` — regenerate its resource sections when rows change, and update the snapshot month and count in the header
+- Review the links and activity in `STAY_CURRENT.md` on a monthly refresh; update its review date when checking the recommendations
 - Keep `requires_signup` as exactly `Yes` or `No` (free tools only)
 - `tags` are lowercase, comma-separated, no spaces around commas
 - `free_tier` should be specific (e.g. "Free tier with rate limits", "Completely free", "$5 credit on signup") not vague ("Free!")
