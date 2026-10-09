@@ -199,7 +199,7 @@ OpenCode, which is correctly listed in the free/paid pathways already.
 ||||||| parent of b27e4d0 (viz: add model release timeline (models.html + model_releases.csv))
 
 The whole site now deploys to GitHub Pages at
-[chid.github.io/free-ai](https://chid.github.io/free-ai/) —
+[chid.github.io/awesome-free-ai](https://chid.github.io/awesome-free-ai/) —
 `.github/workflows/pages.yml` publishes the tracked files on every push to
 `main`, no build step.
 

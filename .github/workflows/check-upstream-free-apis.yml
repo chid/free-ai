@@ -1,0 +1,59 @@
+name: Check upstream free LLM APIs
+
+on:
+  schedule:
+    - cron: "23 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: check-upstream-free-apis
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Compare upstream providers with our API catalogs
+        id: compare
+        run: |
+          python3 .github/scripts/check_upstream_free_apis.py \
+            --output "$RUNNER_TEMP/upstream-report.md" \
+            --github-output "$GITHUB_OUTPUT"
+          cat "$RUNNER_TEMP/upstream-report.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open a review issue for missing providers
+        if: steps.compare.outputs.has_missing == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Review providers from awesome-free-llm-apis"
+          existing=$(gh issue list --state open --search "$title in:title" --json title --jq '.[].title')
+          if ! printf '%s\n' "$existing" | grep -Fqx "$title"; then
+            gh issue create --title "$title" --body-file "$RUNNER_TEMP/upstream-report.md"
+          fi
+
+      - name: Check models.fyi for new model pages
+        id: models_fyi
+        run: |
+          python3 .github/scripts/check_models_fyi.py \
+            --output "$RUNNER_TEMP/models-fyi-report.md" \
+            --github-output "$GITHUB_OUTPUT"
+          cat "$RUNNER_TEMP/models-fyi-report.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open a review issue for new models.fyi pages
+        if: steps.models_fyi.outputs.has_new_models == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Review new model releases from models.fyi"
+          existing=$(gh issue list --state open --search "$title in:title" --json title --jq '.[].title')
+          if ! printf '%s\n' "$existing" | grep -Fqx "$title"; then
+            gh issue create --title "$title" --body-file "$RUNNER_TEMP/models-fyi-report.md"
+          fi

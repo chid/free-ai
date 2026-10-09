@@ -1,6 +1,6 @@
-<p align="center"><a href="https://chid.github.io/free-ai/"><img src="assets/banner.svg" alt="Awesome Free AI" width="100%"></a></p>
+<p align="center"><a href="https://chid.github.io/awesome-free-ai/"><img src="assets/banner.svg" alt="Awesome Free AI" width="100%"></a></p>
 
-<p align="center"><b><a href="https://chid.github.io/free-ai/">Live site</a></b> · <a href="https://chid.github.io/free-ai/models.html">Model timeline</a> · <a href="CHANGELOG.md">Changelog</a> · <a href="QUOTAS.md">Quotas</a></p>
+<p align="center"><b><a href="https://chid.github.io/awesome-free-ai/">Live site</a></b> · <a href="https://chid.github.io/awesome-free-ai/models.html">Model timeline</a> · <a href="CHANGELOG.md">Changelog</a> · <a href="QUOTAS.md">Quotas</a></p>
 
 # Awesome Free AI
 
@@ -12,7 +12,7 @@
 
 Free tiers change fast — tools get paywalled, rebranded, or shut down. This list captures what was on offer at the time of each update, with every change tracked in [`history.csv`](history.csv) and summarised in [`CHANGELOG.md`](CHANGELOG.md). Think of it less as a permanent directory and more as a dated edition: accurate when written, audited on refresh.
 
-**72 resources** across 15 categories. Browse the [live site](https://chid.github.io/free-ai/) for a filterable, searchable UI, or read on. Dedicated local & self-hosted runners and models live in [`local_resources.csv`](local_resources.csv) (83 tools), tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv) (28 of them), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
+**72 resources** across 15 categories. Browse the [live site](https://chid.github.io/awesome-free-ai/) for a filterable, searchable UI, or read on. Dedicated local & self-hosted runners and models live in [`local_resources.csv`](local_resources.csv) (83 tools), tools with no genuine free tier live in [`paid_resources.csv`](paid_resources.csv) (28 of them), and [`QUOTAS.md`](QUOTAS.md) tracks how paid AI plans meter usage — increasingly the thing that separates a real free tier from a nominal one.
 
 ### What is this?
 A snapshot of genuinely free (or free-tier) AI tools, APIs, and platforms **as they existed in October 2026**. Free tiers change fast — tools get paywalled, rebranded, or shut down. This directory captures what was on offer at the time of each update, tracking every tier shift and limit change. Think of it less as a permanent directory and more as a dated edition: accurate when written, audited on refresh.
@@ -161,7 +161,7 @@ Open-source libraries for building agents, RAG pipelines, and optimized prompts.
 ---
 
 ## Contributing
-The directory is powered entirely by CSV files. Edit them directly or use the CLI to add or change entries. All changes are logged automatically and reflected on the [Live Site](https://chid.github.io/free-ai/) and this [GitHub repository](https://github.com/chid/free-ai).
+The directory is powered entirely by CSV files. Edit them directly or use the CLI to add or change entries. All changes are logged automatically and reflected on the [Live Site](https://chid.github.io/awesome-free-ai/) and this [GitHub repository](https://github.com/chid/awesome-free-ai).
 
 **The Three Pathways:**
 1. **[`resources.csv`](resources.csv)** — Tools with a genuine free tier.
@@ -176,7 +176,7 @@ python3 update.py
 **Automated refresh:** Open a Claude Code session here and paste [`refresh_prompt.md`](refresh_prompt.md) to have Claude research new tools and update the list.
 
 ## See Also
-- **[Web Directory](https://chid.github.io/free-ai/)**: Filterable, searchable web view of all lists.
-- **[Model Timeline](https://chid.github.io/free-ai/models.html)**: Interactive timeline of notable open-weight model releases.
+- **[Web Directory](https://chid.github.io/awesome-free-ai/)**: Filterable, searchable web view of all lists.
+- **[Model Timeline](https://chid.github.io/awesome-free-ai/models.html)**: Interactive timeline of notable open-weight model releases.
 - **[QUOTAS.md](QUOTAS.md)**: Insights on how paid AI plans meter usage and limit tokens.
 - **[models.dev](https://models.dev)**: Comprehensive reference for frontier AI model pricing, context windows, and lab capabilities.

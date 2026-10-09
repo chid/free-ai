@@ -86,7 +86,7 @@ python3 -m http.server 8080
 
 The page uses `fetch('resources.csv')` so it needs a server (not file://).
 
-The site is also published to GitHub Pages — <https://chid.github.io/free-ai/>
+The site is also published to GitHub Pages — <https://chid.github.io/awesome-free-ai/>
 (includes the model timeline at `/models.html`). The deploy workflow runs on
 every push to `main`; no build step, the artifact is just the tracked files.
 
