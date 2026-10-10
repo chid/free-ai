@@ -9,6 +9,79 @@ files are append-only and are the source of truth. This file is the human-readab
 
 Format loosely follows [Keep a Changelog](https://keepachangelog.com).
 
+## [2026-10-10] — Weekly local refresh: 14 additions across code agents, serving, fine-tuning, and open weights; retired a dormant desktop client
+
+This refresh added 14 tools and removed 1 dormant entry, taking the total
+from 83 to 96 local tools. Verified the README's local/paid/free counts
+against the actual CSV row counts via `python3 update.py`'s audit (72 free,
+28 paid, 96 local).
+
+### Added
+- **Crush** (Charmbracelet) — Code Assistant. Terminal agentic coding
+  assistant with MCP server support and auto-discovery of local model
+  providers (Ollama, llama.cpp, LM Studio, MLX). FSL-1.1-MIT (fair-source,
+  converts to MIT after 2 years), v0.98.1 released Oct 9 2026.
+- **fast-agent** — Agent Framework. MCP-native Python framework for
+  building, running, and evaluating agents with first-class local-model
+  support via Ollama/llama.cpp. Apache-2.0.
+- **Letta** — Agent Framework. Self-hostable stateful-agents platform with
+  long-term memory, runs fully local against Ollama/LM Studio. Apache-2.0.
+- **Agno** — Agent Framework. Python multi-agent framework with native
+  Ollama model classes and an MCP tools layer. Apache-2.0.
+- **KTransformers** — Serving Engine. Heterogeneous CPU+GPU inference
+  framework that offloads large MoE models (DeepSeek-V3/R1) onto
+  consumer-grade hardware via kernels injected into Hugging Face
+  Transformers. Apache-2.0, v0.7.1 released Sep 15 2026.
+- **Harbor** — Local Runner. Docker Compose launcher that wires up a
+  complete local LLM stack (backends + frontends) in one command — same
+  spirit as the already-listed RamaLama. Apache-2.0.
+- **Gemma 4** (Google DeepMind) — Vision & Multimodal. First Apache-2.0
+  Gemma generation, with native multimodal (image/video, audio on smaller
+  sizes) across all sizes. Family launched Apr 2 2026.
+- **LTX-2.5** (Lightricks) — Image & Video Gen. 22B open-weight video+audio
+  diffusion model with ComfyUI support and GGUF quants. LTX-2.x Community
+  License (free under $10M revenue, same shape as the already-listed
+  HunyuanVideo-1.5/FLUX 3).
+- **HiDream-O1-Image** — Image & Video Gen. 8B unified transformer for
+  text-to-image, instruction editing, and personalization on a single
+  consumer GPU. MIT.
+- **LongCat-2.0** (Meituan) — Open Weights (LLM). 1.6T/~48B-active MoE with
+  claimed 1M-token context, datacenter-only like the already-listed Kimi K3
+  / MiniMax-M3; community GGUF/Ollama quants available. MIT.
+- **PMetal** — Fine-tuning / Quant. Rust Apple Silicon fine-tuning framework
+  (LoRA/QLoRA/full/DPO/KTO/GRPO) filling the CUDA-centric gap next to
+  Unsloth/Axolotl/LLaMA-Factory. Dual MIT/Apache-2.0.
+- **LLM Compressor** (vLLM project) — Fine-tuning / Quant. Quantization
+  library (GPTQ/AWQ/SmoothQuant/FP8/NVFP4) producing compressed-tensors
+  checkpoints for local serving. Apache-2.0.
+- **AIPerf** — Hardware / Benchmarking. NVIDIA's actively-developed
+  successor to genai-perf/perf_analyzer for benchmarking self-hosted
+  inference servers; fills a second slot alongside LocalScore with a
+  server-throughput focus. Apache-2.0.
+- **EvalScope** (ModelScope) — Evaluation & Harnesses. Evaluation framework
+  covering capability/RAG/agent/perf benchmarks against local
+  OpenAI-compatible endpoints. Apache-2.0.
+
+### Removed
+- **GPT4All** (Desktop Client) — dormant: last commit on the `main` branch
+  is 2025-05-27, last tagged release (v3.10.0) is from 2025-02-25, well
+  outside the 6-month maintenance bar applied to this list. Repo isn't
+  archived, just inactive; worth re-adding if development resumes.
+
+### Considered but not added (this week)
+- **NVIDIA Dynamo** / **llm-d** / **GPUStack** — datacenter-cluster
+  serving-orchestration layers over vLLM/SGLang/TensorRT-LLM; excluded per
+  the stricter bar set in the 2026-10-03 refresh (not a tool a reader runs
+  on their own machine).
+- **Sonar** (formerly Aphrodite Engine, now under `dphnAI`) — vLLM-based
+  quantized serving engine; technically qualifies, but passed over as
+  redundant with the already-listed vLLM/SGLang/ExLlamaV3/mistral.rs for
+  this week's batch.
+- **Cline**, **Aider**, **OpenCode**, **Kilo Code** — all genuinely capable
+  of running fully offline against Ollama/LM Studio, but already correctly
+  placed in `resources.csv` as general BYOK coding agents (not local-only
+  tools); not duplicated here. See PR body for the one-tool-one-pathway note.
+
 ## [2026-10-09] — Renamed the repository and added upstream review checks
 
 Renamed the repository to `chid/awesome-free-ai` and updated the published-site
